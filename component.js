@@ -1,5 +1,5 @@
 
-(function(context, nameInContext, undef){
+(function(context, nameInContext, $, undef){
 
 	var attrPrefix = 'component';
 	var placeholderPrefix = 'placeholder';
@@ -285,4 +285,4 @@
 	component.bind = bindVariable;
 	component.lookup();
 
-})(this, 'component');
+})(this, 'component', jQuery);
