@@ -9,4 +9,4 @@ title: jquery-components
 </div>
 {% endhighlight %}
 ```
-# Title test 2
+## Title test 2
