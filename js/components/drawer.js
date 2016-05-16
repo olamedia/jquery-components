@@ -55,7 +55,7 @@
 			self.$e.on('mouseleave', function(e){
 				mouseover = false;
 			});
-			self.$e.on('scroll', function(){
+			self.$e.on('mousewheel', function(){
 				event.stopPropagation();
 			});
 			/*$('body').on('scroll', function(e){
