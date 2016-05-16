@@ -39,14 +39,14 @@ $(function(){
 </script>
 ```
 
-<button class="btn" id="show-overlay">Show overlay</button>
+<button class="btn btn-default" id="show-overlay">Show overlay</button>
 <script>
 $(function(){
 	var overlay = component('overlay').personal();
 	$('#show-overlay').on('click', function(){
 		overlay.show();
 	});
-	var $closeBtn = $('<button class="btn">Hide overlay</button>');
+	var $closeBtn = $('<button class="btn btn-default">Hide overlay</button>');
 	var $panel = $(document.createElement('div'));
 	$panel.css({
 		'background': '#fff',
