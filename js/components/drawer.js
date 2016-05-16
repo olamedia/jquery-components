@@ -55,7 +55,10 @@
 			self.$e.on('mouseleave', function(e){
 				mouseover = false;
 			});
-			$('body').on('scroll', function(e){
+			self.$e.on('scroll', function(){
+				event.stopPropagation();
+			});
+			/*$('body').on('scroll', function(e){
 				if (!opened){
 					console.log('scroll not prevented - not opened');
 					return;
@@ -72,7 +75,7 @@
 				e.preventDefault();
 				e.stopPropagation();
 				return false;
-			});
+			});*/
 			/*$(document).on('scroll', function(e){
 				e.preventDefault();
 				e.stopPropagation();
