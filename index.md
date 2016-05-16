@@ -8,7 +8,9 @@ title: jquery-components
 > API is not frozen, functions and properties can change names at any time
 
 ## Component definition
-`new component(String codename, Function render[, Function service])`
+
+new component(String codename, Function render[, Function service])
+
 ```js
 new component('component-codename', function(){
 	// "render": create basic template
@@ -17,6 +19,7 @@ new component('component-codename', function(){
 	// "service": deferred updates (ajax, setInterval, etc)
 });
 ```
+
 ### Component lifecycle
 - `component.instance()` is called - to clone component with unique id and scope
 - `DOMElement` is passed to `component.e`
