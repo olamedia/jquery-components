@@ -3,9 +3,13 @@ layout: default
 title: jquery-components
 ---
 
+<div class="aleft alert-warning">
+
 > Warning: This is a draft, not ready for production
 >
 > API is not frozen, functions and properties can change names at any time
+
+</div>
 
 ## Component definition
 
