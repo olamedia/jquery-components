@@ -5,8 +5,7 @@ title: jquery-components
 
 <div class="jumbotron" style="padding: 0; padding-top: 30px; background: #fff; background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 10%,rgba(255,255,255,1) 96%,rgba(255,255,255,1) 100%) top left repeat-x, linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0.85) 28%,rgba(255,255,255,0.7) 53%,rgba(255,255,255,0.85) 87%,rgba(255,255,255,1) 100%) left top repeat-x, url({{ site.baseurl }}/css/images/hero-bg.png) left top repeat;">
 	<h1>jQuery components</h1>
-	<p>Component-based application framework.</p>
-	<p>Plain javascript. Without templates.</p>
+	<p>Component-based application framework. Plain javascript. Without templates.</p>
 </div>
 
 <blockquote class="bg-warning" style="border-left-color: #aa6708;">
