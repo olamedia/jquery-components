@@ -7,6 +7,7 @@ title: Drawer
 <script>
 $(function(){
 	var drawer = component('drawer').detached();
+	drawer.left();
 	var $closeBtn = $(document.createElement('button')).text('Close drawer');
 	$closeBtn.on('click', function(){
 		drawer.close();
