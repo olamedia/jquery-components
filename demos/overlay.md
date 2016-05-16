@@ -26,7 +26,7 @@ $(function(){
 		event.preventDefault();
 	});
 	$('body').on('click', function(){
-		overlay.hide();
+		// overlay.hide();
 	});
 });
 </script>
