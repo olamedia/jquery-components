@@ -49,7 +49,12 @@
 			self.$e.append(self.$container);
 			self.$e.on('scroll', function(e){
 				e.preventDefault();
+				e.stopPropagation();
 			});
+			/*$(document).on('scroll', function(e){
+				e.preventDefault();
+				e.stopPropagation();
+			});*/
 			self.append = function(el){
 				self.$container.append(el);
 			};
