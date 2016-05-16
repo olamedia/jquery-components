@@ -55,7 +55,7 @@
 			self.$e.on('mouseleave', function(e){
 				mouseover = false;
 			});
-			$(document).on('scroll', function(e){
+			$('body').on('scroll', function(e){
 				if (!opened){
 					console.log('scroll not prevented - not opened');
 					return;
