@@ -4,6 +4,7 @@
 
 	new component('drawer', {
 		'componentConstruct': function(){
+			console.log('drawer construct1', self);
 			self.detached = function(){
 				var inst = component.componentInstance(self.codename);
 				var tagName = 'div';
