@@ -50,9 +50,11 @@ new component('component-codename', {
 
 ## Placing component into HTML page
 
-<div component="component-codename" class="panel panel-default">
-	<h1>Some placeholder content</h1>
-	<p>For search engines and other clients without javascript</p>
+<div class="panel panel-default">
+	<div component="component-codename" class="panel-body">
+		<h1>Some placeholder content</h1>
+		<p>For search engines and other clients without javascript</p>
+	</div>
 </div>
 <script>
 	new component('component-codename', function(){
@@ -70,9 +72,11 @@ new component('component-codename', {
 
 ```html
 <body>
-	<div component="component-codename" class="panel panel-default">
-		<h1>Some placeholder content</h1>
-		<p>For search engines and other clients without javascript</p>
+	<div class="panel panel-default">
+		<div component="component-codename" class="panel-body">
+			<h1>Some placeholder content</h1>
+			<p>For search engines and other clients without javascript</p>
+		</div>
 	</div>
 	<script src="component.js">
 		new component('component-codename', function(){
@@ -92,7 +96,9 @@ new component('component-codename', {
 
 ## Binding
 
-<div component="bind-example" class="panel panel-default"></div>
+<div class="panel panel-default">
+	<div component="bind-example" class="panel-body"></div>
+</div>
 <script>
 	new component('bind-example', function(){
 		var self = this;
@@ -114,7 +120,9 @@ new component('component-codename', {
 </script>
 
 ```html
-<div component="bind-example" class="panel panel-default"></div>
+<div class="panel panel-default">
+	<div component="bind-example" class="panel-body"></div>
+</div>
 ```
 
 ```js
@@ -140,8 +148,10 @@ new component('bind-example', function(){
 
 ## Clock Example
 
-<div component="example-clock" class="panel panel-default">
-	<h1>Some placeholder content</h1>
+<div class="panel panel-default">
+	<div component="example-clock" class="panel panel-body">
+		<h1>Some placeholder content</h1>
+	</div>
 </div>
 
 <script>
@@ -157,8 +167,10 @@ new component('example-clock', function(){
 </script>
 
 ```html
-<div component="example-clock" class="panel panel-default">
-	<h1>Some placeholder content</h1>
+<div class="panel panel-default">
+	<div component="example-clock" class="panel panel-body">
+		<h1>Some placeholder content</h1>
+	</div>
 </div>
 ```
 
