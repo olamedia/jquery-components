@@ -19,6 +19,20 @@
 			var self = this;
 			self.overlay = component('overlay').personal();
 			self.overlay.$e.append(self.$e);
+			self.$e.css({
+				'position': 'fixed',
+				'width': '300px',
+				'height': 'auto',
+				'overflow': 'hidden',
+				'background': '#fff'
+				'padding-bottom': '50px'
+			});
+			self.left = function(){
+				self.$e.css({
+					'left': 0,
+					'box-shadow': '5px 10px 15px 5px rgba(0,0,0,.1)'
+				});
+			}
 			self.open = function(){
 				self.overlay.reattach();
 			}
