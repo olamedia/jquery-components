@@ -10,7 +10,8 @@ title: jquery-components
 
 <blockquote class="bg-warning" style="border-left-color: #aa6708;">
 <h4 style="color: #aa6708;">Warning: This is a draft, not ready for production</h4>
-<p><code>gh-pages</code> and <code>master</code> have different script versions at the moment.</p>
+<p><code>gh-pages</code> and <code>master</code> branches have different script versions at the moment.</p>
+<p>Do not expect demos working with <code>master</code> branch.</p>
 <p>API is not frozen, functions and properties can change names at any time</p>
 </blockquote>
 
