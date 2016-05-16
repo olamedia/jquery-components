@@ -46,6 +46,15 @@
 				'padding': '1em 20px',
 				'min-height': '110%',
 			});
+			var $body = $('body');
+			var scrollbarWidth = (function(){
+				var $test = $(document.createElement('div'));
+				$test.css({
+					'overflow-y': 'scroll',
+				});
+				return $test.outerWidth() - $test.innerWidth();
+			})();
+			console.log('scrollbarWidth', scrollbarWidth);
 			self.$e.append(self.$container);
 			var opened = false;
 			var mouseover = false;
@@ -55,9 +64,9 @@
 			self.$e.on('mouseleave', function(e){
 				mouseover = false;
 			});
-			self.$e.on('mousewheel', function(){
+			/*self.$e.on('mousewheel', function(){
 				event.stopPropagation();
-			});
+			});*/
 			/*$('body').on('scroll', function(e){
 				if (!opened){
 					console.log('scroll not prevented - not opened');
