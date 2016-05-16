@@ -3,8 +3,8 @@ layout: default
 title: jquery-components
 ---
 
-<blockquote class="bg-warning">
-<p>Warning: This is a draft, not ready for production</p>
+<blockquote class="bg-warning" style="border-left-color: #aa6708;">
+<h4 style="color: #aa6708;">Warning: This is a draft, not ready for production</h4>
 <p>API is not frozen, functions and properties can change names at any time</p>
 </blockquote>
 
