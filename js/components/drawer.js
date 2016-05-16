@@ -40,6 +40,7 @@
 			});
 			self.$container = $(document.createElement('div'));
 			self.$container.css({
+				'padding': '1em 20px',
 				'min-height': '110%',
 			});
 			self.$e.append(self.$container);
