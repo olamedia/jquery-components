@@ -3,7 +3,7 @@ layout: default-custom-h1
 title: jquery-components
 ---
 
-<div class="jumbotron">
+<div class="jumbotron" style="padding: 0; padding-top: 30px; background: #fff; background-image: url({{ site.baseurl }}/css/images/hero-bg.png) repeat, linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 72%,rgba(255,255,255,1) 100%) repeat-x;">
 	<h1>jQuery components</h1>
 	<p>Component-based application framework</p>
 </div>
