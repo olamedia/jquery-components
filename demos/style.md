@@ -4,6 +4,7 @@ title: Style
 ---
 
 Inline styles
+
 Appending to `style` tag
 
 ## Setup
