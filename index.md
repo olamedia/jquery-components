@@ -49,6 +49,25 @@ new component('component-codename', {
 
 
 ## Placing component into HTML page
+
+<div component="component-codename">
+	<h1>Some placeholder content</h1>
+	<p>For search engines and other clients without javascript</p>
+</div>
+<script>
+	new component('component-codename', function(){
+		var self = this;
+		self.$e.after($(document.createElement('div')).text('Sample text'));
+	}, function(){
+		var self = this;
+		var i = 0;
+		setInterval(function(){
+			// simple example
+			self.$e.text(i++);
+		}, 1000);
+	}
+</script>
+
 ```html
 <body>
 	<div component="component-codename">
