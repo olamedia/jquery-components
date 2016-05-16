@@ -91,8 +91,30 @@ new component('component-codename', {
 ```
 
 ## Binding
+
+<div component="bind-example"></div>
+<script>
+	new component('bind-example', function(){
+		var self = this;
+		self.$e.html('<span model="alice"></span> <span model="bob"></span>');
+		self.scope.alice = 'Alice';
+		self.scope.bob = 'Bob';
+		// Here you can set initial values for self.scope
+		// self.sync() will do nothing since values are still detached from DOM
+	}, function(){
+		var self = this;
+		setInterval(function(){
+			// swap values every second
+			[self.scope.alice, self.scope.bob] = [self.scope.bob, self.scope.alice];
+			// Here you MUST call `self.sync()` every time after modifying `self.scope`
+			// (after receiving data via ajax and setting scope variables, for example).
+			self.sync();
+		}, 1000);
+	})
+</script>
+
 ```html
-<div component="example"></div>
+<div component="bind-example"></div>
 ```
 ```js
 (function(){
