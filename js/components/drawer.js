@@ -55,7 +55,10 @@
 			self.$e.on('mouseleave', function(e){
 				mouseover = false;
 			});
-			self.$e.on('scroll', function(e){
+			$(document).on('scroll', function(e){
+				if (!opened){
+					return;
+				}
 				if (!mouseover){
 					return;
 				}
