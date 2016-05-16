@@ -147,11 +147,11 @@ new component('bind-example', function(){
 <script>
 new component('example-clock', function(){
 	var self = this;
-	self.text((new Date()).toTimeString());
+	self.$e.text((new Date()).toTimeString());
 }, function(){
 	var self = this;
 	setInterval(function(){
-		self.text((new Date()).toTimeString());
+		self.$e.text((new Date()).toTimeString());
 	}, 1000);
 });
 </script>
@@ -165,11 +165,11 @@ new component('example-clock', function(){
 ```js
 new component('example-clock', function(){
 	var self = this;
-	self.text((new Date()).toTimeString());
+	self.$e.text((new Date()).toTimeString());
 }, function(){
 	var self = this;
 	setInterval(function(){
-		self.text((new Date()).toTimeString());
+		self.$e.text((new Date()).toTimeString());
 	}, 1000);
 });
 ```
