@@ -149,7 +149,7 @@ new component('bind-example', function(){
 ## Clock Example
 
 <div class="panel panel-default">
-	<div component="example-clock" class="panel panel-body">
+	<div component="example-clock" class="panel-body">
 		<h1>Some placeholder content</h1>
 	</div>
 </div>
@@ -168,7 +168,7 @@ new component('example-clock', function(){
 
 ```html
 <div class="panel panel-default">
-	<div component="example-clock" class="panel panel-body">
+	<div component="example-clock" class="panel-body">
 		<h1>Some placeholder content</h1>
 	</div>
 </div>
