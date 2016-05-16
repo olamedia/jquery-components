@@ -50,7 +50,7 @@ new component('component-codename', {
 
 ## Placing component into HTML page
 
-<div component="component-codename">
+<div component="component-codename" class="panel panel-default">
 	<h1>Some placeholder content</h1>
 	<p>For search engines and other clients without javascript</p>
 </div>
@@ -70,7 +70,7 @@ new component('component-codename', {
 
 ```html
 <body>
-	<div component="component-codename">
+	<div component="component-codename" class="panel panel-default">
 		<h1>Some placeholder content</h1>
 		<p>For search engines and other clients without javascript</p>
 	</div>
@@ -92,7 +92,7 @@ new component('component-codename', {
 
 ## Binding
 
-<div component="bind-example" class="panel"></div>
+<div component="bind-example" class="panel panel-default"></div>
 <script>
 	new component('bind-example', function(){
 		var self = this;
@@ -114,7 +114,7 @@ new component('component-codename', {
 </script>
 
 ```html
-<div component="bind-example" class="panel"></div>
+<div component="bind-example" class="panel panel-default"></div>
 ```
 
 ```js
@@ -140,7 +140,7 @@ new component('bind-example', function(){
 
 ## Clock Example
 
-<div component="example-clock" class="panel">
+<div component="example-clock" class="panel panel-default">
 	<h1>Some placeholder content</h1>
 </div>
 
@@ -157,7 +157,7 @@ new component('example-clock', function(){
 </script>
 
 ```html
-<div component="example-clock" class="panel">
+<div component="example-clock" class="panel panel-default">
 	<h1>Some placeholder content</h1>
 </div>
 ```
