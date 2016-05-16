@@ -23,6 +23,7 @@ $(function(){
 	var overlay = component('overlay').personal();
 	$('#show-overlay').on('click', function(){
 		overlay.show();
+		event.preventDefault();
 	});
 	$('body').on('click', function(){
 		overlay.hide();
