@@ -42,7 +42,7 @@ new component('component-codename', {
 
 ### Component lifecycle
 - `component.instance()` is called - to clone component with unique id and scope
-- `DOMElement` is passed to `component.e`
+- `DOMElement` is passed to `component.e` & `component.$e`
 - `component.render()` is called
 - `[model=*]` bindings are applied
 - `component.service()` is called.
