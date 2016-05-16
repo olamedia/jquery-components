@@ -4,7 +4,7 @@ layout: main
 highlighter: pygments
 ---
 ```html
-{% highlight html %}
+{% highlight html linenos %}
 <div>
 </div>
 {% endhighlight %}
