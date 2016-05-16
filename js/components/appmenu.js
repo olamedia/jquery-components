@@ -143,6 +143,7 @@
 					'right': $(window).width() - (offset.left + $placeholder.innerWidth())
 				});
 				dropAllItems();
+				$moreDropdownLi.detach();
 				var widthAvailable = self.$e.innerWidth() - $right.outerWidth();
 				var leftWidth = $(self.brandLi).outerWidth();
 				var space = 100;
@@ -157,11 +158,13 @@
 					leftWidth += lw;
 				}
 				// append dropdown
-				$left.append($moreDropdownLi);
-				var lw = $moreDropdownLi.outerWidth();
-				if (leftWidth + lw + space > widthAvailable){
-					dropMenuItem();
-					//break;
+				if (moreMenu.size()){
+					$left.append($moreDropdownLi);
+					var lw = $moreDropdownLi.outerWidth();
+					if (leftWidth + lw + space > widthAvailable){
+						dropMenuItem();
+						//break;
+					}
 				}
 			}
 			adaptSize();
