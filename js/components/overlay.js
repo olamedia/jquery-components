@@ -1,6 +1,8 @@
 (function(){
 
-	var $container = $(document.createElement('div'));
+	var $container = $(document.createElement('div')).css({
+		'z-index': 10000
+	});
 
 	$(function(){
 		$('body').append($container);
