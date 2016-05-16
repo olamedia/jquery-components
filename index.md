@@ -139,27 +139,39 @@ new component('bind-example', function(){
 
 
 ## Clock Example
+
+<div component="example-clock">
+	<h1>Some placeholder content</h1>
+</div>
+
+<script>
+new component('example-clock', function(){
+	var self = this;
+	self.text((new Date()).toTimeString());
+}, function(){
+	var self = this;
+	setInterval(function(){
+		self.text((new Date()).toTimeString());
+	}, 1000);
+});
+</script>
+
 ```html
-<body>
-	<div component="example-clock">
-		<h1>Some placeholder content</h1>
-		<p>For search engines and other clients without javascript</p>
-		<p>Probably, some links to the corresponding website section</p>
-	</div>
-	<script src="component.js">
-		(function(){
-			new component('example-clock', function(){
-				var self = this;
-				self.text((new Date()).toTimeString());
-			}, function(){
-				var self = this;
-				setInterval(function(){
-					self.text((new Date()).toTimeString());
-				}, 1000);
-			});
-		})();
-	</script>
-</body>
+<div component="example-clock">
+	<h1>Some placeholder content</h1>
+</div>
+```
+
+```js
+new component('example-clock', function(){
+	var self = this;
+	self.text((new Date()).toTimeString());
+}, function(){
+	var self = this;
+	setInterval(function(){
+		self.text((new Date()).toTimeString());
+	}, 1000);
+});
 ```
 
 
