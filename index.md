@@ -20,6 +20,22 @@ new component('component-codename', function(){
 });
 ```
 
+## Alternative component definition
+
+new component(String codename, Object definition)
+
+```js
+new component('component-codename', {
+	'render': function(){
+		// "render": create basic template
+		var self = this; // "this" points to component instance
+	},
+	'service': function(){
+		// "service": deferred updates (ajax, setInterval, etc)
+	}
+});
+```
+
 ### Component lifecycle
 - `component.instance()` is called - to clone component with unique id and scope
 - `DOMElement` is passed to `component.e`
