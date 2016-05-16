@@ -20,18 +20,22 @@ new component('component-codename', function(){
 });
 ```
 
-## Alternative component definition
+## Alternative (extended) component definition
 
 new component(String codename, Object definition)
 
 ```js
 new component('component-codename', {
+	'componentConstruct': function(){
+		// modify component class before creating first instance
+		var self = this; // "this" points to component class
+	},
 	'render': function(){
-		// "render": create basic template
+		// create basic template
 		var self = this; // "this" points to component instance
 	},
 	'service': function(){
-		// "service": deferred updates (ajax, setInterval, etc)
+		// deferred updates (ajax, setInterval, etc)
 	}
 });
 ```
