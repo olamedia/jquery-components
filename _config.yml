@@ -1,3 +1,4 @@
 name: jquery-components
-highlighter: rouge
+markdown: redcarpet
 pygments: true
+baseurl: /jquery-components
