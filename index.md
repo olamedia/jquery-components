@@ -65,7 +65,7 @@ new component('component-codename', {
 			// simple example
 			self.$e.text(i++);
 		}, 1000);
-	}
+	});
 </script>
 
 ```html
