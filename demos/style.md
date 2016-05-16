@@ -1,6 +1,22 @@
 ---
-title: style
+layout: default
+title: Style
 ---
+
+<p>Inline styles</p>
+<p>Appending to `style` tag</p>
+
+## Setup
+
+```html
+<head>
+	<!-- ... -->
+	<style component="style"></style>
+	<!-- ... -->
+</head>
+```
+
+## Example
 
 <div id="style-example"></div>
 <script>
