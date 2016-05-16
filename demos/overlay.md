@@ -3,15 +3,10 @@ layout: default
 title: Overlay
 ---
 
-# title test 3
-```html
-<div>
-tick
-</div>
-```
+# Personal overlay
 
-{% highlight html linenos %}
-<div>
-%
-</div>
-{% endhighlight %}
+```js
+var overlay = component('overlay').personal(); // create new instance (appended to body)
+overlay.$e; // append to this container
+overlay.$e.show(); // show
+```
