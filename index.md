@@ -2,8 +2,8 @@
 title: My Page
 layout: main
 ---
-```html
+{% highlight html %}
 <div>
 </div>
-```
+{% endhighlight %}
 # My Page
