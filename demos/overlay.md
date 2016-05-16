@@ -13,8 +13,30 @@ overlay.$e.show(); // show overlay
 
 ## Example
 
-```js
-
+```html
+<button class="btn" id="show-overlay">Show overlay</button>
+<script>
+$(function(){
+	var overlay = component('overlay').personal();
+	$('#show-overlay').on('click', function(){
+		overlay.show();
+	});
+	var $closeBtn = $('<button class="btn">Hide overlay</button>');
+	var $panel = $(document.createElement('div'));
+	$panel.css({
+		'background': '#fff',
+		'padding': '30px',
+		'min-height': '400px',
+		'max-width': '1000px',
+		'margin': '0 auto'
+	});
+	$panel.append($closeBtn);
+	overlay.$e.append($panel);
+	$closeBtn.on('click', function(){
+		overlay.hide();
+	});
+});
+</script>
 ```
 
 <button class="btn" id="show-overlay">Show overlay</button>
@@ -27,6 +49,7 @@ $(function(){
 	var $closeBtn = $('<button class="btn">Hide overlay</button>');
 	var $panel = $(document.createElement('div'));
 	$panel.css({
+		'background': '#fff',
 		'padding': '30px',
 		'min-height': '400px',
 		'max-width': '1000px',
