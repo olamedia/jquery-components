@@ -1,7 +1,7 @@
 (function(){
 
 	var $container = $(document.createElement('div')).css({
-		'z-index': 10000
+		'z-index': 1999999999
 	});
 
 	$(function(){
@@ -42,6 +42,12 @@
 			var $body = $('body');
 			var $bodyOverflow = null;
 			var hidden = true;
+			self.detach = function(){
+				self.$e.detach();
+			}
+			self.reattach = function(){
+				self.$e.appendTo($container); // so it will be on top
+			}
 			self.show = function(){
 				self.$e.show();
 				$bodyOveflow = $body.css('overflow') || 'auto';
