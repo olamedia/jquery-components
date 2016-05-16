@@ -3,7 +3,7 @@ layout: default-custom-h1
 title: jquery-components
 ---
 
-<div class="jumbotron" style="padding: 0; padding-top: 30px; background: #fff; background: url({{ site.baseurl }}/css/images/hero-bg.png) repeat, linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 28%,rgba(255,255,255,0) 53%,rgba(255,255,255,1) 87%,rgba(255,255,255,1) 100%) repeat-x;">
+<div class="jumbotron" style="padding: 0; padding-top: 30px; background: #fff; background: url({{ site.baseurl }}/css/images/hero-bg.png), linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 28%,rgba(255,255,255,0) 53%,rgba(255,255,255,1) 87%,rgba(255,255,255,1) 100%);">
 	<h1>jQuery components</h1>
 	<p>Component-based application framework</p>
 </div>
