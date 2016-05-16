@@ -24,7 +24,7 @@
 				'width': '300px',
 				'height': 'auto',
 				'overflow': 'hidden',
-				'background': '#fff'
+				'background': '#fff',
 				'padding-bottom': '50px'
 			});
 			self.left = function(){
