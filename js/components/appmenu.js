@@ -158,7 +158,7 @@
 					leftWidth += lw;
 				}
 				// append dropdown
-				if (moreMenu.size()){
+				if (moreMenu.length){
 					$left.append($moreDropdownLi);
 					var lw = $moreDropdownLi.outerWidth();
 					if (leftWidth + lw + space > widthAvailable){
