@@ -1,7 +1,7 @@
 ---
 title: My Page
 layout: main
-highlighter: rouge
+highlighter: pygments
 ---
 ```html
 {% highlight html %}
