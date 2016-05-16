@@ -3,8 +3,8 @@ layout: default
 title: Style
 ---
 
-<p>Inline styles</p>
-<p>Appending to `style` tag</p>
+Inline styles
+Appending to `style` tag
 
 ## Setup
 
