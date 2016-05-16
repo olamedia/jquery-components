@@ -18,7 +18,7 @@
 		'render': function(){
 			var self = this;
 			self.overlay = component('overlay').personal();
-			self.overlay.append(self.$e);
+			self.overlay.$e.append(self.$e);
 			self.open = function(){
 				self.overlay.reattach();
 			}
