@@ -28,7 +28,7 @@ $(function(){
 		'padding': '30px',
 		'min-height': '400px',
 		'max-width': '1000px',
-		'margin': '0 auto'
+		'margin': '30px auto'
 	});
 	$panel.append($closeBtn);
 	overlay.$e.append($panel);
@@ -53,7 +53,7 @@ $(function(){
 		'padding': '30px',
 		'min-height': '400px',
 		'max-width': '1000px',
-		'margin': '0 auto'
+		'margin': '30px auto'
 	});
 	$panel.append($closeBtn);
 	overlay.$e.append($panel);
