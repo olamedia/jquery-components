@@ -76,24 +76,16 @@ new component('component-codename', {
 	</div>
 	<script src="component.js">
 		new component('component-codename', function(){
-			// "render": create basic template
 			var self = this;
-			self.e; // DOMElement
-			self.$e; // jQuery wrapper around self.e
-			self.scope; // component variables (self.scope.varname etc)
-			self.id; // unique id
-			self.$e.text('initial value');
-			// See below for some actual code
+			self.$e.after($(document.createElement('div')).text('Sample text'));
 		}, function(){
-			// "service": deferred updates (ajax, setInterval, etc)
 			var self = this;
+			var i = 0;
 			setInterval(function(){
 				// simple example
-				self.$e.text('updated value');
+				self.$e.text(i++);
 			}, 1000);
-			// See below for some actual code
 		});
-
 	</script>
 </body>
 ```
