@@ -1,19 +1,24 @@
 (function(){
+
+	var $container = $(document.createElement('div'));
+
+	$(function(){
+		$('body').append($container);
+	});
+
 	new component('overlay', {
 		'componentConstruct': function(){
 			var self = this; // component
 			console.log('construct1', self);
 			//var instance = self.instance();
 			// Auto append
-			var globalInstance = self.appendTo('div', 'body');
+			var globalInstance = self.appendTo('div', $container);
 			//var personal = self.instance;
 			self.personal = function(){
 				var inst = component.componentInstance(self.codename);
-				var target = 'body';
-				target = $(target);
 				var tagName = 'div';
 				var $e = $('<'+tagName+'></'+tagName+'>');
-				$e.appendTo(target);
+				$e.appendTo($container);
 				return component.replace($e.get(0), inst, true); // true = isInstance, return instance
 			}
 			self.instance = function(){
