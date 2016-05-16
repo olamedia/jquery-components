@@ -30,7 +30,8 @@
 			self.$e.css({
 				'position': 'fixed',
 				'width': '300px',
-				'height': 'auto',
+				'top': '0',
+				'bottom': '0',
 				'overflow': 'hidden',
 				'background': '#fff',
 				'padding-bottom': '50px'
