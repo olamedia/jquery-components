@@ -21,7 +21,7 @@ overlay.$e.show(); // show overlay
 <script>
 $(function(){
 	var overlay = component('overlay').personal();
-	var $panel = $('<div></div>');
+	var $panel = $('<'+'div'+'>'+'<'+'/div'+'>');
 	$panel.css({
 		'padding': '30px',
 		'min-height': '400px',
