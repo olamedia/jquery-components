@@ -21,7 +21,6 @@ overlay.$e.show(); // show overlay
 <script>
 $(function(){
 	var overlay = component('overlay').personal();
-
 	var $panel = $('<div></div>');
 	$panel.css({
 		'padding': '30px',
@@ -30,14 +29,11 @@ $(function(){
 		'margin': '0 auto'
 	});
 	overlay.$e.append($panel);
-
 	$('#show-overlay').on('click', function(){
 		overlay.show();
 	});
-	
 	var $closeBtn = $('<button class="btn">Hide overlay</button>');
 	$panel.append($closeBtn);
-
 	$closeBtn.on('click', function(){
 		overlay.hide();
 	});
