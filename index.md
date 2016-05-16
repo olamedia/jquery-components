@@ -1,7 +1,12 @@
 ---
-layout: default
+layout: default-custom-h1
 title: jquery-components
 ---
+
+<div class="jumbotron">
+	<h1>jQuery components</h1>
+	<p>Component-based application framework</p>
+</div>
 
 <blockquote class="bg-warning" style="border-left-color: #aa6708;">
 <h4 style="color: #aa6708;">Warning: This is a draft, not ready for production</h4>
