@@ -19,6 +19,13 @@
 			var self = this;
 			self.overlay = component('overlay').personal();
 			self.overlay.$e.append(self.$e);
+			self.overlay.$e.css({
+				'left': '',
+				'right': '',
+				'bottom': '',
+				'top': ''
+			});
+			self.overlay.$e.show();
 			self.$e.css({
 				'position': 'fixed',
 				'width': '300px',
