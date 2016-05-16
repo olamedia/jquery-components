@@ -7,12 +7,20 @@ title: jquery-components
 <div>
 </div>
 ```
-## Title test 2
 
-Title test 3
-============
-Title test 4
-------------
+# H1 test
+
+## H2 test
+
+### H3 test
+
+#### H4 test
+
+H1 test
+======
+
+H2 test
+------
 
 * li
 * li
