@@ -57,14 +57,18 @@
 			});
 			$(document).on('scroll', function(e){
 				if (!opened){
+					console.log('scroll not prevented - not opened');
 					return;
 				}
 				if (!mouseover){
+					console.log('scroll not prevented - not mouse over');
 					return;
 				}
 				if ($.contains(self.e, e.target)){
+					console.log('scroll not prevented - target not inside');
 					return; // scroll target is inside drawer, do not prevent
 				}
+				console.log('scroll prevented');
 				e.preventDefault();
 				e.stopPropagation();
 			});
