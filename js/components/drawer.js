@@ -47,7 +47,21 @@
 				'min-height': '110%',
 			});
 			self.$e.append(self.$container);
+			var opened = false;
+			var mouseover = false;
+			self.$e.on('mouseenter', function(e){
+				mouseover = true;
+			});
+			self.$e.on('mouseleave', function(e){
+				mouseover = false;
+			});
 			self.$e.on('scroll', function(e){
+				if (!mouseover){
+					return;
+				}
+				if ($.contains(self.e, e.target)){
+					return; // scroll target is inside drawer, do not prevent
+				}
 				e.preventDefault();
 				e.stopPropagation();
 			});
@@ -66,9 +80,11 @@
 			}
 			self.open = function(){
 				self.overlay.reattach();
+				opened = true;
 			}
 			self.close = function(){
 				self.overlay.detach();
+				opened = false;
 			}
 		},
 		'service': function(){
