@@ -25,7 +25,7 @@ $(function(){
 		overlay.show();
 	});
 	var $closeBtn = $('<button class="btn">Hide overlay</button>');
-	var $panel = $('<'+'div'+'>'+'<'+'/div'+'>');
+	var $panel = $('<div class="panel">panel</div>');
 	$panel.css({
 		'padding': '30px',
 		'min-height': '400px',
