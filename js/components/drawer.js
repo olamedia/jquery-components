@@ -49,7 +49,9 @@
 			var $body = $('body');
 			var scrollbarWidth = (function(){
 				var $test = $(document.createElement('div'));
+				$body.append($test);
 				$test.css({
+					'width': '100px',
 					'overflow-y': 'scroll',
 				});
 				return $test.outerWidth() - $test.innerWidth();
