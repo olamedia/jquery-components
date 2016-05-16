@@ -26,6 +26,9 @@
 				'top': '0',
 				'position': 'absolute'
 			});
+			$('body').css({
+				'overflow': 'auto'
+			});
 			self.overlay.detach();
 			self.overlay.$e.show();
 			self.$e.css({
@@ -44,6 +47,9 @@
 				'min-height': '110%',
 			});
 			self.$e.append(self.$container);
+			self.$e.on('scroll', function(e){
+				e.preventDefault();
+			});
 			self.append = function(el){
 				self.$container.append(el);
 			};
