@@ -20,7 +20,9 @@ title: Style
 
 <div id="style-example"></div>
 <script>
-component('style').instance().append('#style-example{padding: 10px; background: tomato;}');
+$(function(){
+	component('style').instance().append('#style-example{padding: 10px; background: tomato;}');
+});
 </script>
 
 ```html
