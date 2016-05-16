@@ -92,7 +92,7 @@ new component('component-codename', {
 
 ## Binding
 
-<div component="bind-example"></div>
+<div component="bind-example" class="panel"></div>
 <script>
 	new component('bind-example', function(){
 		var self = this;
@@ -114,7 +114,7 @@ new component('component-codename', {
 </script>
 
 ```html
-<div component="bind-example"></div>
+<div component="bind-example" class="panel"></div>
 ```
 
 ```js
@@ -140,7 +140,7 @@ new component('bind-example', function(){
 
 ## Clock Example
 
-<div component="example-clock">
+<div component="example-clock" class="panel">
 	<h1>Some placeholder content</h1>
 </div>
 
@@ -157,7 +157,7 @@ new component('example-clock', function(){
 </script>
 
 ```html
-<div component="example-clock">
+<div component="example-clock" class="panel">
 	<h1>Some placeholder content</h1>
 </div>
 ```
