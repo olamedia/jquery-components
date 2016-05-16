@@ -71,6 +71,7 @@
 				console.log('scroll prevented');
 				e.preventDefault();
 				e.stopPropagation();
+				return false;
 			});
 			/*$(document).on('scroll', function(e){
 				e.preventDefault();
