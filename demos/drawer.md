@@ -11,7 +11,7 @@ $(function(){
 	$closeBtn.on('click', function(){
 		drawer.close();
 	});
-	drawer.$e.append($closeBtn);
+	drawer.append($closeBtn);
 	$('#show-drawer').on('click', function(){
 		drawer.open();
 	});

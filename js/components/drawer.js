@@ -34,9 +34,18 @@
 				'top': '0',
 				'bottom': '0',
 				'overflow': 'hidden',
+				'overflow-y': 'auto',
 				'background': '#fff',
 				'padding-bottom': '50px'
 			});
+			self.$container = $(document.createElement('div'));
+			self.$container.css({
+				'min-height': '110%',
+			});
+			self.$e.append(self.$container);
+			self.append = function(el){
+				self.$container.append(el);
+			};
 			self.left = function(){
 				self.$e.css({
 					'left': 0,
