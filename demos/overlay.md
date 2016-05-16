@@ -17,11 +17,15 @@ overlay.$e.show(); // show overlay
 
 ```
 
+<button class="btn" id="show-overlay">Show overlay</button>
 <script>
-var overlay = component('overlay').personal();
-$('body').on('click', function(){
-	overlay.toggle();
+$(function(){
+	var overlay = component('overlay').personal();
+	$('#show-overlay').on('click', function(){
+		overlay.show();
+	});
+	$('body').on('click', function(){
+		overlay.hide();
+	});
 });
-
-
 </script>
