@@ -1,7 +1,6 @@
 ---
-title: My Page
-layout: main
-highlighter: pygments
+layout: default
+title: jquery-components
 ---
 
 ```html
