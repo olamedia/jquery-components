@@ -26,6 +26,7 @@
 				'top': '0',
 				'position': 'absolute'
 			});
+			self.overlay.detach();
 			self.overlay.$e.show();
 			self.$e.css({
 				'position': 'fixed',
