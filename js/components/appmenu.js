@@ -63,6 +63,7 @@
 			component(self.codename).instance = function(){
 				return self; // singleton
 			}
+			self.moreText = self.$e.attr('more-text') || 'more';
 			//component('overlay').instance();
 			var $placeholder = self.$e;
 			var overlay = component('overlay').personal();
@@ -81,7 +82,7 @@
 			var $left = $('<ul style=""></ul>');//display: table-cell;
 			var $right = $('<ul style="float: right;border-left: solid 1px #f00;"></ul>');
 			var $moreDropdown = $('<ul></ul>');
-			var $moreDropdownLi = $('<li><a>еще ▾</a></li>');
+			var $moreDropdownLi = $('<li><a>' + self.moreText + ' ▾</a></li>');
 			var $ul = self.$e.children('ul');
 			$ul.detach();
 			overlay.$e.append($nav);
