@@ -59,7 +59,7 @@ new component('component-codename', {
 <script>
 	new component('component-codename', function(){
 		var self = this;
-		self.$e.after($(document.createElement('div')).text('Sample text'));
+		self.$e.before($(document.createElement('div')).addClass('panel-header').text('Sample text'));
 	}, function(){
 		var self = this;
 		var i = 0;
@@ -81,7 +81,7 @@ new component('component-codename', {
 	<script src="component.js">
 		new component('component-codename', function(){
 			var self = this;
-			self.$e.after($(document.createElement('div')).text('Sample text'));
+			self.$e.before($(document.createElement('div')).addClass('panel-header').text('Sample text'));
 		}, function(){
 			var self = this;
 			var i = 0;
