@@ -19,11 +19,11 @@
 			var self = this;
 			var opened = false;
 			var mouseover = false;
-			$('body').on('click', function(){
+			self.closeOnBodyClick = function(){
 				if (opened){
 					self.close();
 				}
-			});
+			};
 			var scrollbarWidth = (function(){
 				var $inner = $(document.createElement('div'));
 				var $test = $(document.createElement('div')).css({'overflow-y': 'scroll'}).append($inner);
@@ -164,12 +164,13 @@
 			self.open = function(){
 				self.overlay.reattach();
 				//var bodyScroll = $(window).height() < $(document).height();
-
+				$('body').on('click', self.closeOnBodyClick);
 				opened = true;
 			}
 			self.close = function(){
 				self.overlay.detach();
 				allowBodyScroll();
+				$('body').off('click', self.closeOnBodyClick);
 				opened = false;
 			}
 		},

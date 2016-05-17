@@ -12,12 +12,10 @@ $(function(){
 		var $closeBtn = $(document.createElement('button')).text('Close drawer');
 		$closeBtn.on('click', function(){
 			drawer.close();
-			event.preventDefault();
 		});
 		drawer.append($closeBtn);
 		$(selector).on('click', function(){
 			drawer.open();
-			event.preventDefault();
 		});
 		return drawer;
 	}
