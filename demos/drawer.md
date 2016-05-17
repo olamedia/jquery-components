@@ -23,6 +23,5 @@ $(function(){
 	leftDrawer.left();
 	var rightDrawer = attachDrawer('#show-drawer-right');
 	rightDrawer.right();
-	
 });
 </script>
