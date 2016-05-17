@@ -167,7 +167,7 @@
 					'left': -self.width + 'px',
 					'right': '',
 					'box-shadow': '5px 10px 15px 5px rgba(0,0,0,.1)',
-					'transition': 'left .5s'
+					//'transition': 'left .5s'
 				});
 				right = false;
 			}
@@ -176,11 +176,11 @@
 					'left': '',
 					'right': -self.width + 'px',
 					'box-shadow': '5px -10px 15px 5px rgba(0,0,0,.1)',
-					'transition': 'right .5s'
+					//'transition': 'right .5s'
 				});
 				right = true;
 			}
-			var animateMs = 50;
+			var animateMs = 100;
 			self.open = function(){
 				self.overlay.detach();
 				self.overlay.reattach();
