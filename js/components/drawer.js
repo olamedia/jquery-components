@@ -105,14 +105,15 @@
 				//var bodyScroll = $(window).height() < $(document).height();
 				$body.css({
 					'overflow-y': 'hidden',
-					'padding-right': ($(window).height() < $(document).height()) ? scrollbarWidth + 'px' : 0
+					'margin-right': ($(window).height() < $(document).height()) ? scrollbarWidth + 'px' : 0
 				});
 				opened = true;
 			}
 			self.close = function(){
 				self.overlay.detach();
 				$body.css({
-					'overflow-y': ''
+					'overflow-y': '',
+					'margin-right': 0
 				});
 				opened = false;
 			}
