@@ -17,6 +17,9 @@
 		},
 		'render': function(){
 			var self = this;
+			$('body').on('click', function(){
+				self.close();
+			});
 			var scrollbarWidth = (function(){
 				var $inner = $(document.createElement('div'));
 				var $test = $(document.createElement('div')).css({'overflow-y': 'scroll'}).append($inner);
