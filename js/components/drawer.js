@@ -113,7 +113,7 @@
 				self.overlay.detach();
 				$body.css({
 					'overflow-y': '',
-					'margin-right': 0
+					'margin-right': ''
 				});
 				opened = false;
 			}
