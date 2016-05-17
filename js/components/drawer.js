@@ -181,11 +181,11 @@
 				right = true;
 			}
 			self.open = function(){
+				self.overlay.reattach();
 				self.$e.css({
 					'left': right?'':0,
 					'right': right?0:'',
 				});
-				self.overlay.reattach();
 				//var bodyScroll = $(window).height() < $(document).height();
 				$('body').on('click', self.closeOnBodyClick);
 				opened = true;
