@@ -144,7 +144,15 @@
 			self.left = function(){
 				self.$e.css({
 					'left': 0,
+					'right': '',
 					'box-shadow': '5px 10px 15px 5px rgba(0,0,0,.1)'
+				});
+			}
+			self.right = function(){
+				self.$e.css({
+					'left': '',
+					'right': 0,
+					'box-shadow': '5px -10px 15px 5px rgba(0,0,0,.1)'
 				});
 			}
 			self.open = function(){
