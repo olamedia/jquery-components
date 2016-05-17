@@ -17,8 +17,12 @@
 		},
 		'render': function(){
 			var self = this;
+			var opened = false;
+			var mouseover = false;
 			$('body').on('click', function(){
-				self.close();
+				if (opened){
+					self.close();
+				}
 			});
 			var scrollbarWidth = (function(){
 				var $inner = $(document.createElement('div'));
@@ -86,8 +90,7 @@
 
 			//console.log('scrollbarWidth', scrollbarWidth);
 			self.$e.append(self.$container);
-			var opened = false;
-			var mouseover = false;
+
 			var preventBodyScroll = function(){
 				$body.css({
 					'overflow-y': 'hidden',
