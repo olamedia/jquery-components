@@ -37,7 +37,7 @@
 			})();
 			self.scrollEmu = component('overlay').personal();
 			self.scrollEmu.$e.css({
-				'background': '',
+				'background': '#fff',
 				'overflow-x': 'hidden',
 				'overflow-y': 'scroll',
 				'left': '',
@@ -100,7 +100,7 @@
 					'overflow-y': 'hidden',
 				});
 				$('html').css({
-					'border-right': ($(window).height() < $(document).height()) ? 'solid ' + scrollbarWidth + 'px #fafafa' : 'none'
+					'border-right': ($(window).height() < $(document).height()) ? 'solid ' + scrollbarWidth + 'px #fff' : 'none'
 				});
 				openPseudoScrollBar();
 				if (right){
