@@ -5,7 +5,8 @@ title: Drawer
 
 ## TODO
 
-* Fix right drawer behaviour with body scroll
+* <del>Fix right drawer behaviour with body scroll</del>
+* Fix body scroll behaviour when drawers are opened together
 
 ## Example
 
