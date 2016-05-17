@@ -36,12 +36,12 @@
 			self.scrollEmu.$e.append(self.scrollContent);
 			var updateContentHeight = function(){
 				self.scrollContent.height($(document).height());
-				// TODO sync scroll position
-				self.scrollEmu.$e.scrollTop($('body').scrollTop());
 			}
 			var openPseudoScrollBar = function(){
 				updateContentHeight();
 				self.scrollEmu.$e.show();
+				// sync scroll position
+				self.scrollEmu.$e.scrollTop($('body').scrollTop());
 			};
 			var closePseudoScrollBar = function(){
 				self.scrollEmu.$e.hide();
