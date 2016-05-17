@@ -37,6 +37,7 @@
 			})();
 			self.scrollEmu = component('overlay').personal();
 			self.scrollEmu.$e.css({
+				'background': '',
 				'overflow-x': 'hidden',
 				'overflow-y': 'scroll',
 				'left': '',
