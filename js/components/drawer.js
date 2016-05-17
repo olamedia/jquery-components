@@ -65,12 +65,14 @@
 					'overflow-y': 'hidden',
 					'margin-right': ($(window).height() < $(document).height()) ? scrollbarWidth + 'px' : 0
 				});
+				$(window).trigger('resize');
 			}
 			var allowBodyScroll = function(){
 				$body.css({
 					'overflow-y': '',
 					'margin-right': ''
 				});
+				$(window).trigger('resize');
 			}
 			self.$e.on('mouseenter', function(e){
 				mouseover = true;
