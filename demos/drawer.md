@@ -3,6 +3,12 @@ layout: component
 title: Drawer
 ---
 
+## TODO
+
+* Fix right drawer behaviour with body scroll
+
+## Example
+
 <button class="btn btn-default" id="show-drawer-left">Show left drawer</button>
 <button class="btn btn-default" id="show-drawer-right">Show right drawer</button>
 <script>
@@ -16,7 +22,7 @@ $(function(){
 		drawer.append($closeBtn);
 		$(selector).on('click', function(e){
 			drawer.open();
-			e.stopPropagation();
+			e.stopPropagation(); // prevent body click (it will close drawer)
 		});
 		return drawer;
 	}
@@ -43,7 +49,7 @@ $(function(){
 		drawer.append($closeBtn);
 		$(selector).on('click', function(e){
 			drawer.open();
-			e.stopPropagation();
+			e.stopPropagation(); // prevent body click (it will close drawer)
 		});
 		return drawer;
 	}
