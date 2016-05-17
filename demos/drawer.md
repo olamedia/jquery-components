@@ -10,12 +10,13 @@ $(function(){
 	var attachDrawer = function(selector){
 		var drawer = component('drawer').detached();
 		var $closeBtn = $(document.createElement('button')).text('Close drawer');
-		$closeBtn.on('click', function(){
+		$closeBtn.on('click', function(e){
 			drawer.close();
 		});
 		drawer.append($closeBtn);
-		$(selector).on('click', function(){
+		$(selector).on('click', function(e){
 			drawer.open();
+			e.stopPropagation();
 		});
 		return drawer;
 	}
