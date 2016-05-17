@@ -26,12 +26,12 @@
 				return w;
 			})();
 			self.scrollEmu = component('overlay').personal();
-			self.scrollEmu.css({
+			self.scrollEmu.$e.css({
 				'left': '',
 				'width': scrollbarWidth + 'px'
 			});
 			self.scrollContent = $(document.createElement('div'));
-			self.scrollEmu.append(self.scrollContent);
+			self.scrollEmu.$e.append(self.scrollContent);
 			var updateContentHeight = function(){
 				self.scrollContent.height($(document).height());
 				// TODO sync scroll position
