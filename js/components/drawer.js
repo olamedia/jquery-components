@@ -17,6 +17,7 @@
 		},
 		'render': function(){
 			var self = this;
+			self.width = 300;
 			var opened = false;
 			var right = false;
 			var mouseover = false;
@@ -76,7 +77,7 @@
 			self.overlay.$e.show();
 			self.$e.css({
 				'position': 'fixed',
-				'width': '300px',
+				'width': self.width + 'px',
 				'top': '0',
 				'bottom': '0',
 				'overflow': 'hidden',
@@ -163,19 +164,19 @@
 			};
 			self.left = function(){
 				self.$e.css({
-					'left': -self.$e.width(),
+					'left': -self.width,
 					'right': '',
 					'box-shadow': '5px 10px 15px 5px rgba(0,0,0,.1)',
-					'transition': 'left 5s'
+					'transition': 'left .5s'
 				});
 				right = false;
 			}
 			self.right = function(){
 				self.$e.css({
 					'left': '',
-					'right': -self.$e.width(),
+					'right': -self.width,
 					'box-shadow': '5px -10px 15px 5px rgba(0,0,0,.1)',
-					'transition': 'right 5s'
+					'transition': 'right .5s'
 				});
 				right = true;
 			}
