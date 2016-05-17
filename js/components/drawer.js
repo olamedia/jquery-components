@@ -164,7 +164,7 @@
 			};
 			self.left = function(){
 				self.$e.css({
-					'left': -self.width,
+					'left': -self.width + 'px',
 					'right': '',
 					'box-shadow': '5px 10px 15px 5px rgba(0,0,0,.1)',
 					'transition': 'left .5s'
@@ -174,7 +174,7 @@
 			self.right = function(){
 				self.$e.css({
 					'left': '',
-					'right': -self.width,
+					'right': -self.width + 'px',
 					'box-shadow': '5px -10px 15px 5px rgba(0,0,0,.1)',
 					'transition': 'right .5s'
 				});
@@ -196,8 +196,8 @@
 				$('body').off('click', self.closeOnBodyClick);
 				opened = false;
 				self.$e.css({
-					'left': right?'':-self.width,
-					'right': right?-self.width:''0'',
+					'left': right?'':-self.width + 'px',
+					'right': right?-self.width + 'px':''0'',
 				});
 			}
 		},
