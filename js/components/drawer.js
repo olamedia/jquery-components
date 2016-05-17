@@ -19,11 +19,12 @@
 			var self = this;
 			var opened = false;
 			var mouseover = false;
+			self.$e.on('click', function(e){
+				e.stopPropagation();
+			});
 			self.closeOnBodyClick = function(){
-				if (opened){
-					self.close();
+				self.close();
 				console.log('closeOnBodyClick');
-				}
 			};
 			var scrollbarWidth = (function(){
 				var $inner = $(document.createElement('div'));
