@@ -28,7 +28,7 @@
 			self.scrollEmu = component('overlay').personal();
 			self.scrollEmu.css({
 				'left': '',
-				'width':
+				'width': scrollbarWidth + 'px'
 			});
 			self.scrollContent = $(document.createElement('div'));
 			self.scrollEmu.append(self.scrollContent);
