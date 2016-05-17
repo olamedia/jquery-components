@@ -180,6 +180,7 @@
 				});
 				right = true;
 			}
+			var animateMs = 100;
 			self.open = function(){
 				self.overlay.detach();
 				self.overlay.reattach();
@@ -187,11 +188,11 @@
 				if (right){
 					self.$e.animate({
 						'right': 0,
-					});
+					}, animateMs);
 				}else{
 					self.$e.animate({
 						'left': 0,
-					});
+					}, animateMs);
 				}
 				//var bodyScroll = $(window).height() < $(document).height();
 				$('body').on('click', self.closeOnBodyClick);
@@ -208,11 +209,11 @@
 				if (right){
 					self.$e.animate({
 						'right': -self.width,
-					}, finish);
+					}, animateMs, finish);
 				}else{
 					self.$e.animate({
 						'left': -self.width,
-					}, finish);
+					}, animateMs, finish);
 				}
 			}
 		},
