@@ -21,7 +21,8 @@
 			var mouseover = false;
 			self.closeOnBodyClick = function(){
 				if (opened){
-					self.close();
+				//	self.close();
+				console.log('closeOnBodyClick');
 				}
 			};
 			var scrollbarWidth = (function(){
