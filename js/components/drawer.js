@@ -18,6 +18,7 @@
 		'render': function(){
 			var self = this;
 			var opened = false;
+			var right = false;
 			var mouseover = false;
 			self.$e.on('click', function(e){
 				e.stopPropagation();
@@ -101,6 +102,11 @@
 					'border-right': ($(window).height() < $(document).height()) ? 'solid ' + scrollbarWidth + 'px #fafafa' : 'none'
 				});
 				openPseudoScrollBar();
+				if (right){
+					self.$e.css({
+						'right': ($(window).height() < $(document).height()) ? scrollbarWidth + 'px' : 0
+					});
+				}
 				$(window).trigger('resize');
 			}
 			var allowBodyScroll = function(){
@@ -111,6 +117,11 @@
 					'border-right': ''
 				});
 				closePseudoScrollBar();
+				if (right){
+					self.$e.css({
+						'right': 0
+					});
+				}
 				$(window).trigger('resize');
 			}
 			self.$e.on('mouseenter', function(e){
@@ -155,6 +166,7 @@
 					'right': '',
 					'box-shadow': '5px 10px 15px 5px rgba(0,0,0,.1)'
 				});
+				right = false;
 			}
 			self.right = function(){
 				self.$e.css({
@@ -162,6 +174,7 @@
 					'right': 0,
 					'box-shadow': '5px -10px 15px 5px rgba(0,0,0,.1)'
 				});
+				right = true;
 			}
 			self.open = function(){
 				self.overlay.reattach();
