@@ -188,11 +188,11 @@
 				if (right){
 					self.$e.animate({
 						'right': 0,
-					}, animateMs);
+					}, animateMs, 'linear');
 				}else{
 					self.$e.animate({
 						'left': 0,
-					}, animateMs);
+					}, animateMs, 'linear');
 				}
 				//var bodyScroll = $(window).height() < $(document).height();
 				$('body').on('click', self.closeOnBodyClick);
@@ -209,11 +209,11 @@
 				if (right){
 					self.$e.animate({
 						'right': -self.width,
-					}, animateMs, finish);
+					}, animateMs, 'linear', finish);
 				}else{
 					self.$e.animate({
 						'left': -self.width,
-					}, animateMs, finish);
+					}, animateMs, 'linear', finish);
 				}
 			}
 		},
