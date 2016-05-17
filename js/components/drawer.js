@@ -27,6 +27,8 @@
 			})();
 			self.scrollEmu = component('overlay').personal();
 			self.scrollEmu.$e.css({
+				'overflow-x': 'hidden',
+				'overflow-y': 'scroll',
 				'left': '',
 				'width': scrollbarWidth + 'px'
 			});
