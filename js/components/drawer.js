@@ -82,7 +82,7 @@
 				'overflow': 'hidden',
 				'overflow-y': 'auto',
 				'background': '#fff',
-				'padding-bottom': '50px'
+				'padding-bottom': '50px',
 			});
 			self.$container = $(document.createElement('div'));
 			self.$container.css({
@@ -163,21 +163,27 @@
 			};
 			self.left = function(){
 				self.$e.css({
-					'left': 0,
+					'left': -self.$e.width(),
 					'right': '',
-					'box-shadow': '5px 10px 15px 5px rgba(0,0,0,.1)'
+					'box-shadow': '5px 10px 15px 5px rgba(0,0,0,.1)',
+					'transition': 'left 5s'
 				});
 				right = false;
 			}
 			self.right = function(){
 				self.$e.css({
 					'left': '',
-					'right': 0,
+					'right': -self.$e.width(),
 					'box-shadow': '5px -10px 15px 5px rgba(0,0,0,.1)'
+					'transition': 'right 5s'
 				});
 				right = true;
 			}
 			self.open = function(){
+				self.$e.css({
+					'left': right?'':0,
+					'right': right?0:0,
+				});
 				self.overlay.reattach();
 				//var bodyScroll = $(window).height() < $(document).height();
 				$('body').on('click', self.closeOnBodyClick);
