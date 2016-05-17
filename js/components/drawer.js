@@ -17,7 +17,36 @@
 		},
 		'render': function(){
 			var self = this;
+			var scrollbarWidth = (function(){
+				var $inner = $(document.createElement('div'));
+				var $test = $(document.createElement('div')).css({'overflow-y': 'scroll'}).append($inner);
+				$('body').append($test);
+				var w = $test.width() - $inner.width();
+				$test.detach();
+				return w;
+			})();
+			self.scrollEmu = component('overlay').personal();
+			self.scrollEmu.css({
+				'left': '',
+				'width':
+			});
+			self.scrollContent = $(document.createElement('div'));
+			self.scrollEmu.append(self.scrollContent);
+			var updateContentHeight = function(){
+				self.scrollContent.height($(document).height());
+				// TODO sync scroll position
+			}
+			var openPseudoScrollBar = function(){
+				updateContentHeight();
+				self.scrollEmu.$e.show();
+			};
+			var closePseudoScrollBar = function(){
+				self.scrollEmu.$e.hide();
+			};
+
+
 			self.overlay = component('overlay').personal();
+
 			self.overlay.$e.append(self.$e);
 			self.overlay.$e.css({
 				'left': '',
@@ -47,14 +76,7 @@
 				'min-height': '110%',
 			});
 			var $body = $('body');
-			var scrollbarWidth = (function(){
-				var $inner = $(document.createElement('div'));
-				var $test = $(document.createElement('div')).css({'overflow-y': 'scroll'}).append($inner);
-				$('body').append($test);
-				var w = $test.width() - $inner.width();
-				$test.detach();
-				return w;
-			})();
+
 
 			//console.log('scrollbarWidth', scrollbarWidth);
 			self.$e.append(self.$container);
@@ -67,6 +89,7 @@
 				$('html').css({
 					'border-right': ($(window).height() < $(document).height()) ? 'solid ' + scrollbarWidth + 'px #fafafa' : 'none'
 				});
+				openPseudoScrollBar();
 				$(window).trigger('resize');
 			}
 			var allowBodyScroll = function(){
@@ -76,6 +99,7 @@
 				$('html').css({
 					'border-right': ''
 				});
+				closePseudoScrollBar();
 				$(window).trigger('resize');
 			}
 			self.$e.on('mouseenter', function(e){
