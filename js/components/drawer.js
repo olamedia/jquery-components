@@ -197,7 +197,7 @@
 				opened = false;
 				self.$e.css({
 					'left': right?'':-self.width + 'px',
-					'right': right?-self.width + 'px':''0'',
+					'right': right?-self.width + 'px':'',
 				});
 			}
 		},
