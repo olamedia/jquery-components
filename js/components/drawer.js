@@ -180,7 +180,7 @@
 				});
 				right = true;
 			}
-			var animateMs = 100;
+			var animateMs = 50;
 			self.open = function(){
 				self.overlay.detach();
 				self.overlay.reattach();
