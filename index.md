@@ -21,6 +21,7 @@ title: jQuery components
 * ? Access to parent/child scope, object as a value
 * ? Component router with History support
 * Nested components - refine
+* Multiple components on a same DOMElement
 * ?
 * ...
 
