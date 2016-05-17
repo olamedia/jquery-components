@@ -182,7 +182,7 @@
 			}
 			self.open = function(){
 				self.overlay.reattach();
-				self.$e.css({
+				self.$e.animate({
 					'left': right?'':0,
 					'right': right?0:'',
 				});
@@ -195,7 +195,7 @@
 				allowBodyScroll();
 				$('body').off('click', self.closeOnBodyClick);
 				opened = false;
-				self.$e.css({
+				self.$e.animate({
 					'left': right?'':-self.width + 'px',
 					'right': right?-self.width + 'px':'',
 				});
