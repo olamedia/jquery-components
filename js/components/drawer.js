@@ -60,11 +60,25 @@
 			self.$e.append(self.$container);
 			var opened = false;
 			var mouseover = false;
+			var preventBodyScroll = function(){
+				$body.css({
+					'overflow-y': 'hidden',
+					'margin-right': ($(window).height() < $(document).height()) ? scrollbarWidth + 'px' : 0
+				});
+			}
+			var allowBodyScroll = function(){
+				$body.css({
+					'overflow-y': '',
+					'margin-right': ''
+				});
+			}
 			self.$e.on('mouseenter', function(e){
 				mouseover = true;
+				preventBodyScroll();
 			});
 			self.$e.on('mouseleave', function(e){
 				mouseover = false;
+				allowBodyScroll();
 			});
 			/*self.$e.on('mousewheel', function(){
 				event.stopPropagation();
@@ -103,18 +117,12 @@
 			self.open = function(){
 				self.overlay.reattach();
 				//var bodyScroll = $(window).height() < $(document).height();
-				$body.css({
-					'overflow-y': 'hidden',
-					'margin-right': ($(window).height() < $(document).height()) ? scrollbarWidth + 'px' : 0
-				});
+
 				opened = true;
 			}
 			self.close = function(){
 				self.overlay.detach();
-				$body.css({
-					'overflow-y': '',
-					'margin-right': ''
-				});
+				allowBodyScroll();
 				opened = false;
 			}
 		},
