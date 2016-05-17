@@ -183,7 +183,7 @@
 			self.open = function(){
 				self.$e.css({
 					'left': right?'':0,
-					'right': right?0:0,
+					'right': right?0:'',
 				});
 				self.overlay.reattach();
 				//var bodyScroll = $(window).height() < $(document).height();
@@ -195,6 +195,10 @@
 				allowBodyScroll();
 				$('body').off('click', self.closeOnBodyClick);
 				opened = false;
+				self.$e.css({
+					'left': right?'':-self.width,
+					'right': right?-self.width:''0'',
+				});
 			}
 		},
 		'service': function(){
