@@ -63,14 +63,14 @@
 			var preventBodyScroll = function(){
 				$body.css({
 					'overflow-y': 'hidden',
-					'margin-right': ($(window).height() < $(document).height()) ? scrollbarWidth + 'px' : 0
+					'border-right': ($(window).height() < $(document).height()) ? 'solid ' + scrollbarWidth + 'px #eee' : 'none'
 				});
 				$(window).trigger('resize');
 			}
 			var allowBodyScroll = function(){
 				$body.css({
 					'overflow-y': '',
-					'margin-right': ''
+					'border-right': ''
 				});
 				$(window).trigger('resize');
 			}
