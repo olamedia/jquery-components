@@ -48,15 +48,15 @@
 			});
 			var $body = $('body');
 			var scrollbarWidth = (function(){
-				var $test = $(document.createElement('div'));
-				$body.append($test);
-				$test.css({
-					'width': '100px',
-					'overflow-y': 'scroll',
-				});
-				return $test.outerWidth() - $test.innerWidth();
+				var $inner = $(document.createElement('div'));
+				var $test = $(document.createElement('div')).css({'overflow-y': 'scroll'}).append($inner);
+				$('body').append($test);
+				var w = $test.width() - $inner.width();
+				$test.detach();
+				return w;
 			})();
-			console.log('scrollbarWidth', scrollbarWidth);
+
+			//console.log('scrollbarWidth', scrollbarWidth);
 			self.$e.append(self.$container);
 			var opened = false;
 			var mouseover = false;
@@ -102,10 +102,18 @@
 			}
 			self.open = function(){
 				self.overlay.reattach();
+				//var bodyScroll = $(window).height() < $(document).height();
+				$body.css({
+					'overflow-y': 'hidden',
+					'padding-right': ($(window).height() < $(document).height()) ? scrollbarWidth + 'px' : 0
+				});
 				opened = true;
 			}
 			self.close = function(){
 				self.overlay.detach();
+				$body.css({
+					'overflow-y': ''
+				});
 				opened = false;
 			}
 		},
