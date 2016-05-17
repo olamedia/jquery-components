@@ -181,24 +181,39 @@
 				right = true;
 			}
 			self.open = function(){
+				self.overlay.detach();
 				self.overlay.reattach();
-				self.$e.animate({
-					'left': right?'':0,
-					'right': right?0:'',
-				});
+				self.$e.stop();
+				if (right){
+					self.$e.animate({
+						'right': 0,
+					});
+				}else{
+					self.$e.animate({
+						'left': 0,
+					});
+				}
 				//var bodyScroll = $(window).height() < $(document).height();
 				$('body').on('click', self.closeOnBodyClick);
 				opened = true;
 			}
 			self.close = function(){
-				self.overlay.detach();
 				allowBodyScroll();
 				$('body').off('click', self.closeOnBodyClick);
 				opened = false;
-				self.$e.animate({
-					'left': right?'':-self.width + 'px',
-					'right': right?-self.width + 'px':'',
-				});
+				self.$e.stop();
+				var finish = function(){
+					self.overlay.detach();
+				}
+				if (right){
+					self.$e.animate({
+						'right': -self.width,
+					}, finish);
+				}else{
+					self.$e.animate({
+						'left': -self.width,
+					}, finish);
+				}
 			}
 		},
 		'service': function(){
