@@ -174,7 +174,7 @@
 				self.$e.css({
 					'left': '',
 					'right': -self.$e.width(),
-					'box-shadow': '5px -10px 15px 5px rgba(0,0,0,.1)'
+					'box-shadow': '5px -10px 15px 5px rgba(0,0,0,.1)',
 					'transition': 'right 5s'
 				});
 				right = true;
