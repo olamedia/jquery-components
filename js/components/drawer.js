@@ -63,6 +63,8 @@
 			var preventBodyScroll = function(){
 				$body.css({
 					'overflow-y': 'hidden',
+				});
+				$('html').css({
 					'border-right': ($(window).height() < $(document).height()) ? 'solid ' + scrollbarWidth + 'px #fafafa' : 'none'
 				});
 				$(window).trigger('resize');
@@ -70,6 +72,8 @@
 			var allowBodyScroll = function(){
 				$body.css({
 					'overflow-y': '',
+				});
+				$('html').css({
 					'border-right': ''
 				});
 				$(window).trigger('resize');
