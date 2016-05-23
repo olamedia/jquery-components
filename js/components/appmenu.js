@@ -83,6 +83,7 @@
 			var $right = $('<ul style="float: right;border-left: solid 1px #f00;"></ul>');
 			var $moreDropdown = $('<ul popup-panel></ul>');
 			var $moreDropdownLi = $('<li component="popup"><a popup-trigger>' + self.moreText + ' ▾</a></li>');
+			$moreDropdownLi.append($moreDropdown);
 			var $ul = self.$e.children('ul');
 			$ul.detach();
 			overlay.$e.append($nav);
@@ -168,7 +169,9 @@
 				}
 			}
 			adaptSize();
-
+			$(function(){
+				adaptSize();
+			});
 			$(window).on('resize', adaptSize);
 			var lastScrollTop = $(window).scrollTop();
 			$(window).on('scroll', function(e){
