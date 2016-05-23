@@ -1,5 +1,5 @@
 ;(function(){
-	new component('appmenu', {
+	new component('append-text', {
 		'render': function(){
 			var self = this;
 			self.$e.append(document.createTextNode(self.$e.attr('append-text')));
