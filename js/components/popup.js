@@ -122,12 +122,16 @@
 				console.log('triggerKeydown', e.which);
 				if (e.which == 39){
 					if (self.aside){
+						e.preventDefault();
+		    			e.stopPropagation();
 						self.open(); // right while aside
 					}
 					return;
 				}
 				if (e.which == 40){
 					if (!self.aside){
+						e.preventDefault();
+		    			e.stopPropagation();
 						self.open(); // down while not aside
 					}
 					return;
