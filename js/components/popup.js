@@ -90,6 +90,9 @@
 
 			    $items.eq(index).focus();
 			}
+			self.$t.on('keydown', function(){
+				self.keydown();
+			});
 			self.$p.on('keydown', function(){
 				self.keydown();
 			});
