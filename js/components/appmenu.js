@@ -118,8 +118,8 @@
 						dropMenuItem();
 						//break;
 					}
-					component.update($nav.get(0));
 				}
+				component.update($nav.get(0));
 			}
 			adaptSize();
 			$(function(){
@@ -153,7 +153,7 @@
 				lastScrollTop = st;
 				//console.log('scroll', lastScrollTop, st, value, top);
 			});
-			component.update();
+			//component.update();
 			self.scope.unreadMessages = null;
 		},
 		'service': function(){
