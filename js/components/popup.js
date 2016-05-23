@@ -23,7 +23,7 @@
 					'left': (self.$e.offset().left - self.$e.offsetParent().offset().left) + 'px'
 				});//self.$e.offset().x
 			}
-			$(window).on('resize', function(){
+			self.on('resize', function(){
 				self.reposition();
 			});
 			self.isOpened = false;
