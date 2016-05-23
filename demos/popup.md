@@ -18,7 +18,7 @@ title: Popup
 </div>
 ```
 
-<nav>
+<nav style="width: 300px;">
 	<ul class="menu">
 		<li><a href="">Menu Item 1</a></li>
 		<li><a href="">Menu Item 2</a></li>
@@ -46,7 +46,7 @@ title: Popup
 	</ul>
 </nav>
 
-<div style="width: 300px;">
+<div>
 	Inline <span component="popup">
 		<a popup-trigger="" href="" class="btn btn-default">popup</a>
 		<div popup-panel="" class="popup-panel">
