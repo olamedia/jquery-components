@@ -1,7 +1,7 @@
 (function(window, $){
 	var popups = [];
 	var closeAllPopups = function(filteredComponent){
-		console.log('close all popups(',filtered,')');
+		console.log('close all popups(',filteredComponent,')');
 		$.each(popups, function(k, popup){
 			//filtered
 			var isFiltered = false;
