@@ -31,7 +31,7 @@
 			var self = this;
 			console.log(self);
 			self.$p.css({
-				'left': (self.$e.offset().left - self.$e.offsetParent().offset().left + (self.aside?self.$e.outerWidth():0) + 'px'
+				'left': (self.$e.offset().left - self.$e.offsetParent().offset().left + (self.aside?self.$e.outerWidth():0)) + 'px'
 			});
 		},
 		'render': function(){
