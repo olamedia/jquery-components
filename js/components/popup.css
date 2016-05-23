@@ -48,7 +48,7 @@
 .menu>li>a:focus{
 	/*border: dashed 1px #333;*/
 	outline: thin dotted;
-    outline: 5px auto -webkit-focus-ring-color;
+    outline: 5px auto tomato;
     outline-offset: -2px;
 }
 .menu>li>a:focus, .menu>li>a:hover {
