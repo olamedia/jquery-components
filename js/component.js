@@ -8,6 +8,37 @@
 	var renderedComponents = [];
 	var placeholders = {};
 
+	var eventListeners = {};
+	var componentEvent = function(eventname){
+		var self = this;
+		self.name = eventname;
+	}
+	var addListener = function(eventname, listener){
+		if ('undefined' === typeof eventListeners[eventname]){
+			eventListeners[eventname] = [];
+		}
+		eventListeners[eventname].push(listener);
+	}
+	var removeListener = function(eventname, listener){
+		if ('undefined' === typeof eventListeners[eventname]){
+			return;
+		}
+		for (var k in eventListeners[eventname]){
+			if (listener === eventListeners[eventname][k]){
+				eventListeners[eventname].splice(k, 1);
+			}
+		}
+	}
+	var triggerGlobal = function(eventname){
+		console.info('global event', eventname);
+		for (var k in eventListeners[eventname]){
+			var l = eventListeners[eventname][k];
+			var e = new componentEvent(eventname);
+			e.target = l.target;
+			l(e);
+		}
+	}
+
 	var uuid = (function(){
 		return {
 			v4: function(){
@@ -381,6 +412,10 @@
 
 				return inst;
 			};
+			self.on = function(eventname, callback){
+				callback.target = self;
+				addListener(eventname, callback);
+			}
 			//$(function(){
 				// wait for <body>
 				!self.extend || self.extend(); // run class extend() if exists
@@ -390,12 +425,10 @@
 		//});
 		components[codename] = self;
 	};
-	$(function(){
-		update();
-	});
 	component.get = function(id){
 		return components[id];
 	};
+	component.trigger = triggerGlobal;
 	component.componentInstance = componentInstance;
 	component.replace = replacePlaceholderElement;
 	component.list = components;
@@ -406,5 +439,11 @@
 	component.v = boundVariable;
 	component.bind = bindVariable;
 	// component.lookup();
+	$(function(){
+		update();
+		$(window).on('resize', function(){
+			component.trigger('resize');
+		});
+	});
 
 })(this, 'component', jQuery);
