@@ -444,7 +444,7 @@
 					return null;
 				}
 				var parent = self.$e.parents('[component-active]');
-				console.log('parent', parent);
+				console.log('parent element', parent, parent.length ? parent.get(0).component : null);
 				return parent.length ? parent.get(0).component : null;
 			}
 
