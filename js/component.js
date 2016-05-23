@@ -92,7 +92,7 @@
 		}
 	};
 	var getPlaceholder = function(e){
-		if (!e.componentPlaceholder){
+		if ('undefined' === typeof e.componentPlaceholder){
 			e.componentPlaceholder = new placeholder(e);
 		}
 		var p = e.componentPlaceholder;
