@@ -116,15 +116,21 @@
 				$items.eq(index).focus();
 			}
 			self.triggerKeydown = function(e){
-				if (!/(13|27|32)/.test(e.which)){
+				if (!/(13|27|32|39|40)/.test(e.which)){
 					return;
 				}
 				console.log('triggerKeydown', e.which);
-				if (e.which == 39 && self.aside){
-					return self.open(); // right while aside
+				if (e.which == 39){
+					if (self.aside){
+						self.open(); // right while aside
+					}
+					return;
 				}
-				if (e.which == 40 && !self.aside){
-					return self.open(); // down while not aside
+				if (e.which == 40){
+					if (!self.aside){
+						self.open(); // down while not aside
+					}
+					return;
 				}
 				e.preventDefault();
     			e.stopPropagation();
