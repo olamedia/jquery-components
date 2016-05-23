@@ -46,7 +46,7 @@ title: Popup
 	</ul>
 </nav>
 
-<div>
+<div style="width: 300px;">
 	Inline <span component="popup">
 		<a popup-trigger="" href="" class="btn btn-default">popup</a>
 		<div popup-panel="" class="popup-panel">
