@@ -3,9 +3,21 @@ layout: method
 title: .update()
 ---
 
+Initialize new components
+
 ## Use case
 
 If component contains another components or loads html which can have them - use this method to **initialize** those **components after changing html**.
+
+### Example
+
+```js
+var $e = $('#my-div');
+$.get(url, function(data){
+	$e.append(data);
+	compoennt.update($e); // do not check whole document, only $e
+})
+```
 
 * **Use within components**.
 * Called automatically on document load.
