@@ -350,8 +350,10 @@
 		self.codename = codename;
 		//$(function(){
 			// initialize components only after dom ready
+			var wasExtended = false;
 			if (TYPE_FUNCTION !== typeof render){
 				// object
+				wasExtended = true;
 				$.extend(self, render);
 				console.log(self.codename, render, self);
 				render = null;
@@ -369,8 +371,8 @@
 				return replacePlaceholderElement(e, self); // return instance
 				//return self;
 			};
-			self.render = self.render || render; // check if was extended with object
-			self.service = self.service || service; // check if was extended with object
+			self.render = wasExtended ? self.render : render; // check if was extended with object
+			self.service = wasExtended ? self.service : service; // check if was extended with object
 			self.update = update; // update
 			self.sync = function(){
 				var self = this;
