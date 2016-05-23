@@ -231,7 +231,7 @@
 		c.e = p.e;
 		c.$e = p.$e;
 		renderedComponents.push(c);
-		console.log('render', c.codename, c.id);
+		//console.log('render', c.codename, c.id);
 		!c.render || c.render();
 		c.bindScope();
 		!c.service || c.service();
@@ -242,7 +242,7 @@
 	}
 	var replacePlaceholderElement = function(el, component, isInstance){
 		var p = getPlaceholder(el);
-		console.log('replacePlaceholderElement', el, p, component.codename);
+		//console.log('replacePlaceholderElement', el, p, component.codename);
 		return replacePlaceholderInstance(p, component, isInstance);
 		//if ($(el).attr(attrPrefix)){
 
