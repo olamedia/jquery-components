@@ -40,6 +40,13 @@ nav.appmenu-component>ul>li>a{
 	border-top-width: 2px;
 	border-bottom-width: 2px;
 }
+nav.appmenu-component>ul>li.focused>a,nav.appmenu-component>ul>li>a.focused{
+	border-color: #fff;
+	background: #fff;
+	color: #333;
+}
+
+
 nav.appmenu-component>ul>li.active>a,nav.appmenu-component>ul>li>a.active{
 	border-top-color: #F60;
 	background: #444444;

@@ -33,13 +33,13 @@
 			self.open = function(){
 				self.isOpened = true;
 				self.reposition();
-				self.$e.addClass('active');
+				self.$e.addClass('focused');
 				self.$p.show();
 				self.$t.attr('aria-expanded', 'true');
 			}
 			self.close = function(){
 				self.isOpened = false;
-				self.$e.removeClass('active');
+				self.$e.removeClass('focused');
 				self.$p.hide();
 				self.$t.attr('aria-expanded', 'false');
 			}
