@@ -4,6 +4,9 @@
 	padding: 0;
 	/*position: relative;*/
 }
+.menubar{
+	display: block;
+}
 .menubar>li{
 	display: inline-block;
 }
