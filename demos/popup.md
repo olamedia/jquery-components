@@ -6,6 +6,12 @@ title: Popup
 
 ## Plain HTML
 
+1. Container MUST be marked as `component="popup"`
+2. Button or other trigger MUST be marked with `popup-trigger` attribute.
+3. Popup panel MUST be marked with `popup-panel` attribute.
+4. In case of menu, `popup-panel` SHOULD be used with `class="menu"`
+5. In case of regular panel, `popup-panel` SHOULD be used with `class="popup-panel"`
+
 ```html
 <div component="popup">
 	<a popup-trigger href="/no-script-url">Dropdown </a>
