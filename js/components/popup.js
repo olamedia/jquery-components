@@ -18,7 +18,7 @@
 				}
 			}
 			if (!isFiltered){
-				popup.close();
+				popup.close(true); // skipFocus = true
 			}
 		});
 	};
@@ -165,13 +165,15 @@
 				self.$t.attr('aria-expanded', 'true');
 				self.focusPanel();
 			}
-			self.close = function(){
+			self.close = function(skipFocus){
 				self.isOpened = false;
 				self.$e.removeClass('focused');
 				self.$p.hide();
 				self.$p.detach();
 				self.$t.attr('aria-expanded', 'false');
-				self.$t.focus();
+				if (!skipFocus){
+					self.$t.focus();
+				}
 			}
 			if (self.$t.length && self.$p.length){
 				self.close();
