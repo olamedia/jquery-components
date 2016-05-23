@@ -13,7 +13,7 @@ title: Popup
 5. In case of regular panel, `popup-panel` SHOULD be used with `class="popup-panel"`
 
 ```html
-<div component="popup">
+<div component="popup append-text" append-text="sample">
 	<a popup-trigger href="/no-script-url">Dropdown </a>
 	<div popup-panel>
 		Panel content
