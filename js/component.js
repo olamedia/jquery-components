@@ -126,6 +126,7 @@
 				placeholders[cid].push(placeholder);
 			}
 			p.$e.attr('component', '');
+			p.e.removeAttribute('component');
 			console.log('lookupPlaceholders', p.components, p);
 			/*if (el.placeholderFound){
 				return;
