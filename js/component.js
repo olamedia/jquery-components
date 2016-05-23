@@ -125,6 +125,7 @@
 		$(el).removeAttr(attrPrefix);
 		$(el).attr(component.codename + '-' + attrPrefix, c.id);
 		$(el).addClass(component.codename + '-' + attrPrefix);
+		$(el).attr('component-active', component.codename);
 		/*if ($(el).attr('id')){
 		}else{
 			$(el).attr('id', c.id);
@@ -141,8 +142,13 @@
 		///}
 		return c; // return instance
 	}
+	var resize = function(domElement){
+		console.log('component.resize');
+		var c = this;
+
+	};
 	var update = function(domElement){
-		console.log('update');
+		console.log('component.update');
 		var c = this;
 		if (c){
 			//console.log(c);

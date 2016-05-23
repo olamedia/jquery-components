@@ -120,6 +120,7 @@
 					}
 				}
 				component.update($nav.get(0));
+				// $(window).trigger('component-resize');
 			}
 			adaptSize();
 			$(function(){
