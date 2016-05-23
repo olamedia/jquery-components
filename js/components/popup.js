@@ -11,6 +11,7 @@
 					isFiltered = true;
 				}
 				while (check = check.parent()){
+					console.log('parent', check.e);
 					if (check === popup){
 						isFiltered = true;
 					}
