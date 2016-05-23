@@ -443,6 +443,7 @@
 					return null;
 				}
 				var parent = self.$e.parent('[component-active]');
+				console.log('parent', parent);
 				return parent.length ? parent.get(0) : null;
 			}
 
