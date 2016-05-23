@@ -22,7 +22,6 @@
 				}
 				$items.eq(self.index).attr('tabindex', '-1');
 				self.index+=n;
-				// Clamp:
 				if (self.index < 0){
 					self.index = $items.length - 1;
 				}
