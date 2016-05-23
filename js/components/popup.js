@@ -61,6 +61,17 @@
 			self.on('resize', function(){
 				self.reposition();
 			});*/
+			self.focusNext = function(){
+				var $items = self.$p.find('a');
+			    if (!$items.length){
+					return;
+				}
+				var index = $items.index(e.target);
+				if (index > 0){
+					index--;
+				}
+
+			}
 			self.panelKeydown = function(e){
 				if (!/(13|37|38|39|40|27|32)/.test(e.which) || /input|textarea/i.test(e.target.tagName)){
 					return;
@@ -73,11 +84,11 @@
 				}
 				if (e.which == 37){ // Left
 					if (self.aside){
-						self.close();
+						return self.close();
 					}
 				}
 				var $items = self.$p.find('a');
-			    if (!$items.length){
+				if (!$items.length){
 					return;
 				}
 				var index = $items.index(e.target);
@@ -106,7 +117,7 @@
 				$items.eq(index).focus();
 			}
 			self.triggerKeydown = function(e){
-				if (!/(13|27|39|40|32)/.test(e.which)){
+				if (!/(13|27|32)/.test(e.which)){
 					return;
 				}
 				if (e.which == 39 && !self.aside){
