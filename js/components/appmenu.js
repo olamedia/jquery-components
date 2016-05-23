@@ -81,8 +81,8 @@
 			var $nav = $('<nav class="appmenu-component"></nav>');
 			var $left = $('<ul style=""></ul>');//display: table-cell;
 			var $right = $('<ul style="float: right;border-left: solid 1px #f00;"></ul>');
-			var $moreDropdown = $('<ul></ul>');
-			var $moreDropdownLi = $('<li><a>' + self.moreText + ' ▾</a></li>');
+			var $moreDropdown = $('<ul popup-panel></ul>');
+			var $moreDropdownLi = $('<li component="popup"><a popup-trigger>' + self.moreText + ' ▾</a></li>');
 			var $ul = self.$e.children('ul');
 			$ul.detach();
 			overlay.$e.append($nav);
