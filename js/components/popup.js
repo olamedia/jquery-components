@@ -62,16 +62,18 @@
 				self.reposition();
 			});*/
 			self.keydown = function(e){
-				if (!/(38|40|27|32)/.test(e.which) || /input|textarea/i.test(e.target.tagName)){
+				if (!/(13|38|40|27|32)/.test(e.which) || /input|textarea/i.test(e.target.tagName)){
 					return;
 				}
 				e.preventDefault();
     			e.stopPropagation();
-				if (!self.isOpened && e.which != 27 || self.isOpened && e.which == 27){
-					/*if (e.which == 27) {
-						self.$t.focus();
-					}*/
-					return self.toggle();
+				if (!/(38|40)/.test(e.which)){ // UP & DOWN works only inside
+					if (!self.isOpened && e.which != 27 || self.isOpened && e.which == 27){
+						/*if (e.which == 27) {
+							self.$t.focus();
+						}*/
+						return self.toggle();
+					}
 				}
 				var $items = self.$p.find('a');
 			    if (!$items.length){
