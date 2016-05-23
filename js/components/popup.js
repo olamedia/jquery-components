@@ -86,7 +86,7 @@
 						return self.close();
 					}
 				}
-				var $items = self.$p.find('a');
+				var $items = self.$p.children('li>a');
 				if (!$items.length){
 					return;
 				}
