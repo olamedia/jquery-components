@@ -1,21 +1,19 @@
 (function(window, $){
 	var popups = [];
-	var closeAllPopups = function(filtered){
+	var closeAllPopups = function(filteredComponent){
 		console.log('close all popups(',filtered,')');
 		$.each(popups, function(k, popup){
 			//filtered
 			var isFiltered = false;
-			if (filtered && filtered.parent){
-				var check = filtered;
+			if (filteredComponent && filteredComponent.parent){
+				var check = filteredComponent;
 				console.log('check parents', check.e);
-				if (check === popup){
-					isFiltered = true;
-				}
-				while (check = check.parent()){
+				while (check){
 					console.log('parent', check.e);
 					if (check === popup){
 						isFiltered = true;
 					}
+					check = check.parent();
 				}
 			}
 			if (!isFiltered){
