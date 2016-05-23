@@ -17,7 +17,6 @@ nav.appmenu-component>ul>li{
 	display: inline-block;
 	margin: 0;
 	padding: 0;
-	line-height: 38px;
 }
 nav.appmenu-component>ul>li>h4{
 	font-size: 18px;
@@ -32,6 +31,7 @@ nav.appmenu-component>ul>li>h4>a{
 	padding: 0 14px;
 }
 nav.appmenu-component>ul>li>a{
+	line-height: 38px;
 	display: inline-block;
 	color: #ccc;
 	text-decoration: none;
