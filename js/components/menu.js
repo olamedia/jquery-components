@@ -1,5 +1,51 @@
 (function(window, $){
-
+	new component('menubar', {
+		'render': function(){
+			var self = this;
+			self.focus = function(){
+				console.log('focus');
+				var $items = self.$e.find('a');
+				if ($items.length){
+					console.log('focus first');
+					$($items.get(0)).focus();
+				}
+				//self.$e.focus();
+			};
+			self.$e.on('click', function(){
+				self.focus();
+			});
+			self.keydown = function(e){
+				if (!/(37|39)/.test(e.which) || /input|textarea/i.test(e.target.tagName)){
+					return;
+				}
+				console.log('menu keydown', e.which);
+				e.preventDefault();
+    			e.stopPropagation();
+				var $items = self.$e.find('a');//.not('.menu a');
+				if (!$items.length){
+					return;
+				}
+				var index = $items.index(e.target);
+				if (e.which == 37){ // Left
+					if (index > 0){
+						index--;
+					}
+				}
+				if (e.which == 39){ // Right
+					if (index < $items.length - 1){
+						index++;
+					}
+				}
+				if (!~index) {
+					index = 0
+				}
+				$items.eq(index).focus();
+			}
+			self.$e.on('keydown', function(e){
+				self.keydown(e);
+			});
+		}
+	});
 	new component('menu', {
 		'render': function(){
 
