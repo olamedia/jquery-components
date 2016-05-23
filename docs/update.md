@@ -15,7 +15,7 @@ If component contains another components or loads html which can have them - use
 var $e = $('#my-div');
 $.get(url, function(data){
 	$e.append(data);
-	compoennt.update($e); // do not check whole document, only $e
+	component.update($e); // do not check whole document, only $e
 })
 ```
 
