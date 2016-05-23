@@ -13,7 +13,7 @@
 				}
 				//self.$e.focus();
 			};
-			self.$e.on('focus', function(){
+			self.$e.on('click', function(){
 				self.focus();
 			});
 		}

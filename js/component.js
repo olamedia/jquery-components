@@ -461,6 +461,17 @@
 	component.get = function(id){
 		return components[id];
 	};
+	var queryComponent = function(selector){
+		var $e = $(selector);
+		if ($e.length){
+			var e = $e.get(0);
+			if (e.component){
+				return e.component; // direct match
+			}
+		}
+		return null;
+	};
+	component.query = queryComponent;
 	component.trigger = triggerGlobal;
 	component.componentInstance = componentInstance;
 	component.replace = replacePlaceholderElement;
