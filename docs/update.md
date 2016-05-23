@@ -9,6 +9,10 @@ Initialize new components
 
 If component contains another components or loads html which can have them - use this method to **initialize** those **components after changing html**.
 
+* **Use within components**.
+* Called automatically on document load.
+* Should not be called outside of components.
+
 ### Example
 
 ```js
@@ -18,10 +22,6 @@ $.get(url, function(data){
 	component.update($e); // do not check whole document, only $e
 })
 ```
-
-* **Use within components**.
-* Called automatically on document load.
-* Should not be called outside of components.
 
 ## component.update()
 
