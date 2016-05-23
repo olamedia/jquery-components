@@ -117,6 +117,9 @@
 			var inactive = 0;
 			for (var k in cida){
 				var cid = cida[k];
+				if (!placeholders[cid]){
+					placeholders[cid] = [];
+				}
 				//console.log('lookupPlaceholders cid', cid);
 				if ('' !== cid){
 					var status = p.components[cid];
@@ -124,6 +127,7 @@
 					if ('undefined' === typeof status){
 						p.components[cid] = false;
 						foundComponents.push(cid);
+						placeholders[cid].push(placeholder);
 						//console.log('lookupPlaceholders cid found', status);
 						found++;
 					}
@@ -131,10 +135,6 @@
 						inactive++;
 					}
 				}
-				if (!placeholders[cid]){
-					placeholders[cid] = [];
-				}
-				placeholders[cid].push(placeholder);
 			}
 			p.$e.attr('component', '');
 			p.e.removeAttribute('component');
