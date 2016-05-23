@@ -5,13 +5,15 @@
 		$.each(popups, function(k, popup){
 			//filtered
 			var isFiltered = false;
-			var check = filtered;
-			if (check === popup){
-				isFiltered = true;
-			}
-			while (check = check.parent()){
+			if (filtered){}
+				var check = filtered;
 				if (check === popup){
 					isFiltered = true;
+				}
+				while (check = check.parent()){
+					if (check === popup){
+						isFiltered = true;
+					}
 				}
 			}
 			if (!isFiltered){
