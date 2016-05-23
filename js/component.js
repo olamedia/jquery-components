@@ -425,19 +425,19 @@
 					scope: {},
 					scopeVar: {},
 					locals: {},
-					parent: null,
+					//parent: null,
 					e: null
 				});
-				self.parent = function(){
-					var parent = self.$e.parent('[component-active]');
-					return parent.length ? parent.get(0) : null;
-				}
 				!self.resize || self.on('resize', self.resize);
 				return inst;
 			};
 			self.on = function(eventname, callback){
 				callback.target = self;
 				addListener(eventname, callback);
+			}
+			self.parent = function(){
+				var parent = self.$e.parent('[component-active]');
+				return parent.length ? parent.get(0) : null;
 			}
 
 			// FIXME move to instance  !self.resize || self.on('resize', self.resize);

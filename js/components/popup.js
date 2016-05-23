@@ -82,7 +82,7 @@
 					e.preventDefault();
 					e.stopPropagation();
 					if (!self.isOpened){
-						// FIXME don't close nested popups
+						// FIXME don't close parent popups
 						console.log('closeAllPopups', self);
 						closeAllPopups(self);
 					}
