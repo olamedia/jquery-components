@@ -18,8 +18,11 @@ title: Popup
 </div>
 ```
 
-Inline <span component="popup"><a popup-trigger="" href="" class="btn btn-default">popup</a><div popup-panel="" class="popup-panel">
-		<div class="popup-column popup-body">
+Inline
+<span component="popup">
+	<a popup-trigger="" href="" class="btn btn-default">popup</a>
+	<div popup-panel="" class="popup-panel">
+		<div class="popup-column">
 			<h3>Panel</h3>
 			<img src="thumb.jpg" />
 		</div>
@@ -36,11 +39,12 @@ Inline <span component="popup"><a popup-trigger="" href="" class="btn btn-defaul
 			<li><a href="">Submenu Item 10</a></li>
 		</ul>
 		<div class="popup-separator"></div>
-		<div class="popup-column popup-body">
+		<div class="popup-column">
 			body
 		</div>
 	</div>
-</span> example
+</span>
+example
 
 
 <nav>
