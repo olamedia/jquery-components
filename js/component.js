@@ -193,8 +193,8 @@
 		return c; // return instance
 	}
 	var replacePlaceholderElement = function(el, component, isInstance){
-
 		var p = getPlaceholder(el);
+		console.log('replacePlaceholderElement', el, p, component.codename);
 		return replacePlaceholderInstance(p, component, isInstance);
 		//if ($(el).attr(attrPrefix)){
 
