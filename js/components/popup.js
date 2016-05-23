@@ -10,6 +10,11 @@
 		$('body').on('click.popup', closeAllPopups);
 	});
 	new component('popup', {
+		'resize': function(){
+			self.$p.css({
+				'left': (self.$e.offset().left - self.$e.offsetParent().offset().left) + 'px'
+			});
+		},
 		'render': function(){
 			var self = this;
 			popups.push(self);
@@ -18,14 +23,14 @@
 			self.$p.css({
 				'position': 'absolute'
 			});
-			self.reposition = function(){
+			/*self.reposition = function(){
 				self.$p.css({
 					'left': (self.$e.offset().left - self.$e.offsetParent().offset().left) + 'px'
 				});//self.$e.offset().x
 			}
 			self.on('resize', function(){
 				self.reposition();
-			});
+			});*/
 			self.isOpened = false;
 			self.toggle = function(){
 				self.isOpened?self.close():self.open();
