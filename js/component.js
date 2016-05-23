@@ -411,7 +411,7 @@
 					parent: null,
 					e: null
 				});
-
+				!self.resize || self.on('resize', self.resize);
 				return inst;
 			};
 			self.on = function(eventname, callback){

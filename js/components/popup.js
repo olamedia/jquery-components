@@ -25,9 +25,9 @@
 			self.$p.css({
 				'position': 'absolute'
 			});
-			self.on('resize', function(){
+			/*self.on('resize', function(){
 				self.resize();
-			});
+			});*/
 			/*self.reposition = function(){
 				self.$p.css({
 					'left': (self.$e.offset().left - self.$e.offsetParent().offset().left) + 'px'
