@@ -35,9 +35,9 @@ title: Popup
 		<li component="popup" popup-aside="true">
 			<a popup-trigger href="" class="btn btn-default">Menu Item 6</a>
 			<ul popup-panel class="menu menu-default">
-				<li><a href="">Submenu Item 1</a></li>
-				<li class="active"><a href="">Submenu Item 2</a></li>
-				<li><a href="">Submenu Item 3</a></li>
+				<li><a href="javascript::void();">Submenu Item 1</a></li>
+				<li class="active"><a href="javascript::void();">Submenu Item 2</a></li>
+				<li><a href="javascript::void();">Submenu Item 3</a></li>
 				<li component="popup" popup-aside="true">
 					<a class="btn btn-default" popup-trigger href="">Submenu Item 4</a>
 					<ul popup-panel class="menu menu-default">
