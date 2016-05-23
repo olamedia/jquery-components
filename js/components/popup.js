@@ -96,7 +96,9 @@
 				self.keydown(e);
 			});
 			self.$p.on('keydown', function(e){
-				self.keydown(e);
+				if (self.isOpened){
+					self.keydown(e);
+				}
 			});
 			self.isOpened = false;
 			self.toggle = function(){
