@@ -44,7 +44,7 @@ title: Popup
 						<li><a href="">Submenu Item 2</a></li>
 						<li><a href="">Submenu Item 3</a></li>
 						<li><a href="">Submenu Item 4</a></li>
-						<li class="active"><a href="">Submenu Item 5</a></li>
+						<li class="active"><a class="btn btn-default" href="">Submenu Item 5</a></li>
 						<li><a href="">Submenu Item 6</a></li>
 						<li><a href="">Submenu Item 8</a></li>
 						<li><a href="">Submenu Item 9</a></li>
