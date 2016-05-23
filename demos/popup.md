@@ -33,13 +33,13 @@ title: Popup
 		<li><a href="javascript::void();">Menu Item 4</a></li>
 		<li><a href="javascript::void();">Menu Item 5</a></li>
 		<li component="popup" popup-aside="true">
-			<a popup-trigger href="" class="btn btn-default">Menu Item 6</a>
+			<a popup-trigger href="" class="btn btn-default" component="append-text" append-text=" ▸">Menu Item 6</a>
 			<ul popup-panel class="menu menu-default">
 				<li><a href="javascript::void();">Submenu Item 1</a></li>
 				<li class="active"><a href="javascript::void();">Submenu Item 2</a></li>
 				<li><a href="javascript::void();">Submenu Item 3</a></li>
 				<li component="popup" popup-aside="true">
-					<a class="btn btn-default" popup-trigger href="">Submenu Item 4</a>
+					<a class="btn btn-default" popup-trigger href="" component="append-text" append-text=" ▸">Submenu Item 4</a>
 					<ul popup-panel class="menu menu-default">
 						<li><a href="javascript::void();">Submenu Item 1</a></li>
 						<li><a href="javascript::void();">Submenu Item 2</a></li>
@@ -53,7 +53,7 @@ title: Popup
 					</ul>
 				</li>
 				<li component="popup" popup-aside="true">
-					<a class="btn btn-default" popup-trigger href="">Submenu Item 5</a>
+					<a class="btn btn-default" popup-trigger href="" component="append-text" append-text=" ▸">Submenu Item 5</a>
 					<ul popup-panel class="menu menu-default">
 						<li><a href="javascript::void();">Submenu Item 1</a></li>
 						<li><a href="javascript::void();">Submenu Item 2</a></li>
