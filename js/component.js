@@ -429,7 +429,7 @@
 					//parent: null,
 					e: null
 				});
-				!self.resize || self.on('resize', self.resize);
+				!inst.resize || inst.on('resize', inst.resize);
 				return inst;
 			};
 			self.on = function(eventname, callback){
