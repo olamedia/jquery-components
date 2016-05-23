@@ -39,7 +39,7 @@ Keyboard navigation for menu (UP/DOWN | LEFT/RIGHT)
 
 
 <div class="panel" style="background: #666;"><div class="panel-body" id="focus2">
-<nav>
+<nav> 
 	<ul id="menu-demo2" component="menubar" role="menu" class="menubar" style="background: #fff;">
 		<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript::void();">Menu Item 1</a></li>
 		<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript::void();">Menu Item 2</a></li>
