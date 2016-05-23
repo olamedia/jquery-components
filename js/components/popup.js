@@ -22,7 +22,9 @@
 		});
 	};
 	$(function(){
-		$('body').on('click.popup', closeAllPopups);
+		$('body').on('click.popup', function(){
+			closeAllPopups();
+		});
 	});
 	new component('popup', {
 		'resize': function(){
