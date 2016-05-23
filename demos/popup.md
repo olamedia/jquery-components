@@ -27,11 +27,11 @@ title: Popup
 
 <nav style="width: 150px;">
 	<ul class="menu">
-		<li><a href="">Menu Item 1</a></li>
-		<li><a href="">Menu Item 2</a></li>
-		<li><a href="">Menu Item 3</a></li>
-		<li><a href="">Menu Item 4</a></li>
-		<li><a href="">Menu Item 5</a></li>
+		<li><a href="javascript::void();">Menu Item 1</a></li>
+		<li><a href="javascript::void();">Menu Item 2</a></li>
+		<li><a href="javascript::void();">Menu Item 3</a></li>
+		<li><a href="javascript::void();">Menu Item 4</a></li>
+		<li><a href="javascript::void();">Menu Item 5</a></li>
 		<li component="popup" popup-aside="true">
 			<a popup-trigger href="" class="btn btn-default">Menu Item 6</a>
 			<ul popup-panel class="menu menu-default">
@@ -41,41 +41,41 @@ title: Popup
 				<li component="popup" popup-aside="true">
 					<a class="btn btn-default" popup-trigger href="">Submenu Item 4</a>
 					<ul popup-panel class="menu menu-default">
-						<li><a href="">Submenu Item 1</a></li>
-						<li><a href="">Submenu Item 2</a></li>
-						<li><a href="">Submenu Item 3</a></li>
-						<li><a href="">Submenu Item 4</a></li>
-						<li class="active"><a href="">Submenu Item 5</a></li>
-						<li><a href="">Submenu Item 6</a></li>
-						<li><a href="">Submenu Item 8</a></li>
-						<li><a href="">Submenu Item 9</a></li>
-						<li><a href="">Submenu Item 10</a></li>
+						<li><a href="javascript::void();">Submenu Item 1</a></li>
+						<li><a href="javascript::void();">Submenu Item 2</a></li>
+						<li><a href="javascript::void();">Submenu Item 3</a></li>
+						<li><a href="javascript::void();">Submenu Item 4</a></li>
+						<li class="active"><a href="javascript::void();">Submenu Item 5</a></li>
+						<li><a href="javascript::void();">Submenu Item 6</a></li>
+						<li><a href="javascript::void();">Submenu Item 8</a></li>
+						<li><a href="javascript::void();">Submenu Item 9</a></li>
+						<li><a href="javascript::void();">Submenu Item 10</a></li>
 					</ul>
 				</li>
 				<li component="popup" popup-aside="true">
 					<a class="btn btn-default" popup-trigger href="">Submenu Item 5</a>
 					<ul popup-panel class="menu menu-default">
-						<li><a href="">Submenu Item 1</a></li>
-						<li><a href="">Submenu Item 2</a></li>
-						<li><a href="">Submenu Item 3</a></li>
-						<li><a href="">Submenu Item 4</a></li>
-						<li class="active"><a href="">Submenu Item 5</a></li>
-						<li><a href="">Submenu Item 6</a></li>
-						<li><a href="">Submenu Item 8</a></li>
-						<li><a href="">Submenu Item 9</a></li>
-						<li><a href="">Submenu Item 10</a></li>
+						<li><a href="javascript::void();">Submenu Item 1</a></li>
+						<li><a href="javascript::void();">Submenu Item 2</a></li>
+						<li><a href="javascript::void();">Submenu Item 3</a></li>
+						<li><a href="javascript::void();">Submenu Item 4</a></li>
+						<li class="active"><a href="javascript::void();">Submenu Item 5</a></li>
+						<li><a href="javascript::void();">Submenu Item 6</a></li>
+						<li><a href="javascript::void();">Submenu Item 8</a></li>
+						<li><a href="javascript::void();">Submenu Item 9</a></li>
+						<li><a href="javascript::void();">Submenu Item 10</a></li>
 					</ul>
 				</li>
-				<li><a href="">Submenu Item 6</a></li>
-				<li><a href="">Submenu Item 8</a></li>
-				<li><a href="">Submenu Item 9</a></li>
-				<li><a href="">Submenu Item 10</a></li>
+				<li><a href="javascript::void();">Submenu Item 6</a></li>
+				<li><a href="javascript::void();">Submenu Item 8</a></li>
+				<li><a href="javascript::void();">Submenu Item 9</a></li>
+				<li><a href="javascript::void();">Submenu Item 10</a></li>
 			</ul>
 		</li>
-		<li><a href="">Menu Item 7</a></li>
-		<li><a href="">Menu Item 8</a></li>
-		<li><a href="">Menu Item 9</a></li>
-		<li><a href="">Menu Item 10</a></li>
+		<li><a href="javascript::void();">Menu Item 7</a></li>
+		<li><a href="javascript::void();">Menu Item 8</a></li>
+		<li><a href="javascript::void();">Menu Item 9</a></li>
+		<li><a href="javascript::void();">Menu Item 10</a></li>
 	</ul>
 </nav>
 
