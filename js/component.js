@@ -436,6 +436,9 @@
 				addListener(eventname, callback);
 			}
 			self.parent = function(){
+				if (!self.$e){
+					return null;
+				}
 				var parent = self.$e.parent('[component-active]');
 				return parent.length ? parent.get(0) : null;
 			}
