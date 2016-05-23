@@ -32,12 +32,25 @@ title: Popup
 		<li><a href="">Menu Item 5</a></li>
 		<li component="popup">
 			<a popup-trigger href="" class="btn btn-default">Menu Item 6</a>
-			<ul popup-panel class="menu menu-default menu-vertical">
+			<ul popup-panel class="menu menu-default">
 				<li><a href="">Submenu Item 1</a></li>
 				<li><a href="">Submenu Item 2</a></li>
 				<li><a href="">Submenu Item 3</a></li>
 				<li><a href="">Submenu Item 4</a></li>
-				<li class="active"><a href="">Submenu Item 5</a></li>
+				<li class="active">
+					<a href="">Submenu Item 5</a>
+					<ul popup-panel class="menu menu-default">
+						<li><a href="">Submenu Item 1</a></li>
+						<li><a href="">Submenu Item 2</a></li>
+						<li><a href="">Submenu Item 3</a></li>
+						<li><a href="">Submenu Item 4</a></li>
+						<li class="active"><a href="">Submenu Item 5</a></li>
+						<li><a href="">Submenu Item 6</a></li>
+						<li><a href="">Submenu Item 8</a></li>
+						<li><a href="">Submenu Item 9</a></li>
+						<li><a href="">Submenu Item 10</a></li>
+					</ul>
+				</li>
 				<li><a href="">Submenu Item 6</a></li>
 				<li><a href="">Submenu Item 8</a></li>
 				<li><a href="">Submenu Item 9</a></li>
