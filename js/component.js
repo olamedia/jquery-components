@@ -181,9 +181,9 @@
 			found++;
 			el.placeholderFound = true;*/
 			//placeholders[cid].push(el);
-			console.log('lookupPlaceholders', p);
+			//console.log('lookupPlaceholders', p);
 		});
-		console.log('lookupPlaceholders', found, foundComponents, placeholders);
+		//console.log('lookupPlaceholders', found, foundComponents, placeholders);
 	};
 	var replacePlaceholderInstance = function(p, component, isInstance){
 		/*if (!el.componentPlaceholder){
@@ -192,7 +192,7 @@
 		var p = el.componentPlaceholder;*/
 		//return replacePlaceholder(p.e, component, isInstance);
 		var el = p.e;
-		console.log('replacePlaceholderInstance', el, p, component.codename);
+		//console.log('replacePlaceholderInstance', el, p, component.codename);
 		if ('undefined' !== typeof p.components[component.codename] && true === p.components[component.codename]){
 			return; // already activated the same component
 		}
