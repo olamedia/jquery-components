@@ -236,7 +236,7 @@
 
 	};
 	var update = function(domElement){
-		console.log('component.update');
+		//console.log('component.update');
 		var c = this;
 		if (c){
 			//console.log(c);
