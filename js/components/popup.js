@@ -1,11 +1,11 @@
 (function(window, $){
 	var popups = [];
 	var closeAllPopups = function(filtered){
-		console.log('close all popups');
+		console.log('close all popups(',filtered,')');
 		$.each(popups, function(k, popup){
 			//filtered
 			var isFiltered = false;
-			if (filtered){
+			if (filtered && filtered.parent){
 				var check = filtered;
 				if (check === popup){
 					isFiltered = true;
@@ -81,6 +81,7 @@
 					e.stopPropagation();
 					if (!self.isOpened){
 						// FIXME don't close nested popups
+						console.log('closeAllPopups', self);
 						closeAllPopups(self);
 					}
 					self.toggle();
