@@ -41,15 +41,15 @@ Keyboard navigation for menu (UP/DOWN | LEFT/RIGHT)
 <div class="panel" style="background: #666;"><div class="panel-body" id="focus2">
 <nav>
 	<ul id="menu-demo2" component="menubar" role="menu" class="menubar" style="background: #fff;">
-		<li role="presentation"><a role="menuitem" href="javascript::void();">Menu Item 1</a></li>
-		<li role="presentation"><a role="menuitem" href="javascript::void();">Menu Item 2</a></li>
-		<li role="presentation"><a role="menuitem" href="javascript::void();">Menu Item 3</a></li>
-		<li role="presentation"><a role="menuitem" href="javascript::void();">Menu Item 4</a></li>
-		<li role="presentation"><a role="menuitem" href="javascript::void();">Menu Item 5</a></li>
-		<li role="presentation"><a role="menuitem" href="javascript::void();">Menu Item 7</a></li>
-		<li role="presentation"><a role="menuitem" href="javascript::void();">Menu Item 8</a></li>
-		<li role="presentation"><a role="menuitem" href="javascript::void();">Menu Item 9</a></li>
-		<li role="presentation"><a role="menuitem" href="javascript::void();">Menu Item 10</a></li>
+		<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript::void();">Menu Item 1</a></li>
+		<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript::void();">Menu Item 2</a></li>
+		<li role="presentation"><a role="menuitem" tabindex="0" active href="javascript::void();">Menu Item 3</a></li>
+		<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript::void();">Menu Item 4</a></li>
+		<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript::void();">Menu Item 5</a></li>
+		<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript::void();">Menu Item 7</a></li>
+		<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript::void();">Menu Item 8</a></li>
+		<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript::void();">Menu Item 9</a></li>
+		<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript::void();">Menu Item 10</a></li>
 	</ul>
 </nav>
 </div></div>
