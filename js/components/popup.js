@@ -11,6 +11,7 @@
 	});
 	new component('popup', {
 		'resize': function(){
+			var self = this;
 			self.$p.css({
 				'left': (self.$e.offset().left - self.$e.offsetParent().offset().left) + 'px'
 			});
