@@ -21,8 +21,10 @@ Keyboard navigation for menu (UP/DOWN | LEFT/RIGHT)
 
 ## Example
 
+<button class="btn btn-default" id="focus">Focus</button>
+
 <nav style="width: 150px;">
-	<ul component="menu" class="menu">
+	<ul id="menu-demo" component="menu" class="menu">
 		<li><a href="javascript::void();">Menu Item 1</a></li>
 		<li><a href="javascript::void();">Menu Item 2</a></li>
 		<li><a href="javascript::void();">Menu Item 3</a></li>
@@ -34,3 +36,11 @@ Keyboard navigation for menu (UP/DOWN | LEFT/RIGHT)
 		<li><a href="javascript::void();">Menu Item 10</a></li>
 	</ul>
 </nav>
+
+<script>
+$(function(){
+	$('#focus').click(function(){
+		$('#menu-demo').focus();
+	});
+})
+</script>
