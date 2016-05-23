@@ -71,6 +71,7 @@
 				self.$e.addClass('focused');
 				self.$p.show();
 				self.$t.attr('aria-expanded', 'true');
+				self.$p.focus();
 			}
 			self.close = function(){
 				self.isOpened = false;
