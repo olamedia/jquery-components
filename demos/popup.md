@@ -18,37 +18,8 @@ title: Popup
 </div>
 ```
 
-Inline
-<span component="popup">
-	<a popup-trigger="" href="" class="btn btn-default">popup</a>
-	<div popup-panel="" class="popup-panel">
-		<div class="popup-column">
-			<h3>Panel</h3>
-			<img src="thumb.jpg" />
-		</div>
-		<ul popup-panel class="popup-column menu menu-default menu-vertical">
-			<li><a href="">Submenu Item 1</a></li>
-			<li><a href="">Submenu Item 2</a></li>
-			<li><a href="">Submenu Item 3</a></li>
-			<li class="menu-separator"></li>
-			<li><a href="">Submenu Item 4</a></li>
-			<li class="active"><a href="">Submenu Item 5</a></li>
-			<li><a href="">Submenu Item 6</a></li>
-			<li><a href="">Submenu Item 8</a></li>
-			<li><a href="">Submenu Item 9</a></li>
-			<li><a href="">Submenu Item 10</a></li>
-		</ul>
-		<div class="popup-separator"></div>
-		<div class="popup-column">
-			body
-		</div>
-	</div>
-</span>
-example
-
-
 <nav>
-	<ul>
+	<ul class="menu">
 		<li><a href="">Menu Item 1</a></li>
 		<li><a href="">Menu Item 2</a></li>
 		<li><a href="">Menu Item 3</a></li>
@@ -74,3 +45,31 @@ example
 		<li><a href="">Menu Item 10</a></li>
 	</ul>
 </nav>
+
+<div>
+	Inline <span component="popup">
+		<a popup-trigger="" href="" class="btn btn-default">popup</a>
+		<div popup-panel="" class="popup-panel">
+			<div class="popup-column">
+				<h3>Panel</h3>
+				<img src="thumb.jpg" />
+			</div>
+			<ul popup-panel class="popup-column menu menu-default menu-vertical">
+				<li><a href="">Submenu Item 1</a></li>
+				<li><a href="">Submenu Item 2</a></li>
+				<li><a href="">Submenu Item 3</a></li>
+				<li class="menu-separator"></li>
+				<li><a href="">Submenu Item 4</a></li>
+				<li class="active"><a href="">Submenu Item 5</a></li>
+				<li><a href="">Submenu Item 6</a></li>
+				<li><a href="">Submenu Item 8</a></li>
+				<li><a href="">Submenu Item 9</a></li>
+				<li><a href="">Submenu Item 10</a></li>
+			</ul>
+			<div class="popup-separator"></div>
+			<div class="popup-column">
+				body
+			</div>
+		</div>
+	</span> example
+</div>
