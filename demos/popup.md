@@ -18,9 +18,7 @@ title: Popup
 </div>
 ```
 
-Inline <span component="popup">
-	<a popup-trigger href="" class="btn btn-default">popup </a>
-	<div popup-panel class="popup-panel">
+Inline <span component="popup"><a popup-trigger href="" class="btn btn-default">popup</a><div popup-panel class="popup-panel">
 		<div class="popup-column popup-body">
 			<h3>Panel</h3>
 			<img src="thumb.jpg" />
