@@ -1,3 +1,6 @@
+.popup-component>[popup-trigger]{
+	cursor: pointer;
+}
 .popup-component>[popup-panel]{
 	padding-top: 5px;
 	padding-bottom: 5px;
