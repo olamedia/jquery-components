@@ -20,6 +20,7 @@
 				if (!$items.length){
 					return;
 				}
+				console.log('moveIndex', $items.length);
 				$items.eq(self.index).attr('tabindex', '-1');
 				self.index+=n;
 				if (self.index < 0){
