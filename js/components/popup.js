@@ -14,6 +14,7 @@
 						isFiltered = true;
 					}
 					check = check.parent();
+					console.log('check', check);
 				}
 			}
 			if (!isFiltered){
