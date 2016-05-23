@@ -122,7 +122,7 @@
 				}
 				placeholders[cid].push(placeholder);
 			}
-			console.log('lookupPlaceholders', p);
+			console.log('lookupPlaceholders', p.components, p);
 			/*if (el.placeholderFound){
 				return;
 			}*/
