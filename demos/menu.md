@@ -43,7 +43,7 @@ Keyboard navigation for menu (UP/DOWN | LEFT/RIGHT)
 	<ul id="menu-demo2" component="menubar" role="menu" class="menubar" style="background: #fff;">
 		<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript::void();">Menu Item 1</a></li>
 		<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript::void();">Menu Item 2</a></li>
-		<li role="presentation"><a role="menuitem" tabindex="0" active href="javascript::void();">Menu Item 3</a></li>
+		<li role="presentation" active><a role="menuitem" tabindex="0" href="javascript::void();">Menu Item 3</a></li>
 		<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript::void();">Menu Item 4</a></li>
 		<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript::void();">Menu Item 5</a></li>
 		<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript::void();">Menu Item 7</a></li>
