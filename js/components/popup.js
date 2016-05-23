@@ -33,6 +33,11 @@
 			self.$p.css({
 				'left': (self.$e.offset().left - self.$e.offsetParent().offset().left + (self.aside?self.$e.outerWidth():0)) + 'px'
 			});
+			if (self.aside){
+				self.$p.css({
+					'top': 0 + 'px'
+				});
+			}
 		},
 		'render': function(){
 			var self = this;
