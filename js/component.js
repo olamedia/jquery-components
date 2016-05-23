@@ -87,7 +87,7 @@
 	};
 
 	var lookupPlaceholders = function(context){
-		console.log('lookupPlaceholders');
+		//console.log('lookupPlaceholders');
 		var list = null;
 		var selector = '[component]';
 		if (context){
@@ -96,6 +96,7 @@
 			list = $(selector)
 		}
 		var found = 0;
+		var foundComponents = [];
 		list.each(function(){
 			var el = this;
 			if (!el.componentPlaceholder){
@@ -107,13 +108,14 @@
 			var inactive = 0;
 			for (var k in cida){
 				var cid = cida[k];
-				console.log('lookupPlaceholders cid', cid);
+				//console.log('lookupPlaceholders cid', cid);
 				if ('' !== cid){
 					var status = p.components[cid];
 					//console.log('lookupPlaceholders cid found?', status);
 					if ('undefined' === typeof status){
 						p.components[cid] = false;
-						console.log('lookupPlaceholders cid found', status);
+						foundComponents.push(cid);
+						//console.log('lookupPlaceholders cid found', status);
 						found++;
 					}
 					if(false === status){
@@ -127,7 +129,7 @@
 			}
 			p.$e.attr('component', '');
 			p.e.removeAttribute('component');
-			console.log('lookupPlaceholders', p.components, p);
+			//console.log('lookupPlaceholders', p.components, p);
 			/*if (el.placeholderFound){
 				return;
 			}*/
@@ -140,7 +142,7 @@
 			el.placeholderFound = true;*/
 			//placeholders[cid].push(el);
 		});
-		console.log('lookupPlaceholders', found);
+		console.log('lookupPlaceholders', found, foundComponents);
 	};
 
 	var replacePlaceholder = function(el, component, isInstance){
