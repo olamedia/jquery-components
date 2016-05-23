@@ -1,15 +1,14 @@
-.menu{
+.menu, .menubar, .menu>li, .menubar>li{
 	list-style: none;
 	margin: 0;
 	padding: 0;
 	/*position: relative;*/
 }
-.menu>li{
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-.menu-default{
+.menubar>li>a{
+	display: inline-block;
+	padding: 3px 10px;
+	text-decoration: none;
+	color: #333;
 }
 .menu>li>a{
 	display: block;
@@ -17,7 +16,7 @@
 	text-decoration: none;
 	color: #333;
 }
-.menu>li>a:focus{
+.menu>li>a:focus, .menubar>li>a:focus{
 	/*border: dashed 1px #333;*/
 	/*outline: thin dotted;*/
     outline: 1px auto #4a87ee;
