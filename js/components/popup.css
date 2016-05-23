@@ -27,7 +27,7 @@
 	list-style: none;
 	margin: 0;
 	padding: 0;
-	position: relative;
+	/*position: relative;*/
 }
 .menu>li{
 	list-style: none;
