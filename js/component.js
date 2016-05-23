@@ -127,7 +127,7 @@
 					if ('undefined' === typeof status){
 						p.components[cid] = false;
 						foundComponents.push(cid);
-						placeholders[cid].push(placeholder);
+						placeholders[cid].push(el);
 						//console.log('lookupPlaceholders cid found', status);
 						found++;
 					}
@@ -218,9 +218,9 @@
 			if (components[cid]){
 				var component = components[cid];
 				var el = null;
-				while (p = placeholders[cid].pop()){
-					replacePlaceholderInstance(p, component);
-					lookupPlaceholders(p.e); // lookup newly rendered placeholders
+				while (e = placeholders[cid].pop()){
+					replacePlaceholderElement(e, component);
+					lookupPlaceholders(e); // lookup newly rendered placeholders
 					found++;
 					founda.push(cid);
 				}
