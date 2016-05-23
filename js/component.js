@@ -150,8 +150,9 @@
 			found++;
 			el.placeholderFound = true;*/
 			//placeholders[cid].push(el);
+			console.log('lookupPlaceholders', p);
 		});
-		console.log('lookupPlaceholders', found, foundComponents);
+		console.log('lookupPlaceholders', found, foundComponents, placeholders);
 	};
 	var replacePlaceholderInstance = function(p, component, isInstance){
 		/*if (!el.componentPlaceholder){
