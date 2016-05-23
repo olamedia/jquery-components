@@ -83,7 +83,8 @@
 			var $right = $('<ul style="float: right;border-left: solid 1px #f00;"></ul>');
 			var $moreDropdown = $('<ul popup-panel style="display: none;"></ul>');
 			var $moreDropdownLi = $('<li component="popup"><a popup-trigger>' + self.moreText + ' ▾</a></li>');
-			component.update($nav.get(0));
+			//component.update($nav.get(0));
+
 			$moreDropdownLi.append($moreDropdown);
 			var $ul = self.$e.children('ul');
 			$ul.detach();
@@ -201,7 +202,7 @@
 				lastScrollTop = st;
 				//console.log('scroll', lastScrollTop, st, value, top);
 			});
-
+			component.update();
 			self.scope.unreadMessages = null;
 		},
 		'service': function(){
