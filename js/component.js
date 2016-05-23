@@ -437,6 +437,7 @@
 			}
 			self.parent = function(){
 				if (!self.$e){
+					console.log('no element');
 					return null;
 				}
 				var parent = self.$e.parent('[component-active]');
