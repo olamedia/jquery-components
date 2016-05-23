@@ -7,7 +7,7 @@
 			self.focus = function(){
 				var $items = self.$e.find('a');
 				if ($items.length){
-					$items.eq(0).focus();
+					$($items.get(0)).focus();
 				}
 				//self.$e.focus();
 			};
