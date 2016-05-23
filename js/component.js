@@ -419,7 +419,7 @@
 				addListener(eventname, callback);
 			}
 
-			!self.resize || self.on('resize', self.resize);
+			// FIXME move to instance  !self.resize || self.on('resize', self.resize);
 			//$(function(){
 				// wait for <body>
 				!self.extend || self.extend(); // run class extend() if exists
