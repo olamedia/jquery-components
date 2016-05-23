@@ -21,9 +21,9 @@ Keyboard navigation for menu (UP/DOWN | LEFT/RIGHT)
 
 ## Example
 
-<div class="panel" style="background: #e8e8e8;"><div class="panel-body" id="focus">
+<div class="panel" style="background: #666;"><div class="panel-body" id="focus">
 <nav style="width: 150px;">
-	<ul id="menu-demo" component="menu" class="menu" style="border: solid 1px tomato;">
+	<ul id="menu-demo" component="menu" class="menu" style="background: #fff;">
 		<li><a href="javascript::void();">Menu Item 1</a></li>
 		<li><a href="javascript::void();">Menu Item 2</a></li>
 		<li><a href="javascript::void();">Menu Item 3</a></li>
