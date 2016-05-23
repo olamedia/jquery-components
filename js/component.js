@@ -432,10 +432,12 @@
 				return inst;
 			};
 			self.on = function(eventname, callback){
+				var self = this;
 				callback.target = self;
 				addListener(eventname, callback);
 			}
 			self.parent = function(){
+				var self = this;
 				if (!self.$e){
 					console.log('no element');
 					return null;
