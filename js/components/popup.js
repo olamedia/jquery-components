@@ -61,15 +61,13 @@
 			self.on('resize', function(){
 				self.reposition();
 			});*/
-			self.focusNext = function(){
+			self.focusPanel = function(){
 				var $items = self.$p.find('a');
 			    if (!$items.length){
+					self.$p.focus();
 					return;
 				}
-				var index = $items.index(e.target);
-				if (index > 0){
-					index--;
-				}
+				$items.eq(0).focus();
 
 			}
 			self.panelKeydown = function(e){
@@ -148,7 +146,7 @@
 				self.$e.addClass('focused');
 				self.$p.show();
 				self.$t.attr('aria-expanded', 'true');
-				self.$p.focus();
+				self.focusPanel();
 			}
 			self.close = function(){
 				self.isOpened = false;
