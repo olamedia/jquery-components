@@ -23,7 +23,7 @@
 				console.log('menu keydown', e.which);
 				e.preventDefault();
     			e.stopPropagation();
-				var $items = self.$p.find('a');//.not('.menu a');
+				var $items = self.$e.find('a');//.not('.menu a');
 				if (!$items.length){
 					return;
 				}
