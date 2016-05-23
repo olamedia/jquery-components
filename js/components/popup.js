@@ -61,43 +61,70 @@
 			self.on('resize', function(){
 				self.reposition();
 			});*/
-			self.keydown = function(e){
-				if (!/(13|38|40|27|32)/.test(e.which) || /input|textarea/i.test(e.target.tagName)){
+			self.panelKeydown = function(e){
+				if (!/(13|37|38|39|40|27|32)/.test(e.which) || /input|textarea/i.test(e.target.tagName)){
 					return;
 				}
 				e.preventDefault();
     			e.stopPropagation();
-				if (!/(38|40)/.test(e.which)){ // UP & DOWN works only inside
-					if (!self.isOpened && e.which != 27 || self.isOpened && e.which == 27){
-						/*if (e.which == 27) {
-							self.$t.focus();
-						}*/
-						return self.toggle();
+				// isOpened === true
+				if (e.which == 27){ // Esc
+					return self.toggle();
+				}
+				if (e.which == 37){ // Left
+					if (self.aside){
+						self.close();
 					}
 				}
 				var $items = self.$p.find('a');
 			    if (!$items.length){
 					return;
 				}
-			    var index = $items.index(e.target);
-			    if (e.which == 38 && index > 0){
-					index--; // up
+				var index = $items.index(e.target);
+				if (e.which == 38){ // Up
+					if (index > 0){
+						index--;
+					}else{
+						if (!self.aside){
+							self.close();
+						}
+					}
 				}
-			    if (e.which == 40 && index < $items.length - 1){
-					index++; // down
+				if (e.which == 40){ // Down
+					if (index < $items.length - 1){
+						index++;
+					}else{
+						if (!self.aside){
+							self.close();
+							// focus on next element after trigger parent
+						}
+					}
 				}
-			    if (!~index) {
+				if (!~index) {
 					index = 0
 				}
-
-			    $items.eq(index).focus();
+				$items.eq(index).focus();
+			}
+			self.triggerKeydown = function(e){
+				if (!/(13|27|39|40|32)/.test(e.which)){
+					return;
+				}
+				if (e.which == 39 && !self.aside){
+					return; // right while not aside
+				}
+				if (e.which == 40 && self.aside){
+					return; // down while aside
+				}
+				self.open();
+				e.preventDefault();
+    			e.stopPropagation();
 			}
 			self.$t.on('keydown', function(e){
-				self.keydown(e);
+				self.triggerKeydown(e);
 			});
 			self.$p.on('keydown', function(e){
 				if (self.isOpened){
-					self.keydown(e);
+					self.panelKeydown(e);
 				}
 			});
 			self.isOpened = false;
