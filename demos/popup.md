@@ -4,10 +4,7 @@ title: Popup
 ---
 
 
-## Basics
-
-* Without javascript, popup css styles are not applied, panel is shown
-* With javascript enabled, panel becomes hidden, additional styling applied
+## Plain HTML
 
 ```html
 <div component="popup">

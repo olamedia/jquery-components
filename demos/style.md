@@ -7,7 +7,7 @@ Inline styles
 
 Appending to `style` tag
 
-## Setup
+## Plain HTML
 
 ```html
 <head>
