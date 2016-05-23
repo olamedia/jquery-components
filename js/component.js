@@ -117,6 +117,9 @@
 						inactive++;
 					}
 				}
+				if (!placeholders[cid]){
+					placeholders[cid] = [];
+				}
 				placeholders[cid].push(placeholder);
 			}
 			console.log('lookupPlaceholders', p);
