@@ -31,7 +31,7 @@
 			var $nav = $('<nav class="appmenu-component"></nav>');
 			var $left = $('<ul style=""></ul>');//display: table-cell;
 			var $right = $('<ul style="float: right;"></ul>');
-			var $moreDropdown = $('<ul popup-panel class=menu"" style="display: none;"></ul>');
+			var $moreDropdown = $('<ul popup-panel class="menu" style="display: none;"></ul>');
 			var $moreDropdownLi = $('<li component="popup"><a popup-trigger>' + self.moreText + ' ▾</a></li>');
 			//component.update($nav.get(0));
 
