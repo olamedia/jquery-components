@@ -168,6 +168,7 @@
 						dropMenuItem();
 						//break;
 					}
+					component.update($nav.get(0));
 				}
 			}
 			adaptSize();
