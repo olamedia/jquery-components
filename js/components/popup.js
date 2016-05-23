@@ -74,6 +74,7 @@
 				if (!/(13|37|38|39|40|27|32)/.test(e.which) || /input|textarea/i.test(e.target.tagName)){
 					return;
 				}
+				console.log('panelKeydown', e.which);
 				e.preventDefault();
     			e.stopPropagation();
 				// isOpened === true
@@ -118,15 +119,19 @@
 				if (!/(13|27|32)/.test(e.which)){
 					return;
 				}
+				console.log('triggerKeydown', e.which);
 				if (e.which == 39 && !self.aside){
 					return; // right while not aside
 				}
 				if (e.which == 40 && self.aside){
 					return; // down while aside
 				}
-				self.open();
 				e.preventDefault();
     			e.stopPropagation();
+				if (e.which == 27){
+					return self.close();
+				}
+				self.open();
 			}
 			self.$t.on('keydown', function(e){
 				self.triggerKeydown(e);
