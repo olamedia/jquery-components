@@ -20,7 +20,7 @@
 				if (!$items.length){
 					return;
 				}
-				$items.eq(index).attr('tabindex', '-1');
+				$items.eq(self.index).attr('tabindex', '-1');
 				self.index+=n;
 				// Clamp:
 				if (self.index < 0){
@@ -29,8 +29,8 @@
 				if (self.index > $items.length - 1){
 					self.index = 0;
 				}
-				$items.eq(index).attr('tabindex', '0');
-				$items.eq(index).focus();
+				$items.eq(self.index).attr('tabindex', '0');
+				$items.eq(self.index).focus();
 			}
 			self.keydown = function(e){
 				if (!/(37|39)/.test(e.which) || /input|textarea/i.test(e.target.tagName)){
