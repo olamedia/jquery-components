@@ -44,8 +44,8 @@ new component(String codename, Object definition)
 
 ```js
 new component('component-codename', {
-	'componentConstruct': function(){
-		// modify component class before creating first instance
+	'extend': function(){
+		// modify/extend component class before creating first instance
 		var self = this; // "this" points to component class
 	},
 	'render': function(){

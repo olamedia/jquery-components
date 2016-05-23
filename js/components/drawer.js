@@ -3,7 +3,7 @@
 
 
 	new component('drawer', {
-		'componentConstruct': function(){
+		'extend': function(){
 			var self = this;
 			console.log('drawer construct1', self);
 			self.detached = function(){

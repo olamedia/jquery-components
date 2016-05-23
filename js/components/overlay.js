@@ -9,7 +9,7 @@
 	});
 
 	new component('overlay', {
-		'componentConstruct': function(){
+		'extend': function(){
 			var self = this; // component
 			console.log('construct1', self);
 			//var instance = self.instance();

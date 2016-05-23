@@ -5,7 +5,7 @@
 
 
 	new component('appmenu', {
-		'componentConstruct': function(){
+		'extend': function(){
 			//component('overlay').instance();
 		},
 		'render': function(){

@@ -320,7 +320,7 @@
 			};
 			//$(function(){
 				// wait for <body>
-				!self.componentConstruct || self.componentConstruct(); // run construct if exists
+				!self.extend || self.extend(); // run class extend() if exists
 			//});
 
 			update();
