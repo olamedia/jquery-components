@@ -30,7 +30,7 @@ title: Popup
 		<li><a href="">Menu Item 3</a></li>
 		<li><a href="">Menu Item 4</a></li>
 		<li><a href="">Menu Item 5</a></li>
-		<li component="popup">
+		<li component="popup" popup-aside="true">
 			<a popup-trigger href="" class="btn btn-default">Menu Item 6</a>
 			<ul popup-panel class="menu menu-default">
 				<li><a href="">Submenu Item 1</a></li>
