@@ -14,6 +14,24 @@
 			self.$e.on('click', function(){
 				self.focus();
 			});
+			self.index = 0;
+			self.moveIndex = function(n){
+				var $items = self.$e.find('a');//.not('.menu a');
+				if (!$items.length){
+					return;
+				}
+				$items.eq(index).attr('tabindex', '-1');
+				self.index+=n;
+				// Clamp:
+				if (self.index < 0){
+					self.index = $items.length - 1;
+				}
+				if (self.index > $items.length - 1){
+					self.index = 0;
+				}
+				$items.eq(index).attr('tabindex', '0');
+				$items.eq(index).focus();
+			}
 			self.keydown = function(e){
 				if (!/(37|39)/.test(e.which) || /input|textarea/i.test(e.target.tagName)){
 					return;
@@ -25,25 +43,14 @@
 				if (!$items.length){
 					return;
 				}
-				var index = $items.index(e.target);
+
+				//var index = $items.index(e.target);
 				if (e.which == 37){ // Left
-					if (index > 0){
-						index--;
-					}else{
-						index = $items.length - 1;
-					}
+					return self.moveIndex(-1);
 				}
 				if (e.which == 39){ // Right
-					if (index < $items.length - 1){
-						index++;
-					}else{
-						index = 0;
-					}
+					return self.moveIndex(1);
 				}
-				if (!~index) {
-					index = 0
-				}
-				$items.eq(index).focus();
 			}
 			self.$e.on('keydown', function(e){
 				self.keydown(e);
