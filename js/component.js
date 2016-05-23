@@ -112,6 +112,7 @@
 					var status = p.components[cid];
 					if ('undefined' !== typeof status){
 						p.components[cid] = false;
+						console.log('lookupPlaceholders cid found', status);
 						found++;
 					}
 					if(false === status){
