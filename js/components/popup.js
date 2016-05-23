@@ -7,6 +7,7 @@
 			var isFiltered = false;
 			if (filtered && filtered.parent){
 				var check = filtered;
+				console.log('check parents', check.e);
 				if (check === popup){
 					isFiltered = true;
 				}
