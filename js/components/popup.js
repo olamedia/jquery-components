@@ -61,6 +61,38 @@
 			self.on('resize', function(){
 				self.reposition();
 			});*/
+			self.keydown = function(e){
+				if (!/(38|40|27|32)/.test(e.which) || /input|textarea/i.test(e.target.tagName)){
+					return;
+				}
+				e.preventDefault();
+    			e.stopPropagation();
+				if (!self.isOpened && e.which != 27 || self.isOpened && e.which == 27){
+					/*if (e.which == 27) {
+						self.$t.focus();
+					}*/
+					return self.toggle();
+				}
+				var $items = self.$p.find('a');
+			    if (!$items.length){
+					return;
+				}
+			    var index = $items.index(e.target);
+			    if (e.which == 38 && index > 0){
+					index--; // up
+				}
+			    if (e.which == 40 && index < $items.length - 1){
+					index++; // down
+				}
+			    if (!~index) {
+					index = 0
+				}
+
+			    $items.eq(index).focus();
+			}
+			self.$p.on('keydown', function(){
+				self.keydown();
+			});
 			self.isOpened = false;
 			self.toggle = function(){
 				self.isOpened?self.close():self.open();
@@ -78,6 +110,7 @@
 				self.$e.removeClass('focused');
 				self.$p.hide();
 				self.$t.attr('aria-expanded', 'false');
+				self.$t.focus();
 			}
 			if (self.$t.length && self.$p.length){
 				self.close();
