@@ -37,7 +37,7 @@
 			}
 			self.open = function(){
 				self.isOpened = true;
-				self.reposition();
+				self.resize();
 				self.$e.addClass('focused');
 				self.$p.show();
 				self.$t.attr('aria-expanded', 'true');
