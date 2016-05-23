@@ -82,10 +82,22 @@
 	var placeholder = function(e){
 		var self = this;
 		self.components = {};
+		self.active = [];
 		self.e = e;
 		self.$e = $(e);
+		self.activate = function(cid){
+			self.components[cid] = true;
+			self.active.push(cid);
+			self.$e.attr('component-active', self.active.join(' '));
+		}
 	};
-
+	var getPlaceholder = function(e){
+		if (!e.componentPlaceholder){
+			e.componentPlaceholder = new placeholder(e);
+		}
+		var p = e.componentPlaceholder;
+		return p;
+	};
 	var lookupPlaceholders = function(context){
 		//console.log('lookupPlaceholders');
 		var list = null;
@@ -99,10 +111,7 @@
 		var foundComponents = [];
 		list.each(function(){
 			var el = this;
-			if (!el.componentPlaceholder){
-				el.componentPlaceholder = new placeholder(el);
-			}
-			var p = el.componentPlaceholder;
+			var p = getPlaceholder(el);
 			var cid = p.$e.attr('component');
 			var cida = cid.split(' ');
 			var inactive = 0;
@@ -144,9 +153,20 @@
 		});
 		console.log('lookupPlaceholders', found, foundComponents);
 	};
+	var replacePlaceholderInstance = function(p, component, isInstance){
+		/*if (!el.componentPlaceholder){
+			el.componentPlaceholder = new placeholder(el);
+		}
+		var p = el.componentPlaceholder;*/
+		//return replacePlaceholder(p.e, component, isInstance);
+		var el = p.e;
+		if (true === p.components[component.codename]){
+			return; // already activated the same component
+		}
+		p.activate(component.codename); // mark active
+		p.$e.addClass(component.codename + '-component');
 
-	var replacePlaceholder = function(el, component, isInstance){
-		//if ($(el).attr(attrPrefix)){
+
 		var c;
 		if (!isInstance){
 			c = component.instance();
@@ -154,17 +174,12 @@
 			c = component;
 		}
 		//$(el).removeAttr(placeholderIdAttr);
-		el.placeholderReplaced = true;
-		$(el).removeAttr(attrPrefix);
-		$(el).attr(component.codename + '-' + attrPrefix, c.id);
-		$(el).addClass(component.codename + '-' + attrPrefix);
-		$(el).attr('component-active', component.codename);
-		/*if ($(el).attr('id')){
-		}else{
-			$(el).attr('id', c.id);
-		}*/
-		c.e = el;
-		c.$e = $(el);
+		//el.placeholderReplaced = true;
+		p.$e.attr(component.codename + '-component', c.id);
+		//$(el).removeAttr('component');
+
+		c.e = p.e;
+		c.$e = p.$e;
 		renderedComponents.push(c);
 		console.log('render', c.codename, c.id);
 		!c.render || c.render();
@@ -174,6 +189,13 @@
 		//c.bindModels();
 		///}
 		return c; // return instance
+	}
+	var replacePlaceholderElement = function(el, component, isInstance){
+
+		var p = getPlaceholder(el);
+		return replacePlaceholderInstance(p, component, isInstance);
+		//if ($(el).attr(attrPrefix)){
+
 	}
 	var resize = function(domElement){
 		console.log('component.resize');
@@ -194,9 +216,9 @@
 			if (components[cid]){
 				var component = components[cid];
 				var el = null;
-				while (el = placeholders[cid].pop()){
-					replacePlaceholder(el, component);
-					lookupPlaceholders(el); // lookup newly rendered placeholders
+				while (p = placeholders[cid].pop()){
+					replacePlaceholderInstance(p, component);
+					lookupPlaceholders(p.e); // lookup newly rendered placeholders
 					found++;
 					founda.push(cid);
 				}
@@ -311,7 +333,7 @@
 			};
 			self.replace = function(e){
 				var self = this;
-				return replacePlaceholder(e, self); // return instance
+				return replacePlaceholderElement(e, self); // return instance
 				//return self;
 			};
 			self.render = self.render || render; // check if was extended with object
@@ -373,7 +395,7 @@
 		return components[id];
 	};
 	component.componentInstance = componentInstance;
-	component.replace = replacePlaceholder;
+	component.replace = replacePlaceholderElement;
 	component.list = components;
 	component.rendered = renderedComponents;
 	component.update = update;
