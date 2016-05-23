@@ -38,9 +38,9 @@ Keyboard navigation for menu (UP/DOWN | LEFT/RIGHT)
 </div></div>
 
 
-<div class="panel" style="background: #666;"><div class="panel-body" id="focus">
+<div class="panel" style="background: #666;"><div class="panel-body" id="focus2">
 <nav style="width: 150px;">
-	<ul id="menu-demo" component="menubar" role="menu" class="menubar" style="background: #fff;">
+	<ul id="menu-demo2" component="menubar" role="menu" class="menubar" style="background: #fff;">
 		<li><a href="javascript::void();">Menu Item 1</a></li>
 		<li><a href="javascript::void();">Menu Item 2</a></li>
 		<li><a href="javascript::void();">Menu Item 3</a></li>
@@ -58,6 +58,9 @@ Keyboard navigation for menu (UP/DOWN | LEFT/RIGHT)
 $(function(){
 	$('#focus').click(function(){
 		component.query('#menu-demo').focus();
+	});
+	$('#focus2').click(function(){
+		component.query('#menu-demo2').focus();
 	});
 })
 </script>
