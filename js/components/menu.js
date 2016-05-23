@@ -1,0 +1,20 @@
+(function(window, $){
+
+	new component('menu', {
+		'render': function(){
+
+			var self = this;
+			self.focus = function(){
+				var $items = self.$e.find('li>a');
+				if ($items.length){
+					$items.eq(0).focus();
+				}
+				//self.$e.focus();
+			};
+			self.$e.on('focus', function(){
+				self.focus();
+			});
+		}
+	});
+
+})(window, jQuery);
