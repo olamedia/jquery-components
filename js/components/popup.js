@@ -1,9 +1,22 @@
 (function(window, $){
 	var popups = [];
-	var closeAllPopups = function(){
+	var closeAllPopups = function(filtered){
 		console.log('close all popups');
 		$.each(popups, function(k, popup){
-			popup.close();
+			//filtered
+			var isFiltered = false;
+			var check = filtered;
+			if (check === popup){
+				isFiltered = true;
+			}
+			while (check = check.parent()){
+				if (check === popup){
+					isFiltered = true;
+				}
+			}
+			if (!isFiltered){
+				popup.close();
+			}
 		});
 	};
 	$(function(){
@@ -66,7 +79,7 @@
 					e.stopPropagation();
 					if (!self.isOpened){
 						// FIXME don't close nested popups
-						//closeAllPopups();
+						closeAllPopups(self);
 					}
 					self.toggle();
 				});

@@ -13,6 +13,23 @@
 		var self = this;
 		self.name = eventname;
 	}
+
+	var removeEventListener = function(el, eventName, handler) {
+		if (el.removeEventListener){
+			el.removeEventListener(eventName, handler);
+		}else{
+			el.detachEvent('on' + eventName, handler);
+		}
+	}
+	var addEventListener = function(el, eventName, handler) {
+		if (el.addEventListener) {
+			el.addEventListener(eventName, handler);
+		}else{
+			el.attachEvent('on' + eventName, function(){
+				handler.call(el);
+			});
+		}
+	}
 	var addListener = function(eventname, listener){
 		if ('undefined' === typeof eventListeners[eventname]){
 			eventListeners[eventname] = [];
@@ -417,6 +434,10 @@
 			self.on = function(eventname, callback){
 				callback.target = self;
 				addListener(eventname, callback);
+			}
+			self.parent = function(){
+				var parent = self.$e.parent('[component-active]');
+				return parent.length ? parent.get(0) : null;
 			}
 
 			// FIXME move to instance  !self.resize || self.on('resize', self.resize);
