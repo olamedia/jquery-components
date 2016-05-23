@@ -372,7 +372,7 @@
 				// object
 				wasExtended = true;
 				$.extend(self, render);
-				console.log(self.codename, render, self);
+				//console.log(self.codename, render, self);
 				render = null;
 			}
 			self.appendTo = function(tagName, target){
