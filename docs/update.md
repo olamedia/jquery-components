@@ -3,8 +3,9 @@ layout: method
 title: .update()
 ---
 
-* For use within components. 
+* **Use within components**.
 * Called automatically on document load.
+* Should not be called outside of componets.
 
 ## component.update()
 
