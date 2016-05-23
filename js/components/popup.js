@@ -5,7 +5,7 @@
 		$.each(popups, function(k, popup){
 			//filtered
 			var isFiltered = false;
-			if (filtered){}
+			if (filtered){
 				var check = filtered;
 				if (check === popup){
 					isFiltered = true;
