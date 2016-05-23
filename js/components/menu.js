@@ -5,7 +5,7 @@
 
 			var self = this;
 			self.focus = function(){
-				var $items = self.$e.find('li>a');
+				var $items = self.$e.find('a');
 				if ($items.length){
 					$items.eq(0).focus();
 				}
