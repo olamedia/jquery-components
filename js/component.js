@@ -442,7 +442,7 @@
 					console.log('no element');
 					return null;
 				}
-				var parent = self.$e.parent('[component-active]');
+				var parent = self.$e.parents('[component-active]');
 				console.log('parent', parent);
 				return parent.length ? parent.get(0) : null;
 			}
