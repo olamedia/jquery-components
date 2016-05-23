@@ -20,7 +20,7 @@
 			});
 			self.reposition = function(){
 				self.$p.css({
-					'left': self.$e.offset().left + 'px'
+					'left': (self.$e.offset().left - self.$e.offsetParent().offset().left) + 'px'
 				});//self.$e.offset().x
 			}
 			$(window).on('resize', function(){
