@@ -8,7 +8,7 @@
 			if (filteredComponent && filteredComponent.parent){
 				var check = filteredComponent;
 				console.log('check parents', check.e);
-				while (null !== check){
+				while (null !== check && check.parent){
 					console.log('parent', check.e);
 					if (check === popup){
 						isFiltered = true;
