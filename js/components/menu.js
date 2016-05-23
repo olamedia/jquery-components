@@ -29,11 +29,15 @@
 				if (e.which == 37){ // Left
 					if (index > 0){
 						index--;
+					}else{
+						index = $items.length - 1;
 					}
 				}
 				if (e.which == 39){ // Right
 					if (index < $items.length - 1){
 						index++;
+					}else{
+						index = 0;
 					}
 				}
 				if (!~index) {
