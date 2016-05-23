@@ -110,6 +110,7 @@
 				console.log('lookupPlaceholders cid', cid);
 				if ('' !== cid){
 					var status = p.components[cid];
+					console.log('lookupPlaceholders cid found?', status);
 					if ('undefined' !== typeof status){
 						p.components[cid] = false;
 						console.log('lookupPlaceholders cid found', status);
