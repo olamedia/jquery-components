@@ -35,7 +35,7 @@
 			});
 			if (self.aside){
 				self.$p.css({
-					'top': 0 + self.$e.offsetParent().offset().top + 'px'
+					'top': 0 + self.$e.offset().top + self.$e.offsetParent().offset().top + 'px'
 				});
 			}
 		},
