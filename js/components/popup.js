@@ -79,14 +79,14 @@
     			e.stopPropagation();
 				// isOpened === true
 				if (e.which == 27){ // Esc
-					return self.toggle();
+					return self.close();
 				}
 				if (e.which == 37){ // Left
 					if (self.aside){
 						return self.close();
 					}
 				}
-				var $items = self.$p.children('li>a');
+				var $items = self.$p.find('a');//.not('.menu a');
 				if (!$items.length){
 					return;
 				}
@@ -149,6 +149,8 @@
 				self.isOpened = true;
 				self.resize();
 				self.$e.addClass('focused');
+				self.$p.detach();
+				self.$t.after(self.$p);
 				self.$p.show();
 				self.$t.attr('aria-expanded', 'true');
 				self.focusPanel();
@@ -157,6 +159,7 @@
 				self.isOpened = false;
 				self.$e.removeClass('focused');
 				self.$p.hide();
+				self.$p.detach();
 				self.$t.attr('aria-expanded', 'false');
 				self.$t.focus();
 			}
