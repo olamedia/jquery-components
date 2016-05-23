@@ -18,7 +18,9 @@ title: Popup
 </div>
 ```
 
-<nav style="width: 300px;">
+## Menu example
+
+<nav style="width: 150px;">
 	<ul class="menu">
 		<li><a href="">Menu Item 1</a></li>
 		<li><a href="">Menu Item 2</a></li>
@@ -45,6 +47,8 @@ title: Popup
 		<li><a href="">Menu Item 10</a></li>
 	</ul>
 </nav>
+
+## Inline example
 
 <div>
 	Inline <span component="popup">
