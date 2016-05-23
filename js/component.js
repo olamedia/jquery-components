@@ -223,6 +223,7 @@
 		}else{
 			c = component;
 		}
+		p.e.component = c;
 		//$(el).removeAttr(placeholderIdAttr);
 		//el.placeholderReplaced = true;
 		p.$e.attr(component.codename + '-component', c.id);
@@ -444,7 +445,7 @@
 				}
 				var parent = self.$e.parents('[component-active]');
 				console.log('parent', parent);
-				return parent.length ? parent.get(0) : null;
+				return parent.length ? parent.get(0).component : null;
 			}
 
 			// FIXME move to instance  !self.resize || self.on('resize', self.resize);
