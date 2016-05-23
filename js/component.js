@@ -79,10 +79,17 @@
 		};
 	})();
 
+	var placeholder = function(e){
+		var self = this;
+		self.components = {};
+		self.e = e;
+		self.$e = $(e);
+	};
+
 	var lookupPlaceholders = function(context){
 		console.log('lookupPlaceholders');
 		var list = null;
-		var selector = '['+attrPrefix+']';
+		var selector = '[component]';
 		if (context){
 			list = $(selector, context)
 		}else{
@@ -91,23 +98,39 @@
 		var found = 0;
 		list.each(function(){
 			var el = this;
-			var $el = $(el);
-			var cid = $el.attr(attrPrefix);
-			/*var id = $el.attr(placeholderIdAttr);
-			if (id){
+			if (!el.componentPlaceholder){
+				el.componentPlaceholder = new placeholder(el);
+			}
+			var p = el.componentPlaceholder;
+			var cid = p.$e.attr('component');
+			var cida = cid.split(' ');
+			var inactive = 0;
+			for (var k in cida){
+				var cid = cida[k];
+				if ('' !== cid){
+					var status = p.components[cid];
+					if ('undefined' !== typeof status){
+						p.components[cid] = false;
+						found++;
+					}
+					if(false === status){
+						inactive++;
+					}
+				}
+				placeholders[cid].push(placeholder);
+			}
+			console.log('lookupPlaceholders', p);
+			/*if (el.placeholderFound){
 				return;
 			}*/
-			if (el.placeholderFound){
-				return;
-			}
 			//var id = uuid.v4s();
 			//$el.attr(placeholderIdAttr, id);
-			if (!placeholders[cid]){
+			/*if (!placeholders[cid]){
 				placeholders[cid] = [];
 			}
 			found++;
-			el.placeholderFound = true;
-			placeholders[cid].push(el);
+			el.placeholderFound = true;*/
+			//placeholders[cid].push(el);
 		});
 		console.log('lookupPlaceholders', found);
 	};
