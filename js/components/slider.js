@@ -81,7 +81,7 @@
 						(function(self, $slide, css, options){
 							setTimeout(function(){
 								$slide.animate(css, options);
-							}, self.options.duration/4);
+							}, self.options.duration/3);
 						})(self, $slide, css, options);
 					}
 				}else{
