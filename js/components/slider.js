@@ -32,12 +32,30 @@
 			self.hideAll();
 			self.showIndex(self.index);
 		},
+		'reposition': function(index){ // update left for each slide
+			var self = this;
+			var $c = self.$e.children();
+			var l = $c.length;
+			self.width = self.$e.width();
+			for (var i = 0; i < l; i++){
+				var $slide = $($c.get(i));
+				$slide.text('Slide #' + i);
+				$slide.css({
+					'left': ((i - index) * self.width) + 'px'
+				});
+			}
+		},
 		'showIndex': function(index){
 			var self = this;
 			//var slide = self.$slides[index];
 			//slide.show();
 			//self.shown[index] = true;
-			$(self.$e.children().get(index)).show();
+			var $slide = $(self.$e.children().get(index));
+			self.reposition(index);
+			/*$slide.css({
+				'left': (index * self.width) + 'px'
+			});*/
+			$slide.show();
 		},
 		'hideAll': function(){
 			var self = this;
@@ -60,16 +78,20 @@
 		},
 		'resize': function(){
 			var self = this; // instance object
-			self.index = 0;
-			self.maxIndex = 0;
+			//self.index = 0;
+			//self.maxIndex = 0;
+			self.width = self.$e.width();
+			self.reposition(self.index);
 		},
 		'render': function(){
 			var self = this;
-
+			self.index = 0;
+			self.maxIndex = 0;
 			self.$slides = self.$e.children();
 			self.shown = {};
 			self.hideAll();
-			self.showIndex(0);
+			//self.showIndex(0);
+			self.reposition(self.index);
 			self.$e.css({
 				'overflow-x': 'hidden'
 			});
