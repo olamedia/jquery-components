@@ -142,8 +142,9 @@
 			self.options = self.options || {};
 			self.options = $.extend(self.defaults, self.options);
 			self.options.wrap = true;
-			console.log('vertical', self.$e.attr('slider-vertical'));
-			if (TYPE_UNDEF == typeof self.$e.attr('slider-vertical')){
+			var v = self.$e.attr('slider-vertical');
+			//console.log('vertical', );
+			if (TYPE_UNDEF !== typeof v && v !== false){
 				self.options.vertical = true;
 			}
 			console.log('options', self.options);
