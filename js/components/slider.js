@@ -71,6 +71,9 @@
 								cb();
 							}
 						};
+						options.easing = 'swing';
+					}else{
+						options.easing = 'linear';
 					}
 					$slide.animate(css, options);
 				}else{
