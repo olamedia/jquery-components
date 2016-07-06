@@ -4,7 +4,7 @@ Component-based application framework. Plain javascript. Without templates.
 
 Designed for Progressive Enhancement.
 
-> Warning: This is a draft, not ready for production
+> Warning: This is mostly a draft
 >
 > API is not frozen, functions and properties can change names at any time
 
