@@ -85,14 +85,36 @@
 		},
 		'render': function(){
 			var self = this;
+			self.$e.css({
+				'background': '#f00',
+				'border': 'solid 1px #0f0'
+			});
 			self.index = 0;
-			self.maxIndex = 0;
-			self.$slides = self.$e.children();
-			self.shown = {};
+			var $c = self.$e.children();
+			self.maxIndex = $c.length;
+			self.width = self.$e.width();
+			self.maxHeight = self.$e.height();
+			for (var i = 0; i < self.maxIndex; i++){
+				var $slide = $($c.get(i));
+				var h = $slide.height();
+				if (h > self.maxHeight){
+					self.maxHeight = h;
+				}
+				$slide.css({
+					'position': 'absolute',
+					'top': '0px',
+					'left': (self.width) + 'px',
+					'height': '100%'
+				});
+			}
+			self.$e.height(self.maxHeight);
+			//self.$slides = self.$e.children();
+			//self.shown = {};
 			//self.hideAll();
 			//self.showIndex(0);
 			self.reposition(self.index);
 			self.$e.css({
+				'position': 'relative',
 				'overflow-x': 'hidden'
 			});
 			self.on('resize', function(){
