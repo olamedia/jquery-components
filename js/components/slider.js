@@ -113,6 +113,8 @@
 		},
 		'render': function(){
 			var self = this;
+			self.options = self.options || {};
+			self.options.wrap = true;
 			self.$e.css({
 				'background': '#f00',
 				'border': 'solid 1px #0f0'
