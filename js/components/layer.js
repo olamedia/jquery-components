@@ -1,14 +1,14 @@
 (function(window, $){
-	
+
 	var layers = [];
-	
+
 	var layer = function(options){
 		var self = this;
 		self.$e = $(document.createElement('div'));
-		modals.push(self);
-		
+		layers.push(self);
+
 		//self.
-		
+
 	};
 	
 	new component('layer', {
@@ -121,11 +121,11 @@
 		});*/
 		//layer.$e.text('Boo');
 	});
-	
+
 	component.layer = function(options){
 		return component('layer').appendTo('div', layersContainer, options || {});
 	};
-	
 
-	
+
+
 })(window, jQuery);
