@@ -120,9 +120,10 @@
 	var layersContainer = document.createElement('div');
 	var $layersContainer = $(layersContainer);
 	$layersContainer.attr('id', 'layers-container');
-	$layersContainer.css({
-		'position': 'static',
-	});
+	// !!! position to each certain layer separately
+	//$layersContainer.css({
+	//	'position': 'static',
+	//});
 	$(function(){
 		$('body').append($layersContainer);
 		/*var layer = component.layer({
