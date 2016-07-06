@@ -144,6 +144,7 @@
 			if (self.$e.attr('slider-vertical')){
 				self.options.vertical = true;
 			}
+			console.log('options', self.options);
 			self.index = 0;
 			var $c = self.$e.children();
 			self.maxIndex = $c.length;
