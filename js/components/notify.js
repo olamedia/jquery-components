@@ -119,6 +119,9 @@
 	notify.warn = function(text, options){
 		return component.notify(text, options, 'warn');
 	}
+	notify.warning = function(text, options){
+		return component.notify(text, options, 'warn');
+	}
 	notify.setSpacing = function(spacing){
 		alertsLayer.setSpacing(spacing);
 	};
