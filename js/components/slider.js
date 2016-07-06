@@ -176,7 +176,8 @@
 			self.reposition(self.index);
 			self.$e.css({
 				'position': 'relative',
-				'overflow-x': 'hidden'
+				'overflow-x': 'hidden',
+				'overflow-y': 'hidden'
 			});
 			self.on('resize', function(){
 				self.resize();
