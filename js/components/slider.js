@@ -5,7 +5,9 @@
 	new component('slider', {
 		'extend': function(){
 			var self = this; // class object
-
+			self.options = self.options || {};
+			self.options = $.extend(self.defaults, self.options);
+			self.options.wrap = true;
 		},
 		'defaults': {
 			'vertical': false,
@@ -139,9 +141,7 @@
 		},
 		'render': function(){
 			var self = this;
-			self.options = self.options || {};
-			self.options = $.extend(self.defaults, self.options);
-			self.options.wrap = true;
+
 			//console.log('vertical', );
 			if (self.$e[0].hasAttribute('slider-vertical')){
 				self.options.vertical = true;
