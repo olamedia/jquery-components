@@ -6,10 +6,17 @@
 			var self = this; // class object
 
 		},
-		'slideToCurrent': function(){
-
+		'service': function(){
+			var self = this;
+			self.scheduleSlide();
 		},
-		'slideTo': function(index){
+		'scheduleSlide': function(){
+			var self = this;
+			setTimeout(function(){
+				self.next(self.scheduleSlide);
+			}, 1000);
+		},
+		'slideTo': function(index, cb){
 			var self = this;
 
 			if (index > self.maxIndex){
@@ -27,13 +34,13 @@
 				}
 			}
 			self.index = index;
-
+			self.reposition(self.index, true, cb);
 			//var w = self.$e.width();
-			self.hideAll();
-			self.showIndex(self.index);
+			//self.hideAll();
+			//self.showIndex(self.index);
 		},
-		'reposition': function(index){ // update left for each slide
-			//animate = animate ? true : false;
+		'reposition': function(index, animate, cb){ // update left for each slide
+			animate = animate ? true : false;
 			var self = this;
 			var $c = self.$e.children();
 			var l = $c.length;
@@ -45,11 +52,15 @@
 					'left': ((i - index) * self.width) + 'px',
 					'right': (-(i - index) * self.width) + 'px'
 				};
-				//if (animate){
-				//	$slide.animate(css);
-				//}else{
+				if (animate){
+					$slide.animate(css, function(){
+						if (cb){
+							cb();
+						}
+					});
+				}else{
 					$slide.css(css);
-				//}
+				}
 			}
 		},
 		'showIndex': function(index){
@@ -75,13 +86,13 @@
 				}
 			}*/
 		},
-		'prev': function(){
+		'prev': function(cb){
 			var self = this;
-			return self.slideTo(self.index-1);
+			return self.slideTo(self.index-1, cb);
 		},
-		'next': function(){
+		'next': function(cb){
 			var self = this;
-			return self.slideTo(self.index+1);
+			return self.slideTo(self.index+1, cb);
 		},
 		'resize': function(){
 			var self = this; // instance object
