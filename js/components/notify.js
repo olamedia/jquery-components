@@ -79,7 +79,7 @@
 			}else{
 				console.error('No text passed');
 			}
-			
+
 			self.$alert.slideDown();
 
 			alertsLayer.resize();
@@ -120,15 +120,13 @@
 		return component.notify(text, options, 'warn');
 	}
 	notify.setSpacing = function(spacing){
-		alertsLayer.$e.css({
-			'padding': spacing
-		});
+		alertsLayer.setSpacing(spacing);
 	};
 	component.notify = notify;
 
 
 //notify.setSpacing('32px');
-	component.notify.setSpacing('40px');
+	component.notify.setSpacing(40);
 	/*component.growl({
 		'text': 'message text'
 	});*/
