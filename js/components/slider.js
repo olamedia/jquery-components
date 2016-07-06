@@ -143,7 +143,7 @@
 			self.options = $.extend(self.defaults, self.options);
 			self.options.wrap = true;
 			//console.log('vertical', );
-			if (self.$e.is('[slider-vertical]')){
+			if (self.$e[0].hasAttribute('slider-vertical')){
 				self.options.vertical = true;
 			}
 			console.log('options', self.options);
