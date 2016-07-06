@@ -111,16 +111,16 @@
 		return component.notify(text, options, 'success');
 	}
 	notify.error = function(text, options){
-		return component.notify(text, options, 'error');
+		return component.notify(text, options, 'danger');
 	}
 	notify.danger = function(text, options){
-		return component.notify(text, options, 'error');
+		return component.notify(text, options, 'danger');
 	}
 	notify.warn = function(text, options){
-		return component.notify(text, options, 'warn');
+		return component.notify(text, options, 'warning');
 	}
 	notify.warning = function(text, options){
-		return component.notify(text, options, 'warn');
+		return component.notify(text, options, 'warning');
 	}
 	notify.setSpacing = function(spacing){
 		alertsLayer.setSpacing(spacing);
