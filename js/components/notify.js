@@ -1,11 +1,46 @@
 (function(window, $){
+	var alertsLayer = component.layer();
+	//console.log('alertsLayer', alertsLayer);
+	alertsLayer.$e.attr('id', 'notify-layer');
+	alertsLayer.setPosition('top center');
+
+
+	var notify = function(text, options, state){
+		var options = options || {};
+		options.text = text;
+		if (state){
+			options.class = 'alert-' + state;
+		}
+		return component('notify').prependTo('div', alertsLayer.$e, options || {});
+	};
+
+	notify.container = alertsLayer;
+	notify.info = function(text, options){
+		return component.notify(text, options, 'info');
+	}
+	notify.success = function(text, options){
+		return component.notify(text, options, 'success');
+	}
+	notify.error = function(text, options){
+		return component.notify(text, options, 'danger');
+	}
+	notify.danger = function(text, options){
+		return component.notify(text, options, 'danger');
+	}
+	notify.warn = function(text, options){
+		return component.notify(text, options, 'warning');
+	}
+	notify.warning = function(text, options){
+		return component.notify(text, options, 'warning');
+	}
+	notify.setSpacing = function(spacing){
+		alertsLayer.setSpacing(spacing);
+	};
 
 	new component('notify', {
 		'extend': function(){
 			var self = this;
-			self.notify = function(options){
-				return component('notify').prependTo('div', alertsLayer.$e, options || {});
-			}
+			self.notify = notify;
 		},
 		'render': function(){
 			var self = this;
@@ -93,45 +128,7 @@
 		}
 	});
 
-	var alertsLayer = component.layer();
-	console.log('alertsLayer', alertsLayer);
-	alertsLayer.$e.attr('id', 'notify-layer');
-	alertsLayer.setPosition('top center');
 
-	var notifyBase = function(options){
-		return component('notify').notify(options);
-		//return component('notify').prependTo('div', alertsLayer.$e, options || {});
-	}
-	var notify = function(text, options, state){
-		var options = options || {};
-		options.text = text;
-		if (state){
-			options.class = 'alert-' + state;
-		}
-		return notifyBase(options);
-	};
-	notify.container = alertsLayer;
-	notify.info = function(text, options){
-		return component.notify(text, options, 'info');
-	}
-	notify.success = function(text, options){
-		return component.notify(text, options, 'success');
-	}
-	notify.error = function(text, options){
-		return component.notify(text, options, 'danger');
-	}
-	notify.danger = function(text, options){
-		return component.notify(text, options, 'danger');
-	}
-	notify.warn = function(text, options){
-		return component.notify(text, options, 'warning');
-	}
-	notify.warning = function(text, options){
-		return component.notify(text, options, 'warning');
-	}
-	notify.setSpacing = function(spacing){
-		alertsLayer.setSpacing(spacing);
-	};
 	component.notify = notify;
 
 
