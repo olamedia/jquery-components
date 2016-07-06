@@ -15,12 +15,12 @@ Notification alerts
 <script>
 $(function(){
 	component.notify.setSpacing(40);
-	component.notify.success('Alert text');
-	component.notify.info('Alert text');
-	component.notify.warning('Alert text');
-	component.notify.warn('Alert text');
-	component.notify.error('Alert text');
-	component.notify.danger('Alert text');
+	component.notify.success('success text');
+	component.notify.info('info text');
+	component.notify.warning('warning text');
+	component.notify.warn('warn text');
+	component.notify.error('error text');
+	component.notify.danger('danger text');
 });
 </script>
 ```
@@ -28,11 +28,11 @@ $(function(){
 <script>
 $(function(){
 	component.notify.setSpacing(40);
-	component.notify.success('Alert text');
-	component.notify.info('Alert text');
-	component.notify.warning('Alert text');
-	component.notify.warn('Alert text');
-	component.notify.error('Alert text');
-	component.notify.danger('Alert text');
+	component.notify.success('success text');
+	component.notify.info('info text');
+	component.notify.warning('warning text');
+	component.notify.warn('warn text');
+	component.notify.error('error text');
+	component.notify.danger('danger text');
 });
 </script>
