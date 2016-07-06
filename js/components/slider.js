@@ -48,7 +48,7 @@
 				//if (animate){
 				//	$slide.animate(css);
 				//}else{
-					$slide.css();
+					$slide.css(css);
 				//}
 			}
 		},
