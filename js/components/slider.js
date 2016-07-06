@@ -37,7 +37,7 @@
 			//var slide = self.$slides[index];
 			//slide.show();
 			//self.shown[index] = true;
-			self.$e.children().get(index).show();
+			$(self.$e.children().get(index)).show();
 		},
 		'hideAll': function(){
 			var self = this;
