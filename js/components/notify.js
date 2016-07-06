@@ -1,6 +1,12 @@
 (function(window, $){
 
 	new component('notify', {
+		'extend': function(){
+			var self = this;
+			self.notify = function(options){
+				return component('notify').prependTo('div', alertsLayer.$e, options || {});
+			}
+		},
 		'render': function(){
 			var self = this;
 			self.options = self.options || {};
@@ -93,7 +99,8 @@
 	alertsLayer.setPosition('top center');
 
 	var notifyBase = function(options){
-		return component('notify').prependTo('div', alertsLayer.$e, options || {});
+		return component('notify').notify(options);
+		//return component('notify').prependTo('div', alertsLayer.$e, options || {});
 	}
 	var notify = function(text, options, state){
 		var options = options || {};
