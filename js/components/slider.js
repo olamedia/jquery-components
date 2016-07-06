@@ -56,9 +56,11 @@
 					'right': (-(i - index) * self.width) + 'px'
 				};
 				if (animate){
-					$slide.animate(css, function(){
-						if (cb){
-							cb();
+					$slide.animate(css, {
+						'complete': function(){
+							if (cb){
+								cb();
+							}
 						}
 					});
 				}else{
