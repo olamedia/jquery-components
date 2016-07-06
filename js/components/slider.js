@@ -142,6 +142,7 @@
 			self.options = $.extend(self.defaults, self.options);
 			self.options.wrap = true;
 			if (self.$e.attr('slider-vertical')){
+				console.log('vertical');
 				self.options.vertical = true;
 			}
 			console.log('options', self.options);
