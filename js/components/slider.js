@@ -42,6 +42,7 @@
 				$slide.text('Slide #' + i);
 				$slide.css({
 					'left': ((i - index) * self.width) + 'px'
+					'right': ((i - index + 1) * self.width) + 'px'
 				});
 			}
 		},
