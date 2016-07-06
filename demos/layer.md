@@ -15,7 +15,8 @@ $(function(){
 	layer.$e.text('Layer');
 	layer.$e.css({
 		'background': '#fff',
-		'padding': '30px'
+		'padding': '30px',
+		'border': 'dashed 4px #f00'
 	});
 	console.log('layer', layer);
 });
@@ -29,7 +30,8 @@ $(function(){
 	layer.$e.text('Layer');
 	layer.$e.css({
 		'background': '#fff',
-		'padding': '30px'
+		'padding': '30px',
+		'border': 'dashed 4px #f00'
 	});
 	console.log('layer', layer);
 });
