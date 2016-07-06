@@ -381,7 +381,19 @@
 				target = $(target);
 				var $e = $('<'+tagName+'></'+tagName+'>');
 				$e.appendTo(target);
+				self.$e = $e;
+				self.e = $e.get(0);
 				console.log('appendTo', $e.get(0), target.get(0));
+				return self.replace($e.get(0)); // return instance
+			};
+			self.prependTo = function(tagName, target){
+				var self = this;
+				target = $(target);
+				var $e = $('<'+tagName+'></'+tagName+'>');
+				$e.prependTo(target);
+				self.$e = $e;
+				self.e = $e.get(0);
+				console.log('prependTo', $e.get(0), target.get(0));
 				return self.replace($e.get(0)); // return instance
 			};
 			self.replace = function(e){
@@ -431,6 +443,9 @@
 				});
 				//!inst.resize || inst.on('resize', inst.resize);
 				return inst;
+			};
+			self.createElement = function(tag){
+				return document.createElement(tag);
 			};
 			self.on = function(eventname, callback){
 				var self = this;
