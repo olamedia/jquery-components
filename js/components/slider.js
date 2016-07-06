@@ -60,6 +60,7 @@
 		},
 		'render': function(){
 			var self = this;
+			self.$e.children().hide();
 			self.$slides = self.$e.children();
 			self.shown = {};
 			self.hideAll();
