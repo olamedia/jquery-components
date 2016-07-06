@@ -10,7 +10,7 @@
 			var self = this;
 
 			if (index > self.maxIndex){
-				if (self.options && self.options.wrap){}
+				if (self.options && self.options.wrap){
 					index = 0;
 				}else{
 					index = self.maxIndex;
