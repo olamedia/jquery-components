@@ -13,7 +13,9 @@
 		'scheduleSlide': function(){
 			var self = this;
 			var f = function(){
-				self.next(self.scheduleSlide);
+				self.next(function(){
+					self.scheduleSlide();
+				});
 			};
 			setTimeout(f, 1000);
 		},
