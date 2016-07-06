@@ -13,7 +13,7 @@ $(function(){
 	var layer = component.layer();
 	layer.setPosition('bottom center');
 	layer.$e.text('Layer');
-	layer.css({
+	layer.$e.css({
 		'background': '#fff',
 		'padding': '30px'
 	});
@@ -27,7 +27,7 @@ $(function(){
 	var layer = component.layer();
 	layer.setPosition('bottom center');
 	layer.$e.text('Layer');
-	layer.css({
+	layer.$e.css({
 		'background': '#fff',
 		'padding': '30px'
 	});
