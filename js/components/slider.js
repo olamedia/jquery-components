@@ -78,9 +78,11 @@
 					if (i == index){
 						$slide.animate(css, options);
 					}else{
-						setTimeout(function(){
-							$slide.animate(css, options);
-						}, self.options.duration/4);
+						(function(self, $slide, css, options){
+							setTimeout(function(){
+								$slide.animate(css, options);
+							}, self.options.duration/4);
+						})(self, $slide, css, options);
 					}
 				}else{
 					$slide.css(css);
