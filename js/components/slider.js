@@ -75,7 +75,13 @@
 					}else{
 						options.easing = 'linear';
 					}
-					$slide.animate(css, options);
+					if (i == index){
+						$slide.animate(css, options);
+					}else{
+						setTimeout(function(){
+							$slide.animate(css, options);
+						}, self.options.duration/4);
+					}
 				}else{
 					$slide.css(css);
 				}
