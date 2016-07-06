@@ -23,16 +23,16 @@
 		'slideTo': function(index, cb){
 			var self = this;
 
-			if (index > self.maxIndex){
+			if (index >= self.maxIndex){
 				if (self.options && self.options.wrap){
 					index = 0;
 				}else{
-					index = self.maxIndex;
+					index = self.maxIndex - 1;
 				}
 			}
 			if (index < 0){
 				if (self.options && self.options.wrap){
-					index = self.maxIndex;
+					index = self.maxIndex - 1;
 				}else{
 					index = 0;
 				}
@@ -58,7 +58,8 @@
 				};
 				if (animate){
 					$slide.animate(css, {
-						'complete': function(){
+						'duration': 2000,
+						'done': function(){
 							if (cb){
 								cb();
 							}
