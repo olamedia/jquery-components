@@ -97,7 +97,7 @@
 			self.maxHeight = 0;//self.$e.height();
 			for (var i = 0; i < self.maxIndex; i++){
 				var $slide = $($c.get(i));
-				var h = $slide.height();
+				var h = $slide.outerHeight(true);
 				if (h > self.maxHeight){
 					self.maxHeight = h;
 				}
