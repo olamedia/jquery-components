@@ -7,6 +7,7 @@
 
 		},
 		'defaults': {
+			'vertical': false,
 			'wrap': true, // index wrap
 			'delay': 3000, // delay between animations
 			'duration': 1000, // animation duration
@@ -53,14 +54,22 @@
 			var self = this;
 			var $c = self.$e.children();
 			var l = $c.length;
-			self.width = self.$e.width();
+			//self.width = self.$e.width();
 			for (var i = 0; i < l; i++){
 				var $slide = $($c.get(i));
 				//$slide.text('Slide #' + i);
-				var css = {
-					'left': ((i - index) * self.width) + 'px',
-					'right': (-(i - index) * self.width) + 'px'
-				};
+				var css;
+				if (self.options.vertical){
+					css = {
+						'top': ((i - index) * self.height) + 'px',
+						'bottom': (-(i - index) * self.height) + 'px'
+					};
+				}else{
+					css = {
+						'left': ((i - index) * self.width) + 'px',
+						'right': (-(i - index) * self.width) + 'px'
+					};
+				}
 				if (animate){
 					var options = {
 						'duration': self.options.duration
@@ -132,25 +141,31 @@
 			self.options = self.options || {};
 			self.options = $.extend(self.defaults, self.options);
 			self.options.wrap = true;
+			if (self.$e.attr('slider-vertical')){
+				self.options.vertical = true;
+			}
 			self.index = 0;
 			var $c = self.$e.children();
 			self.maxIndex = $c.length;
 			self.width = self.$e.width();
-			self.maxHeight = 0;//self.$e.height();
+			self.height = 0;//self.$e.height();
 			for (var i = 0; i < self.maxIndex; i++){
 				var $slide = $($c.get(i));
 				var h = $slide.outerHeight(true);
-				if (h > self.maxHeight){
-					self.maxHeight = h;
+				if (h > self.height){
+					self.height = h;
 				}
 				$slide.css({
 					'position': 'absolute',
 					'top': '0px',
-					'left': (self.width) + 'px',
+					'left': '0px',
+					'right': '0px',
+					'bottom': '0px',
 					'height': '100%'
 				});
 			}
-			self.$e.height(self.maxHeight);
+
+			self.$e.height(self.height);
 			//self.$slides = self.$e.children();
 			//self.shown = {};
 			//self.hideAll();
