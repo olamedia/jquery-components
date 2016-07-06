@@ -16,7 +16,10 @@ Bootstrap alert based notifications
 $(function(){
 	component.notify.setSpacing(40);
 	component.notify.success('success text');
-	component.notify.info('info text');
+	component('notify').notify({
+		text:'info text',
+		class: 'alert-info'
+	});
 	component.notify.warning('warning text');
 	component.notify.warn('warn text');
 	component.notify.error('error text');
@@ -29,7 +32,10 @@ $(function(){
 $(function(){
 	component.notify.setSpacing(40);
 	component.notify.success('success text');
-	component.notify.info('info text');
+	component('notify').notify({
+		text:'info text',
+		class: 'alert-info'
+	});
 	component.notify.warning('warning text');
 	component.notify.warn('warn text');
 	component.notify.error('error text');
