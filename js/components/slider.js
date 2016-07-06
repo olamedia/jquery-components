@@ -12,9 +12,10 @@
 		},
 		'scheduleSlide': function(){
 			var self = this;
-			setTimeout(function(){
+			var f = function(){
 				self.next(self.scheduleSlide);
-			}, 1000);
+			};
+			setTimeout(f, 1000);
 		},
 		'slideTo': function(index, cb){
 			var self = this;
