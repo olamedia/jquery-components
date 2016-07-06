@@ -202,7 +202,7 @@
 		});
 		//console.log('lookupPlaceholders', found, foundComponents, placeholders);
 	};
-	var replacePlaceholderInstance = function(p, component, isInstance){
+	var replacePlaceholderInstance = function(p, component, isInstance, options){
 		/*if (!el.componentPlaceholder){
 			el.componentPlaceholder = new placeholder(el);
 		}
@@ -223,6 +223,7 @@
 		}else{
 			c = component;
 		}
+		c.options = options;
 		p.e.component = c;
 		//$(el).removeAttr(placeholderIdAttr);
 		//el.placeholderReplaced = true;
@@ -241,10 +242,10 @@
 		///}
 		return c; // return instance
 	}
-	var replacePlaceholderElement = function(el, component, isInstance){
+	var replacePlaceholderElement = function(el, component, isInstance, options){
 		var p = getPlaceholder(el);
 		//console.log('replacePlaceholderElement', el, p, component.codename);
-		return replacePlaceholderInstance(p, component, isInstance);
+		return replacePlaceholderInstance(p, component, isInstance, options);
 		//if ($(el).attr(attrPrefix)){
 
 	}
@@ -376,29 +377,29 @@
 				//console.log(self.codename, render, self);
 				render = null;
 			}
-			self.appendTo = function(tagName, target){
-				var self = this;
+			self.appendTo = function(tagName, target, options){
+				//var self = this;
 				target = $(target);
 				var $e = $('<'+tagName+'></'+tagName+'>');
 				$e.appendTo(target);
-				self.$e = $e;
-				self.e = $e.get(0);
-				console.log('appendTo', $e.get(0), target.get(0));
-				return self.replace($e.get(0)); // return instance
+				//self.$e = $e;
+				//self.e = $e.get(0);
+				//console.log('appendTo', $e.get(0), target.get(0));
+				return self.replace($e.get(0), options); // return instance
 			};
-			self.prependTo = function(tagName, target){
-				var self = this;
+			self.prependTo = function(tagName, target, options){
+				//var self = this;
 				target = $(target);
 				var $e = $('<'+tagName+'></'+tagName+'>');
 				$e.prependTo(target);
-				self.$e = $e;
-				self.e = $e.get(0);
-				console.log('prependTo', $e.get(0), target.get(0));
-				return self.replace($e.get(0)); // return instance
+				//self.$e = $e;
+				//self.e = $e.get(0);
+				//console.log('prependTo', $e.get(0), target.get(0));
+				return self.replace($e.get(0), options); // return instance
 			};
-			self.replace = function(e){
-				var self = this;
-				return replacePlaceholderElement(e, self); // return instance
+			self.replace = function(e, options){
+				//var self = this;
+				return replacePlaceholderElement(e, self, false, options); // return instance
 				//return self;
 			};
 			self.render = wasExtended ? self.render : render; // check if was extended with object
@@ -459,7 +460,7 @@
 					return null;
 				}
 				var parent = self.$e.parents('[component-active]');
-				console.log('parent element', parent, parent.length ? parent.get(0).component : null);
+				//console.log('parent element', parent, parent.length ? parent.get(0).component : null);
 				return parent.length ? parent.get(0).component : null;
 			}
 
