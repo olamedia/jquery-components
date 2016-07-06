@@ -1,5 +1,6 @@
-(function(window, $){
+(function(window, $, undef){
 
+	var TYPE_UNDEF = typeof undef;
 
 	new component('slider', {
 		'extend': function(){
@@ -142,7 +143,7 @@
 			self.options = $.extend(self.defaults, self.options);
 			self.options.wrap = true;
 			console.log('vertical', self.$e.attr('slider-vertical'));
-			if (self.$e.attr('slider-vertical')){
+			if (TYPE_UNDEF == typeof self.$e.attr('slider-vertical')){
 				self.options.vertical = true;
 			}
 			console.log('options', self.options);
