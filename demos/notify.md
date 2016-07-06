@@ -3,9 +3,9 @@ layout: component
 title: Notify
 ---
 
-Notification alerts
+Bootstrap alert based notifications
 
-### Required components
+## Required components
 
 * layer
 
