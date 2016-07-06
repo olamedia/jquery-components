@@ -1,22 +1,35 @@
 ---
 layout: component
-title: Notify
+title: Style
 ---
 
-Notification alerts
+Inline styles
+
+Appending to `style` tag
+
+## Plain HTML
+
+```html
+<head>
+	<!-- ... -->
+	<style component="style"></style>
+	<!-- ... -->
+</head>
+```
 
 ## Example
 
-```js
+<div id="style-example"></div>
 <script>
 $(function(){
-	component.notify.success('Alert text');
+	component('style').instance().append('#style-example{padding: 10px; background: tomato;}');
 });
 </script>
+
+```html
+<div id="style-example"></div>
 ```
 
-<script>
-$(function(){
-	component.notify.success('Alert text');
-});
-</script>
+```js
+component('style').instance().append('#style-example{padding: 10px; background: tomato;}');
+```
