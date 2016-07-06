@@ -10,7 +10,7 @@
 		//self.
 
 	};
-	
+
 	new component('layer', {
 		'resize': function(){
 			var self = this;
@@ -29,15 +29,20 @@
 				});
 			}
 		},
-		'setPosition': function(s){
+		'setSpacing': function(size){
 			var self = this;
-			var position = s.split(' ');
+			self.spacing = size;
+			self.updatePosition();
+		},
+		'updatePosition': function(){
+			var self = this;
 			var css = {
 				'left': '',
 				'top': '',
 				'bottom': '',
 				'right': '',
 			};
+			var position = self.position.split(' ');
 			for (var k in position){
 				if ('center' == position[k]){ // horizontal
 					self.center = true;
@@ -46,23 +51,30 @@
 					self.middle = true;
 				}
 				if ('top' == position[k]){
-					css['top'] = '0px';
+					css['top'] = self.spacing + 'px';
 				}
 				if ('left' == position[k]){
-					css['left'] = '0px';
+					css['left'] = self.spacing + 'px';
 				}
 				if ('right' == position[k]){
-					css['right'] = '0px';
+					css['right'] = self.spacing + 'px';
 				}
 				if ('bottom' == position[k]){
-					css['bottom'] = '0px';
+					css['bottom'] = self.spacing + 'px';
 				}
 			}
 			self.$e.css(css);
 			self.resize();
 		},
+		'setPosition': function(position){
+			var self = this;
+			self.position = position;
+			self.updatePosition();
+		},
 		'render': function(){
 			var self = this;
+			self.spacing = 0;
+			self.position = 'top center';
 			//self.$close = $('<button type="button" class="close">&times;</button>');// type="button"
 			//self.$e.append(self.$close);
 			self.center = false;
