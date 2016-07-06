@@ -1,7 +1,7 @@
 (function(window, $){
 
 
-	new component('notify', {
+	new component('slider', {
 		'extend': function(){
 			var self = this; // class object
 
