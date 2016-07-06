@@ -121,10 +121,6 @@
 			self.options = self.options || {};
 			self.options = $.extend(self.defaults, self.options);
 			self.options.wrap = true;
-			self.$e.css({
-				'background': '#f00',
-				'border': 'solid 4px #00f'
-			});
 			self.index = 0;
 			var $c = self.$e.children();
 			self.maxIndex = $c.length;
