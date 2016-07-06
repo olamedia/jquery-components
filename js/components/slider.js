@@ -146,6 +146,8 @@
 			if (self.$e[0].hasAttribute('slider-vertical')){
 				self.options.vertical = true;
 				console.info('vertical slider', self.options.vertical, self.options);
+			}else{
+				console.info('horizontal slider', self.options.vertical, self.options);
 			}
 			console.log('options', self.options);
 			self.index = 0;
