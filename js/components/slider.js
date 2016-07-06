@@ -71,7 +71,7 @@
 			});
 			//self.$e.children
 		}
-	};
+	});
 
 
 })(window, jQuery);
