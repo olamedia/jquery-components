@@ -32,8 +32,8 @@
 			self.hideAll();
 			self.showIndex(self.index);
 		},
-		'reposition': function(index, animate){ // update left for each slide
-			animate = animate ? true : false;
+		'reposition': function(index){ // update left for each slide
+			//animate = animate ? true : false;
 			var self = this;
 			var $c = self.$e.children();
 			var l = $c.length;
@@ -45,11 +45,11 @@
 					'left': ((i - index) * self.width) + 'px',
 					'right': (-(i - index) * self.width) + 'px'
 				};
-				if (animate){
-					$slide.animate(css);
-				}else{
+				//if (animate){
+				//	$slide.animate(css);
+				//}else{
 					$slide.css();
-				}
+				//}
 			}
 		},
 		'showIndex': function(index){
