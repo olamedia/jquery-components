@@ -94,7 +94,7 @@
 			var $c = self.$e.children();
 			self.maxIndex = $c.length;
 			self.width = self.$e.width();
-			self.maxHeight = self.$e.height();
+			self.maxHeight = 0;//self.$e.height();
 			for (var i = 0; i < self.maxIndex; i++){
 				var $slide = $($c.get(i));
 				var h = $slide.height();
