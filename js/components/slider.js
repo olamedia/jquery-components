@@ -32,18 +32,24 @@
 			self.hideAll();
 			self.showIndex(self.index);
 		},
-		'reposition': function(index){ // update left for each slide
+		'reposition': function(index, animate){ // update left for each slide
+			animate = animate ? true : false;
 			var self = this;
 			var $c = self.$e.children();
 			var l = $c.length;
 			self.width = self.$e.width();
 			for (var i = 0; i < l; i++){
 				var $slide = $($c.get(i));
-				$slide.text('Slide #' + i);
-				$slide.css({
+				//$slide.text('Slide #' + i);
+				var css = {
 					'left': ((i - index) * self.width) + 'px',
 					'right': (-(i - index) * self.width) + 'px'
-				});
+				};
+				if (animate){
+					$slide.animate(css);
+				}else{
+					$slide.css();
+				}
 			}
 		},
 		'showIndex': function(index){
