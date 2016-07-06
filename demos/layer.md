@@ -11,6 +11,12 @@ Utility for overlay creation
 <script>
 $(function(){
 	var layer = component.layer();
+	layer.setPosition('bottom center');
+	layer.$e.text('Layer');
+	layer.css({
+		'background': '#fff',
+		'padding': '30px'
+	});
 	console.log('layer', layer);
 });
 </script>
@@ -19,6 +25,12 @@ $(function(){
 <script>
 $(function(){
 	var layer = component.layer();
+	layer.setPosition('bottom center');
+	layer.$e.text('Layer');
+	layer.css({
+		'background': '#fff',
+		'padding': '30px'
+	});
 	console.log('layer', layer);
 });
 </script>
