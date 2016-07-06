@@ -6,6 +6,11 @@
 			var self = this; // class object
 
 		},
+		'defaults': {
+			'wrap': true, // index wrap
+			'delay': 3000, // delay between animations
+			'duration': 1000, // animation duration
+		},
 		'service': function(){
 			var self = this;
 			self.scheduleSlide();
@@ -18,20 +23,20 @@
 					self.scheduleSlide();
 				});
 			};
-			setTimeout(f, 1000);
+			setTimeout(f, self.options.delay);
 		},
 		'slideTo': function(index, cb){
 			var self = this;
 
 			if (index >= self.maxIndex){
-				if (self.options && self.options.wrap){
+				if (self.options.wrap){
 					index = 0;
 				}else{
 					index = self.maxIndex - 1;
 				}
 			}
 			if (index < 0){
-				if (self.options && self.options.wrap){
+				if (self.options.wrap){
 					index = self.maxIndex - 1;
 				}else{
 					index = 0;
@@ -58,7 +63,7 @@
 				};
 				if (animate){
 					var options = {
-						'duration': 2000
+						'duration': self.options.duration
 					};
 					if (i == index){
 						options.done = function(){
@@ -114,10 +119,11 @@
 		'render': function(){
 			var self = this;
 			self.options = self.options || {};
+			self.options = $.extend(self.defaults, self.options);
 			self.options.wrap = true;
 			self.$e.css({
 				'background': '#f00',
-				'border': 'solid 1px #0f0'
+				'border': 'solid 4px #00f'
 			});
 			self.index = 0;
 			var $c = self.$e.children();
