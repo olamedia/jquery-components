@@ -57,14 +57,17 @@
 					'right': (-(i - index) * self.width) + 'px'
 				};
 				if (animate){
-					$slide.animate(css, {
-						'duration': 2000,
-						'done': function(){
+					var options = {
+						'duration': 2000
+					};
+					if (i == index){
+						options.done = function(){
 							if (cb){
 								cb();
 							}
-						}
-					});
+						};
+					}
+					$slide.animate(css, options);
 				}else{
 					$slide.css(css);
 				}
