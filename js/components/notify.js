@@ -1,5 +1,5 @@
 (function(window, $){
-	
+
 	new component('notify', {
 		'render': function(){
 			var self = this;
@@ -55,20 +55,20 @@
 			if (!self.options.sticky){
 				self.release();
 			}
-			
-			
+
+
 			self.$alert.addClass('alert');
 			self.$alert.css({
 				'width': '180px',
 				//'margin-bottom': '0'
 			});
-			
+
 			self.$close = $('<button type="button" class="close">&times;</button>');// type="button"
 			self.$alert.append(self.$close);
 			self.$close.on('click', function(){
 				self.detach()
 			});
-			
+
 			self.$m = $(document.createElement('div'));
 			self.$alert.append(self.$m);
 			if (self.options.class){
@@ -76,20 +76,22 @@
 			}
 			if (self.options.text){
 				self.$m.text(self.options.text);
+			}else{
+				console.error('No text passed');
 			}
 			
 			self.$alert.slideDown();
-			
+
 			alertsLayer.resize();
-			
+
 		}
 	});
-	
+
 	var alertsLayer = component.layer();
 	console.log('alertsLayer', alertsLayer);
 	alertsLayer.$e.attr('id', 'notify-layer');
 	alertsLayer.setPosition('top center');
-	
+
 	var notifyBase = function(options){
 		return component('notify').prependTo('div', alertsLayer.$e, options || {});
 	}
@@ -123,8 +125,8 @@
 		});
 	};
 	component.notify = notify;
-	
-	
+
+
 //notify.setSpacing('32px');
 	component.notify.setSpacing('40px');
 	/*component.growl({
@@ -137,12 +139,12 @@
 			}, 200*k);
 		})(i);
 	}
-	
+
 	//component.growl = alertsLayer;
-	
-	
-	
-	
+
+
+
+
 	/*new component('growl', , function(){
 		//self.append =
 		var self = this;
@@ -153,17 +155,14 @@
 			//self.$e.append(document.createTextNode(text));
 		}
 	});
-	
-	
-	
-	
-	
+
+
+
+
+
 	component.growl = function(options){
 		options = options || {};
 		return new modal(options);
 	};*/
-	
-})(window, jQuery);
 
-	
-	
+})(window, jQuery);
