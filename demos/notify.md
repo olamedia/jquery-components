@@ -14,6 +14,7 @@ Notification alerts
 ```js
 <script>
 $(function(){
+	component.notify.setSpacing(40);
 	component.notify.success('Alert text');
 });
 </script>
@@ -21,6 +22,7 @@ $(function(){
 
 <script>
 $(function(){
+	component.notify.setSpacing(40);
 	component.notify.success('Alert text');
 });
 </script>
