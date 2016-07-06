@@ -6,6 +6,9 @@
 			var self = this; // class object
 
 		},
+		'slideToCurrent': function(){
+
+		},
 		'slideTo': function(index){
 			var self = this;
 
@@ -31,19 +34,21 @@
 		},
 		'showIndex': function(index){
 			var self = this;
-			var slide = self.$slides[index];
-			slide.show();
-			self.shown[index] = true;
+			//var slide = self.$slides[index];
+			//slide.show();
+			//self.shown[index] = true;
+			self.$e.children().get(index).show();
 		},
 		'hideAll': function(){
 			var self = this;
-			for (var index in self.shown){
+			self.$e.children().hide();
+			/*for (var index in self.shown){
 				var slide = self.$slides[index];
 				if (self.shown[index]){
 					slide.hide();
 					self.shown[index] = false;
 				}
-			}
+			}*/
 		},
 		'prev': function(){
 			var self = this;
@@ -60,10 +65,11 @@
 		},
 		'render': function(){
 			var self = this;
-			self.$e.children().hide();
+
 			self.$slides = self.$e.children();
 			self.shown = {};
 			self.hideAll();
+			self.showIndex(0);
 			self.$e.css({
 				'overflow-x': 'hidden'
 			});
