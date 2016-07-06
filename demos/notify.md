@@ -5,6 +5,10 @@ title: Notify
 
 Notification alerts
 
+### Required components
+
+* layer
+
 ## Example
 
 ```js
