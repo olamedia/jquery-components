@@ -89,7 +89,7 @@
 			self.maxIndex = 0;
 			self.$slides = self.$e.children();
 			self.shown = {};
-			self.hideAll();
+			//self.hideAll();
 			//self.showIndex(0);
 			self.reposition(self.index);
 			self.$e.css({
