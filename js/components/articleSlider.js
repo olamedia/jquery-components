@@ -25,6 +25,14 @@
 				});
 			}
 		},
+		'pause': function(){
+			var self = this;
+			self.mediaSlider.pause();
+		},
+		'unpause': function(){
+			var self = this;
+			self.mediaSlider.unpause();
+		},
 		'render': function(){
 			var self = this;
 			self.$e.css({
@@ -41,6 +49,12 @@
 				'overflow-x': 'hidden',
 				//'min-width': '240px',
 				//'max-width': '300px',
+			});
+			self.$headers.on('mouseenter', function(){
+				self.pause();
+			});
+			self.$headers.on('mouseleave', function(){
+				self.unpause();
 			});
 			self.$mediaSlider = $(document.createElement('div'));
 			var $c = self.$e.children();

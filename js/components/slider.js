@@ -142,6 +142,15 @@
 			self.width = self.$e.width();
 			self.reposition(self.index);
 		},
+		'pause': function(){
+			var self = this;
+			clearTimeout(self.timer);
+		},
+		'unpause': function(){
+			var self = this;
+			clearTimeout(self.timer);
+			self.scheduleSlide();
+		},
 		'render': function(){
 			var self = this;
 			self.options = {};
@@ -149,12 +158,10 @@
 			self.options.wrap = true;
 			self.timer = null;
 			self.$e.on('mouseenter', function(){
-				clearTimeout(self.timer);
-				//self.scheduleSlide();
+				self.pause();
 			});
 			self.$e.on('mouseleave', function(){
-				clearTimeout(self.timer);
-				self.scheduleSlide();
+				self.unpause();
 			});
 			self.delayLeft = 0;//self.options.delay;
 			//console.log('vertical', );
