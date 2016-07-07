@@ -42,13 +42,13 @@ Very basic article slider
     width: 100%;
 }
 .articleSlider-headers .articleSlider-header{
-	background: #666;
+	background: #444;
 	overflow: hidden;
 	padding: 0 10px;
 	transition: background-color 1s;
 }
 .articleSlider-headers .articleSlider-header-selected{
-	background: #444;
+	background: #222;
 	transition: background-color 1s;
 }
 </style>
