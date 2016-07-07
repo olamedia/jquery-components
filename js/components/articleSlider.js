@@ -36,10 +36,10 @@
 				//var $header = $slide.children('articleSlider-header');
 			}
 			self.$e.append(self.$mediaSlider).append(self.$headers);
+			self.mediaSlider = component.replace(self.$mediaSlider[0], component('slider').instance(), true);
 			self.$e.css({
 				'min-height': self.$mediaSlider.outerHeight(true) + 'px'
 			});
-			self.mediaSlider = component.replace(self.$mediaSlider[0], component('slider').instance(), true);
 		}
 	});
 
