@@ -59,7 +59,7 @@
 				'min-height': self.$mediaSlider.outerHeight(true) + 'px'
 			});
 			self.on('resize', function(){
-				self.resize
+				self.resize();
 			});
 			self.resize();
 		}
