@@ -62,6 +62,8 @@
 			});
 			var drag = false;
 			self.$bar.on('mousedown', function(e){
+				self.dragStartScrollTop = self.$e.scrollTop();
+				self.dragStartY = e.clientY;
 				self.dragY = e.clientY;
 				drag = true;
 			});
@@ -71,9 +73,9 @@
 			$(window).on('mousemove', function(e){
 				//e.preventDefault();
 				if (drag){
-					var dy = e.clientY - self.dragY;
+					var dy = e.clientY - self.dragStartY;
 					self.dragY = e.clientY;
-					self.$e.scrollTop(self.$e.scrollTop() + dy);
+					self.$e.scrollTop(self.dragStartScrollTop + dy);
 					self.resize();
 					console.log('drag', dy);
 				}
