@@ -37,7 +37,7 @@
 			}
 			self.$e.append(self.$mediaSlider).append(self.$headers);
 			self.$e.css({
-				'min-height': self.$headers.outerHeight(true) + 'px'
+				'min-height': self.$mediaSlider.outerHeight(true) + 'px'
 			});
 			self.mediaSlider = component.replace(self.$mediaSlider[0], component('slider').instance(), true);
 		}
