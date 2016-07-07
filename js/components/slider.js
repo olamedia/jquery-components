@@ -76,7 +76,11 @@
 						'duration': self.options.duration
 					};
 					if (i == index){
+						options.start = function(){
+							self.trigger('slide-start');
+						};
 						options.done = function(){
+							self.trigger('slide-done');
 							if (cb){
 								cb();
 							}
