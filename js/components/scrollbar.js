@@ -52,9 +52,14 @@
 			self.$scrollbar.css({
 				'position': 'absolute',
 				'top': '0px',
-				'right': '0px'
+				'right': '0px',
+				'user-select': 'none'
 				//width: self.options.width + 'px',
 				//height: '100%',
+			});
+			self.$bar.on('drag', function(e){
+				dragged = e.target;
+				console.log('drag', e, dragged);
 			});
 			self.$e.on('scroll', function(e){
 				self.resize();
