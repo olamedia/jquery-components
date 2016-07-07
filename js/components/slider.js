@@ -25,7 +25,7 @@
 					self.scheduleSlide();
 				});
 			};
-			setTimeout(f, self.options.delay);
+			self.timer = setTimeout(f, self.options.delay);
 		},
 		'slideTo': function(index, cb){
 			var self = this;
@@ -142,6 +142,16 @@
 			self.options = {};
 			self.options = $.extend({}, self.defaults, self.options);
 			self.options.wrap = true;
+			self.timer = null;
+			self.$e.on('mouseenter', function(){
+				clearTimeout(self.timer);
+				//self.scheduleSlide();
+			});
+			self.$e.on('mouseleave', function(){
+				clearTimeout(self.timer);
+				self.scheduleSlide();
+			});
+			self.delayLeft = 0;//self.options.delay;
 			//console.log('vertical', );
 			if (self.$e[0].hasAttribute('slider-vertical')){
 				self.options.vertical = true;
