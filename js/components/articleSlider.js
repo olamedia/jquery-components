@@ -23,8 +23,8 @@
 				$slide.detach();
 				$slide.appendTo(self.$mediaSlider);
 				//var $e = $(document.createElement('div'));
-				var slideComponent = component('articleSlider-slide').instance();
-				slideComponent.replace('');
+				//var slideComponent = component('articleSlider-slide').instance();
+				//slideComponent.replace('');
 				var $media = $slide.children('articleSlider-media');
 				//var $header = $slide.children('articleSlider-header');
 			}
