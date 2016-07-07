@@ -13,10 +13,11 @@
 			self.scrollTop = self.$e.scrollTop();
 			//self.height = self.$e.height();
 			//self.scrollHeight = self.$e[0].scrollHeight;
+			self.padding = 5;
 			self.barHeight = function(){
 				var h = self.$e.height();
 				var sh = self.$e[0].scrollHeight;
-				return h * (h / sh);
+				return (h - self.padding * 2) * (h / sh);
 			}
 			self.$scrollbar = $(document.createElement('div'));
 			self.$bar = $(document.createElement('div'));
@@ -46,13 +47,13 @@
 					'top': scrollTop + 'px'
 				});
 				var viewportHeight = self.$e.height();
-				var scrollbarHeight = viewportHeight - 10;
+				var scrollbarHeight = viewportHeight - self.padding * 2;
 				var scrollHeight = self.$e[0].scrollHeight;
-				var scrollCenter = scrollTop + scrollbarHeight / 2 + 5;
+				var scrollCenter = scrollTop + scrollbarHeight / 2 + self.padding;
 				var barHeight = self.barHeight();
 				//var lh = h - bh;
 				var barCenter = scrollCenter / (scrollHeight / viewportHeight);
-				var barTop = barCenter - barHeight / 2 + 5;
+				var barTop = barCenter - barHeight / 2 + self.padding;
 				self.$bar.css({
 					//'position': 'absolute',
 					'top': barTop + 'px'
