@@ -7,6 +7,23 @@
 	});
 
 	new component('articleSlider', {
+		'resize': function(){
+			var self = this;
+			var w = self.$e.width();
+			var hw = w/3;
+			if (w > 600){
+				self.$headers.show();
+				self.$headers.width(hw);
+				self.$mediaSlider.css({
+					right: hw + 'px'
+				});
+			}else{
+				self.$headers.hide();
+				self.$mediaSlider.css({
+					right: 0 + 'px'
+				});
+			}
+		},
 		'render': function(){
 			var self = this;
 			self.$e.css({
@@ -40,6 +57,8 @@
 			self.$e.css({
 				'min-height': self.$mediaSlider.outerHeight(true) + 'px'
 			});
+			self.on('resize', self.resize);
+			self.resize();
 		}
 	});
 
