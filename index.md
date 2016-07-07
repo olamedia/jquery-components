@@ -27,7 +27,7 @@ title: jQuery components
 ## Features
 
 * Not bound to any template language. Use plain JavaScript if you want, or load preferred one.
-* Designed for Progressive Enhancement.Components are extending or replacing existing HTML code, which is useful for clients without JavaScript, such as crawlers (SEO), browsers with no or disabled support and other bots.
+* Designed for Progressive Enhancement. Components are extending or replacing existing HTML code, which is useful for clients without JavaScript, such as crawlers (SEO), browsers with no or disabled support and other bots.
 * Components can be initialized with JavaScript only and do not require pre-existing HTML code on a page.
 * Components can be built as services and do not require creation of any HTML code.
 * Nested components. Components can initialize all known application components withing itself, without knowledge of their specific names. Useful when loading rich content withing itself (for example, for modal window component).
