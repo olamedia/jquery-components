@@ -19,6 +19,7 @@
 			}
 			//self.$scrollbar.width(self.options.width);
 			self.$scrollbar.addClass('scrollbar');
+			self.$bar.addClass('bar');
 			self.$scrollbar.addClass('scrollbar-vertical');
 			self.$scrollbar.css({
 				'position': 'absolute',

@@ -13,7 +13,7 @@ Custom scrollbar
 		border-radius: 4px;
 	}
 	.scrollbar>.bar{
-		background: #8BB0D3;
+		background: #656565;
 		border-radius: 4px;
 		height: 100px;
 	}
