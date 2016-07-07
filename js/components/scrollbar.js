@@ -70,11 +70,13 @@
 			});
 			$(window).on('mousemove', function(e){
 				//e.preventDefault();
-				var dy = e.clientY - self.dragY;
-				self.dragY = e.clientY;
-				self.$e.scrollTop(self.$e.scrollTop() + dy);
-				self.resize();
-				console.log('drag', dy);
+				if (drag){
+					var dy = e.clientY - self.dragY;
+					self.dragY = e.clientY;
+					self.$e.scrollTop(self.$e.scrollTop() + dy);
+					self.resize();
+					console.log('drag', dy);
+				}
 			});
 			self.$e.on('scroll', function(e){
 				self.resize();
