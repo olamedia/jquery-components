@@ -13,6 +13,7 @@ Custom scrollbar
 		border-radius: 4px;
 	}
 	.scrollbar>.bar{
+		position: sticky;
 		background: #909190;
 		border-radius: 4px;
 		height: 100px;
