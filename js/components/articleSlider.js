@@ -19,9 +19,9 @@
 			self.$mediaSlider = $(document.createElement('div'));
 			var $c = self.$e.children();
 			for (var i = 0; i < $c.length; i++){
-				var $slide = $c[i];
+				var $slide = $($c[i]);
 				$slide.detach();
-				$slide.appendTo(self.$headers);
+				$slide.appendTo(self.$mediaSlider);
 				//var $e = $(document.createElement('div'));
 				var slideComponent = component('articleSlider-slide').instance();
 				slideComponent.replace('');
