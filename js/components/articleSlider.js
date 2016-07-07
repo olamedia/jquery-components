@@ -53,8 +53,10 @@
 				//var slideComponent = component('articleSlider-slide').instance();
 				//slideComponent.replace('');
 				var $media = $slide.children('articleSlider-media');
+				var $origHeader = $slide.children('[articleSlider-header]');
 				var $header = $(document.createElement('div'));
-				$header.html($slide.children('[articleSlider-header]').html());
+				$header.html($origHeader.html());
+				$origHeader.addClass('articleSlider-header');
 				$header.addClass('articleSlider-header');
 				self.$headers.append($header);
 			}
