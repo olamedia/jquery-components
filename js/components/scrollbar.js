@@ -46,12 +46,13 @@
 					'top': scrollTop + 'px'
 				});
 				var viewportHeight = self.$e.height();
+				var scrollbarHeight = viewportHeight - 10;
 				var scrollHeight = self.$e[0].scrollHeight;
-				var scrollCenter = scrollTop + viewportHeight / 2;
+				var scrollCenter = scrollTop + scrollbarHeight / 2 + 5;
 				var barHeight = self.barHeight();
 				//var lh = h - bh;
 				var barCenter = scrollCenter / (scrollHeight / viewportHeight);
-				var barTop = barCenter - barHeight / 2;
+				var barTop = barCenter - barHeight / 2 + 5;
 				self.$bar.css({
 					//'position': 'absolute',
 					'top': barTop + 'px'
