@@ -34,6 +34,9 @@ Very basic article slider
 .articleSlider-text{
 	background: rgba(0,0,0,0.8);
 	padding: 10px 30px;
+	position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 </style>
 <div component="articleSlider" class="articleSlider">
