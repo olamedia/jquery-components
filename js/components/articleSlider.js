@@ -54,7 +54,7 @@
 				//slideComponent.replace('');
 				var $media = $slide.children('articleSlider-media');
 				var $header = $(document.createElement('div'));
-				$header.html($slide.children('articleslider-header, articleSlider-header').html());
+				$header.html($slide.children('[articleSlider-header]').html());
 				$header.addClass('articleSlider-header');
 				self.$headers.append($header);
 			}
