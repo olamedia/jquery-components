@@ -61,6 +61,7 @@
 				self.dragY = e.clientY;
 			});
 			self.$bar.on('drag', function(e){
+				e.preventDefault();
 				var dy = e.clientY - self.dragY;
 				self.dragY = e.clientY;
 				self.$e.scrollTop(self.$e.scrollTop() + dy);
