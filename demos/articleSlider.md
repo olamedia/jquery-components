@@ -42,9 +42,11 @@ Very basic article slider
 	background: rgba(0,0,0,0.5);
 	overflow: hidden;
 	padding: 0 10px;
+	transition: background-color 1s;
 }
 .articleSlider-headers .articleSlider-header-selected{
 	background: rgba(0,0,0,1);
+	transition: background-color 1s;
 }
 </style>
 <div component="articleSlider" articleSlider-navigation="prev,next" class="articleSlider">
