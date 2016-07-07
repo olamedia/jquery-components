@@ -13,7 +13,7 @@ Very basic article slider
 			<img src="http://placehold.it/350x150" style="object-fit: cover;" />
 		</div>
 		<div articleSlider-text>
-			<h1 style="color: #fff;">Article 1</h1>
+			<h3 style="color: #fff;">Article 1</h3>
 			<p>Article text article text. Article text article text.</p>
 		</div>
 	</div>
@@ -22,7 +22,7 @@ Very basic article slider
 			<img src="http://placehold.it/350x150" style="object-fit: cover;" />
 		</div>
 		<div articleSlider-text>
-			<h1 style="color: #fff;">Article 1</h1>
+			<h3 style="color: #fff;">Article 2</h3>
 			<p>Article text article text. Article text article text.</p>
 		</div>
 	</div>
@@ -31,7 +31,7 @@ Very basic article slider
 			<img src="http://placehold.it/350x150" style="object-fit: cover;" />
 		</div>
 		<div articleSlider-text>
-			<h1 style="color: #fff;">Article 1</h1>
+			<h3 style="color: #fff;">Article 3</h3>
 			<p>Article text article text. Article text article text.</p>
 		</div>
 	</div>
@@ -40,7 +40,7 @@ Very basic article slider
 			<img src="http://placehold.it/350x150" style="object-fit: cover;" />
 		</div>
 		<div articleSlider-text>
-			<h1 style="color: #fff;">Article 1</h1>
+			<h3 style="color: #fff;">Article 4</h3>
 			<p>Article text article text. Article text article text.</p>
 		</div>
 	</div>
