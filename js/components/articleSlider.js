@@ -12,6 +12,10 @@
 			self.$headers = $(document.createElement('div'));
 			self.$headers.css({
 				'background': '#00f',
+				'position': 'absolute',
+				'right': '0px',
+				'top': '0px',
+				'bottom': '0px',
 				'overflow-x': 'hidden',
 				'min-width': '240px',
 				'max-width': '300px',
