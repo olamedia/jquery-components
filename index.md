@@ -3,10 +3,19 @@ layout: default-custom-h1
 title: jQuery components
 ---
 
-<div class="jumbotron" style="padding: 0; padding-top: 30px; background: #fff; background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 10%,rgba(255,255,255,1) 96%,rgba(255,255,255,1) 100%) top left repeat-x, linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0.85) 28%,rgba(255,255,255,0.7) 53%,rgba(255,255,255,0.85) 87%,rgba(255,255,255,1) 100%) left top repeat-x, url({{ site.baseurl }}/css/images/hero-bg.png) left top repeat;">
+<div component="slider" class="jumbotron" style="padding: 0; padding-top: 30px; background: #fff; background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 10%,rgba(255,255,255,1) 96%,rgba(255,255,255,1) 100%) top left repeat-x, linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0.85) 28%,rgba(255,255,255,0.7) 53%,rgba(255,255,255,0.85) 87%,rgba(255,255,255,1) 100%) left top repeat-x, url({{ site.baseurl }}/css/images/hero-bg.png) left top repeat;">
+<div>
 	<h1>jQuery components</h1>
-	<p>Component-based application framework. Plain javascript. Without templates.<br />
-	Designed for Progressive Enhancement.</p>
+	<p>Component-based application framework.</p>
+</div>
+<div>
+	<h1>jQuery components</h1>
+	<p>Not bound to any template language.</p>
+</div>
+<div>
+	<h1>jQuery components</h1>
+	<p>Designed for Progressive Enhancement.</p>
+</div>
 </div>
 
 <blockquote class="bg-warning" style="border-left-color: #aa6708;">
@@ -15,6 +24,13 @@ title: jQuery components
 <p>Do not expect demos working with <code>master</code> branch.</p>
 <p>API is not frozen, functions and properties can change names at any time</p>
 </blockquote>
+
+## Features
+
+* Not bound to any template language. Use plain JavaScript if you want, or load preferred one.
+* Designed for Progressive Enhancement. Components are extending or replacing existing HTML code, which is useful for clients without JavaScript, such as crawlers (SEO), browsers with no or disabled support and other bots.
+*
+
 
 ## TODO
 
