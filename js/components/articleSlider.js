@@ -44,6 +44,7 @@
 			});
 			self.$mediaSlider = $(document.createElement('div'));
 			var $c = self.$e.children();
+			self.index = 0;
 			for (var i = 0; i < $c.length; i++){
 				var $slide = $($c[i]);
 				$slide.detach();
@@ -62,6 +63,14 @@
 			}
 			self.$e.append(self.$mediaSlider).append(self.$headers);
 			self.mediaSlider = component.replace(self.$mediaSlider[0], component('slider').instance(), true);
+			self.mediaSlider.on('slide-start', function(){
+				var $header;
+				$header = self.$headers[self.index];
+				$header.removeClass('articleSlider-header-selected');
+				self.index = self.mediaSlider.index;
+				$header = self.$headers[self.index];
+				$header.addClass('articleSlider-header-selected');
+			});
 			self.$e.css({
 				'min-height': self.$mediaSlider.outerHeight(true) + 'px'
 			});

@@ -43,6 +43,9 @@ Very basic article slider
 	overflow: hidden;
 	padding: 0 10px;
 }
+.articleSlider-header-selected .articleSlider-header{
+	background: rgba(0,0,0,1);
+}
 </style>
 <div component="articleSlider" articleSlider-navigation="prev,next" class="articleSlider">
 	<div style="background: #F44336;">

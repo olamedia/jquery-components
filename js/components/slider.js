@@ -56,6 +56,7 @@
 			var $c = self.$e.children();
 			var l = $c.length;
 			//self.width = self.$e.width();
+			self.index = index;
 			for (var i = 0; i < l; i++){
 				var $slide = $($c.get(i));
 				//$slide.text('Slide #' + i);
