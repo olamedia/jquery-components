@@ -15,12 +15,12 @@
 				self.$headers.show();
 				self.$headers.width(hw);
 				self.$mediaSlider.css({
-					right: hw + 'px'
+					'margin-right': hw + 'px'
 				});
 			}else{
 				self.$headers.hide();
 				self.$mediaSlider.css({
-					right: 0 + 'px'
+					'margin-right': 0 + 'px'
 				});
 			}
 		},
