@@ -9,16 +9,16 @@ Custom scrollbar
 
 <style>
 	.scrollbar{
-		background: #666;
-		border-radius: 12px;
+		background: #f1f1f1;
+		border-radius: 4px;
 	}
 	.scrollbar>.bar{
-		background: #222;
-		border-radius: 12px;
+		background: #8BB0D3;
+		border-radius: 4px;
 		height: 100px;
 	}
 	.scrollbar-vertical{
-		width: 24px;
+		width: 8px;
 		height: 100%;
 	}
 </style>
