@@ -3,7 +3,23 @@
 	new component('scrollbar', {
 		'resize': function(){
 			var self = this;
-			self.$bar.height(self.barHeight());
+			var scrollTop = self.$e.scrollTop();
+			self.$scrollbar.css({
+				'top': scrollTop + 'px'
+			});
+			var viewportHeight = self.$e.height();
+			var scrollbarHeight = viewportHeight - self.padding * 2;
+			var scrollHeight = self.$e[0].scrollHeight;
+			var scrollCenter = scrollTop + scrollbarHeight / 2 + self.padding;
+			var barHeight = self.barHeight();
+			//var lh = h - bh;
+			var barCenter = scrollCenter / (scrollHeight / viewportHeight);
+			var barTop = barCenter - barHeight / 2 + self.padding;
+			self.$bar.css({
+				//'position': 'absolute',
+				'top': barTop + 'px'
+			});
+			self.$bar.height(barHeight);
 		},
 		'render': function(){
 			var self = this;
@@ -42,22 +58,7 @@
 				//height: '100%',
 			});
 			self.$e.on('scroll', function(e){
-				var scrollTop = self.$e.scrollTop();
-				self.$scrollbar.css({
-					'top': scrollTop + 'px'
-				});
-				var viewportHeight = self.$e.height();
-				var scrollbarHeight = viewportHeight - self.padding * 2;
-				var scrollHeight = self.$e[0].scrollHeight;
-				var scrollCenter = scrollTop + scrollbarHeight / 2 + self.padding;
-				var barHeight = self.barHeight();
-				//var lh = h - bh;
-				var barCenter = scrollCenter / (scrollHeight / viewportHeight);
-				var barTop = barCenter - barHeight / 2 + self.padding;
-				self.$bar.css({
-					//'position': 'absolute',
-					'top': barTop + 'px'
-				});
+				self.resize();
 			});
 			self.on('resize', function(){
 				self.resize();
