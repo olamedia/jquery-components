@@ -9,6 +9,9 @@
 	new component('articleSlider', {
 		'render': function(){
 			var self = this;
+			self.$e.css({
+				'position': 'relative',
+			});
 			self.$headers = $(document.createElement('div'));
 			self.$headers.css({
 				'background': '#00f',
