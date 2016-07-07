@@ -40,6 +40,20 @@
 				//width: self.options.width + 'px',
 				//height: '100%',
 			});
+			self.$e.on('scroll', function(e){
+				var scrollTop = self.$e.scrollTop();
+				var viewportHeight = self.$e.height();
+				var scrollHeight = self.$e[0].scrollHeight;
+				var scrollCenter = scrollTop + viewportHeight / 2;
+				var barHeight = self.barHeight();
+				var lh = h - bh;
+				var barCenter = scrollCenter / (scrollHeight / viewportHeight);
+				var barTop = barCenter - barHeight / 2;
+				self.$bar.css({
+					'position': 'absolute',
+					'top': barTop + 'px'
+				});
+			});
 			self.on('resize', function(){
 				self.resize();
 			});
