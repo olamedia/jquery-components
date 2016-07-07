@@ -60,6 +60,9 @@
 				$origHeader.addClass('articleSlider-header');
 				$header.addClass('articleSlider-header');
 				self.$headers.append($header);
+				$header.$e.on('click', function(){
+					self.mediaSlider.slideTo(i);
+				});
 			}
 			self.$e.append(self.$mediaSlider).append(self.$headers);
 			self.mediaSlider = component.replace(self.$mediaSlider[0], component('slider').instance(), true);
