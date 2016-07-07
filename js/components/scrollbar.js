@@ -50,7 +50,7 @@
 				var barCenter = scrollCenter / (scrollHeight / viewportHeight);
 				var barTop = barCenter - barHeight / 2;
 				self.$bar.css({
-					'position': 'absolute',
+					//'position': 'absolute',
 					'top': barTop + 'px'
 				});
 			});

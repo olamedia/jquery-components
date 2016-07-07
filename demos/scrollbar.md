@@ -10,10 +10,11 @@ Custom scrollbar
 <style>
 	.scrollbar{
 		background: #f1f1f1;
+		position: fixed;
 		/*border-radius: 4px;*/
 	}
 	.scrollbar>.bar{
-		position: fixed;
+		position: absolute;
 		background: #909190;
 		border-radius: 4px;
 		height: 100px;
