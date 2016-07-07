@@ -42,6 +42,9 @@
 			});
 			self.$e.on('scroll', function(e){
 				var scrollTop = self.$e.scrollTop();
+				self.$scrollbar.css({
+					'top': scrollTop + 'px'
+				});
 				var viewportHeight = self.$e.height();
 				var scrollHeight = self.$e[0].scrollHeight;
 				var scrollCenter = scrollTop + viewportHeight / 2;
