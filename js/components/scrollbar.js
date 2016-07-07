@@ -49,7 +49,7 @@
 				var scrollHeight = self.$e[0].scrollHeight;
 				var scrollCenter = scrollTop + viewportHeight / 2;
 				var barHeight = self.barHeight();
-				var lh = h - bh;
+				//var lh = h - bh;
 				var barCenter = scrollCenter / (scrollHeight / viewportHeight);
 				var barTop = barCenter - barHeight / 2;
 				self.$bar.css({
