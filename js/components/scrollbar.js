@@ -14,8 +14,9 @@
 			self.$scrollbar.addClass('scrollbar');
 			self.$scrollbar.addClass('scrollbar-vertical');
 			self.$scrollbar.css({
-				width: self.options.width + 'px',
-				height: '100%',
+				'top': '0px'
+				//width: self.options.width + 'px',
+				//height: '100%',
 			});
 		}
 	});
