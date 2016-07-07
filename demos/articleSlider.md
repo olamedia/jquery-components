@@ -30,7 +30,7 @@ Very basic article slider
 }
 .articleSlider-headers{
 	background: #fff;
-	border-left: solid 4px #333;
+	border-left: solid 4px #222;
 }
 .articleSlider-header, .articleSlider-header h3{
 	color: #fff;
