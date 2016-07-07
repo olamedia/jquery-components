@@ -42,7 +42,7 @@
 				});
 			}
 			self.$e.css({
-				'overflow': 'hidden'
+				'overflow-y': 'scroll'
 			});
 			//self.$scrollbar.width(self.options.width);
 			self.$scrollbar.addClass('scrollbar');
