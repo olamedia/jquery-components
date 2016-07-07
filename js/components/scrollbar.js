@@ -57,6 +57,9 @@
 				//width: self.options.width + 'px',
 				//height: '100%',
 			});
+			self.$scrollbar.on('dragover', function(e){
+				e.preventDefault();
+			})
 			self.$bar.on('dragstart', function(e){
 				self.dragY = e.clientY;
 			});
