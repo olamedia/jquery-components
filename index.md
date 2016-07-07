@@ -3,19 +3,19 @@ layout: default-custom-h1
 title: jQuery components
 ---
 
-<div component="slider" class="jumbotron" style="padding: 0; padding-top: 30px; background: #fff; background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 10%,rgba(255,255,255,1) 96%,rgba(255,255,255,1) 100%) top left repeat-x, linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0.85) 28%,rgba(255,255,255,0.7) 53%,rgba(255,255,255,0.85) 87%,rgba(255,255,255,1) 100%) left top repeat-x, url({{ site.baseurl }}/css/images/hero-bg.png) left top repeat;">
-<div>
-	<h1>jQuery components</h1>
-	<p>Component-based application framework.</p>
-</div>
-<div>
-	<h1>jQuery components</h1>
-	<p>Not bound to any template language.</p>
-</div>
-<div>
-	<h1>jQuery components</h1>
-	<p>Designed for Progressive Enhancement.</p>
-</div>
+<div component="slider" slider-vertical class="jumbotron" style="padding: 0; padding-top: 30px; background: #fff; background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 10%,rgba(255,255,255,1) 96%,rgba(255,255,255,1) 100%) top left repeat-x, linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0.85) 28%,rgba(255,255,255,0.7) 53%,rgba(255,255,255,0.85) 87%,rgba(255,255,255,1) 100%) left top repeat-x, url({{ site.baseurl }}/css/images/hero-bg.png) left top repeat;">
+	<div>
+		<h1>jQuery components</h1>
+		<p>Component-based application framework.</p>
+	</div>
+	<div>
+		<h1>jQuery components</h1>
+		<p>Not bound to any template language.</p>
+	</div>
+	<div>
+		<h1>jQuery components</h1>
+		<p>Designed for Progressive Enhancement.</p>
+	</div>
 </div>
 
 <blockquote class="bg-warning" style="border-left-color: #aa6708;">
@@ -28,18 +28,21 @@ title: jQuery components
 ## Features
 
 * Not bound to any template language. Use plain JavaScript if you want, or load preferred one.
-* Designed for Progressive Enhancement. Components are extending or replacing existing HTML code, which is useful for clients without JavaScript, such as crawlers (SEO), browsers with no or disabled support and other bots.
-*
+* Designed for Progressive Enhancement.Components are extending or replacing existing HTML code, which is useful for clients without JavaScript, such as crawlers (SEO), browsers with no or disabled support and other bots.
+* Components can be initialized with JavaScript only and do not require pre-existing HTML code on a page.
+* Components can be built as services and do not require creation of any HTML code.
+* Nested components. Components can initialize all known application components withing itself, without knowledge of their specific names. Useful when loading rich content withing itself (for example, for modal window component).
+* Multiple components on a same DOMElement. This allows compact HTML code.
+* Components can be extended at runtime: replace 'extend' method with own code. For example, component can be made singleton by replacing 'instance' method.
 
 
 ## TODO
 
 * ? Access to parent/child scope, object as a value
 * ? Component router with History support
-* Nested components - IMPLEMENTED
-* Multiple components on a same DOMElement - IMPLEMENTED
 * ?
 * ...
+
 
 ## Component definition
 
