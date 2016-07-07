@@ -43,38 +43,38 @@ Very basic article slider
 }
 </style>
 <div component="articleSlider" class="articleSlider">
-	<div class="articleSlider-slide" style="background: #F44336;">
+	<div style="background: #F44336;">
 		<div class="articleSlider-media">
 			<img src="http://placehold.it/350x150" />
 		</div>
-		<div articleSlider-header class="articleSlider-header">
+		<div articleSlider-header>
 			<h3>Article 1</h3>
 			<p>Article text article text. Article text article text.</p>
 		</div>
 	</div>
-	<div class="articleSlider-slide" style="background: #9C27B0;">
+	<div style="background: #9C27B0;">
 		<div class="articleSlider-media">
 			<img src="http://placehold.it/350x150" />
 		</div>
-		<div articleSlider-header class="articleSlider-header">
+		<div articleSlider-header>
 			<h3>Article 1</h3>
 			<p>Article text article text. Article text article text.</p>
 		</div>
 	</div>
-	<div class="articleSlider-slide" style="background: #3F51B5;">
+	<div style="background: #3F51B5;">
 		<div class="articleSlider-media">
 			<img src="http://placehold.it/350x150" />
 		</div>
-		<div articleSlider-header class="articleSlider-header">
+		<div articleSlider-header>
 			<h3>Article 1</h3>
 			<p>Article text article text. Article text article text.</p>
 		</div>
 	</div>
-	<div class="articleSlider-slide" style="background: #009688;">
+	<div style="background: #009688;">
 		<div class="articleSlider-media">
 			<img src="http://placehold.it/350x150" />
 		</div>
-		<div articleSlider-header class="articleSlider-header">
+		<div articleSlider-header>
 			<h3>Article 1</h3>
 			<p>Article text article text. Article text article text.</p>
 		</div>

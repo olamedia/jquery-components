@@ -47,12 +47,14 @@
 			for (var i = 0; i < $c.length; i++){
 				var $slide = $($c[i]);
 				$slide.detach();
+				$slide.addClass('articleSlider-slide');
 				$slide.appendTo(self.$mediaSlider);
 				//var $e = $(document.createElement('div'));
 				//var slideComponent = component('articleSlider-slide').instance();
 				//slideComponent.replace('');
 				var $media = $slide.children('articleSlider-media');
 				var $header = $slide.children('articleSlider-header');
+				$header.addClass('articleSlider-header');
 				self.$headers.append($header);
 			}
 			self.$e.append(self.$mediaSlider).append(self.$headers);
