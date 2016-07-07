@@ -60,6 +60,10 @@
 			self.$bar.on('dragstart', function(e){
 				self.dragY = e.clientY;
 			});
+			self.$bar.on('dragend', function(e){
+				e.preventDefault();
+				console.log('dragend', e);
+			});
 			self.$bar.on('drag', function(e){
 				e.preventDefault();
 				var dy = e.clientY - self.dragY;
