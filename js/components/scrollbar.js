@@ -11,7 +11,7 @@
 			var scrollbarHeight = viewportHeight - self.padding * 2;
 			var scrollHeight = self.$e[0].scrollHeight;
 			var scrollCenter = scrollTop + scrollbarHeight / 2 + self.padding;
-			var barHeight = self.barHeight();
+			var barHeight = scrollbarHeight * (viewportHeight / scrollHeight);
 			//var lh = h - bh;
 			var barCenter = scrollCenter / (scrollHeight / viewportHeight);
 			var barTop = barCenter - barHeight / 2 + self.padding;
