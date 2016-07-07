@@ -32,7 +32,7 @@
 			self.$e.css({
 				'min-height': self.$headers.outerHeight(true) + 'px'
 			});
-			self.mediaSlider = component.replace(self.$mediaSlider, component('slider').instance(), true);
+			self.mediaSlider = component.replace(self.$mediaSlider.get(0), component('slider').instance(), true);
 		}
 	});
 
