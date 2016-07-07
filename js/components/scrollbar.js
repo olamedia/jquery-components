@@ -59,16 +59,17 @@
 			});
 			self.$scrollbar.on('dragover', function(e){
 				e.preventDefault();
-			})
-			self.$bar.on('dragstart', function(e){
+			});
+			var drag = false;
+			self.$bar.on('mousedown', function(e){
 				self.dragY = e.clientY;
+				drag = true;
 			});
-			self.$bar.on('drop', function(e){
-				e.preventDefault();
-				console.log('drop', e);
+			$(window).on('mouseup', function(e){
+				drag = false;
 			});
-			self.$bar.on('drag', function(e){
-				e.preventDefault();
+			$(window).on('mousemove', function(e){
+				//e.preventDefault();
 				var dy = e.clientY - self.dragY;
 				self.dragY = e.clientY;
 				self.$e.scrollTop(self.$e.scrollTop() + dy);
