@@ -8,10 +8,10 @@
 				'top': scrollTop + 'px'
 			});
 			var viewportHeight = self.$e.height();//outerHeight(true);
-			var scrollbarHeight = viewportHeight - (self.padding + self.border) * 2;
+			var scrollbarHeight = viewportHeight - self.padding * 2;
 			var scrollHeight = self.$e[0].scrollHeight;
 			var scrollCenter = scrollTop + viewportHeight / 2;
-			var barHeight = scrollbarHeight * viewportHeight / scrollHeight;
+			var barHeight = scrollbarHeight * viewportHeight / scrollHeight - 2 * self.border;
 			//var lh = h - bh;
 			var barCenter = scrollbarHeight * scrollCenter / scrollHeight;
 			var barTop = barCenter - barHeight / 2 + self.padding;
