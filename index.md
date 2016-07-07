@@ -10,6 +10,9 @@ title: jQuery components
 			<p>Component-based application framework.</p>
 			<p>Not bound to any template language.</p>
 			<p>Designed for Progressive Enhancement.</p>
+			<p>Nested components.</p>
+			<p>Multiple components on a same DOMElement.</p>
+			<p>Can be extended at runtime.</p>
 		</div>
 	</div>
 </div>
