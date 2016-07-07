@@ -17,7 +17,7 @@ Custom scrollbar
 		background: #909190;
 		border-radius: 4px;
 		height: 100px;
-		border: solid 1px #6D6D6D;
+		border: solid 1px rgba(109, 109, 109, 0.9);
 	}
 	.scrollbar>.bar:hover{
 		background: #656565;
