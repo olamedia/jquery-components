@@ -167,6 +167,9 @@
 			self.height = 0;//self.$e.height();
 			for (var i = 0; i < self.maxIndex; i++){
 				var $slide = $($c.get(i));
+				$slide.css({
+					'overflow': 'hidden'
+				});
 				var h = $slide.outerHeight(true);
 				if (h > self.height){
 					self.height = h;
