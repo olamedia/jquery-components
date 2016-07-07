@@ -25,8 +25,6 @@ Custom scrollbar
 	.scrollbar-vertical{
 		width: 8px;
 		height: 100%;
-		border-left: solid 2px #f1f1f1;
-		border-right: solid 2px #f1f1f1;
 	}
 </style>
 <div component="scrollbar" style="width: 600px; height: 300px; border: solid 4px #222; background: #444; overflow-y: scroll;">
