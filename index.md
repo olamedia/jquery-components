@@ -13,6 +13,7 @@ title: jQuery components
 			<p>Nested components.</p>
 			<p>Multiple components on a same DOMElement.</p>
 			<p>Can be extended at runtime.</p>
+			<p>Responsive components.</p>
 		</div>
 	</div>
 </div>
@@ -33,12 +34,15 @@ title: jQuery components
 * Nested components. Components can initialize all known application components withing itself, without knowledge of their specific names. Useful when loading rich content withing itself (for example, for modal window component).
 * Multiple components on a same DOMElement. This allows compact HTML code.
 * Components can be extended at runtime: replace 'extend' method with own code. For example, component can be made singleton by replacing 'instance' method.
+* Responsive components. Every component is receiving resize events, use `.on('resize'` to recalculate it's size or hide/show some elements.
+
 
 
 ## TODO
 
 * ? Access to parent/child scope, object as a value
 * ? Component router with History support
+* Check order of resize events
 * ?
 * ...
 
