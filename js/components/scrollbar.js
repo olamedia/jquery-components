@@ -77,7 +77,7 @@
 					self.dragY = e.clientY;
 					self.$e.scrollTop(self.dragStartScrollTop + dy);
 					self.resize();
-					console.log('drag', dy);
+					console.log('drag', self.dragStartScrollTop, dy);
 				}
 			});
 			self.$e.on('scroll', function(e){
