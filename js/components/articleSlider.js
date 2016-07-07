@@ -60,7 +60,7 @@
 				$origHeader.addClass('articleSlider-header');
 				$header.addClass('articleSlider-header');
 				self.$headers.append($header);
-				$header.$e.on('click', function(){
+				$header.on('click', function(){
 					self.mediaSlider.slideTo(i);
 				});
 			}
