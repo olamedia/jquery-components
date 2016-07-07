@@ -66,11 +66,11 @@
 			self.mediaSlider.on('slide-start', function(){
 				var $headers = self.$headers.children();
 				var $header;
-				$header = $headers.get(self.index);
+				$header = $($headers.get(self.index));
 				console.log('$header', $header);
 				$header.removeClass('articleSlider-header-selected');
 				self.index = self.mediaSlider.index;
-				$header = $headers.get(self.index);
+				$header = $($headers.get(self.index));
 				$header.addClass('articleSlider-header-selected');
 			});
 			self.$e.css({
