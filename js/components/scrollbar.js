@@ -7,7 +7,7 @@
 			self.$scrollbar.css({
 				'top': scrollTop + 'px'
 			});
-			var viewportHeight = self.$e.outerHeight(true);
+			var viewportHeight = self.$e.height();//outerHeight(true);
 			var scrollbarHeight = viewportHeight - self.padding * 2;
 			var scrollHeight = self.$e[0].scrollHeight;
 			var scrollCenter = scrollTop + viewportHeight / 2;
