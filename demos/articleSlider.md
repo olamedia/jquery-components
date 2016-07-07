@@ -28,6 +28,9 @@ Very basic article slider
 	height: 100%;
 	object-fit: cover;
 }
+.articleSlider-headers{
+	background: #fff;
+}
 .articleSlider-header, .articleSlider-header h3{
 	color: #fff;
 }
