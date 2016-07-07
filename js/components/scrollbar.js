@@ -13,8 +13,8 @@
 			var scrollCenter = scrollTop + scrollbarHeight / 2;
 			var barHeight = scrollbarHeight * viewportHeight / scrollHeight;
 			//var lh = h - bh;
-			var barCenter = scrollCenter * viewportHeight / scrollHeight;
-			var barTop = barCenter - barHeight / 2 + self.padding;
+			var barCenter = scrollCenter * scrollbarHeight / scrollHeight;
+			var barTop = barCenter - barHeight / 2;// + self.padding;
 			self.$bar.css({
 				//'position': 'absolute',
 				'top': barTop + 'px'
