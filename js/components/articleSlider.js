@@ -52,7 +52,7 @@
 				//var $e = $(document.createElement('div'));
 				//var slideComponent = component('articleSlider-slide').instance();
 				//slideComponent.replace('');
-				var $media = $slide.children('articleSlider-media');
+				var $media = $slide.children('[articleSlider-media]');
 				var $origHeader = $slide.children('[articleSlider-header]');
 				var $header = $(document.createElement('div'));
 				$header.html($origHeader.html());

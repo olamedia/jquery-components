@@ -42,6 +42,7 @@ title: jQuery components
 
 * ? Access to parent/child scope, object as a value
 * ? Component router with History support
+* Implement events on separate components
 * Check order of resize events
 * ?
 * ...

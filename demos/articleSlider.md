@@ -44,7 +44,7 @@ Very basic article slider
 	padding: 0 10px;
 }
 </style>
-<div component="articleSlider" class="articleSlider">
+<div component="articleSlider" articleSlider-navigation="prev,next" class="articleSlider">
 	<div style="background: #F44336;">
 		<div class="articleSlider-media">
 			<img src="http://placehold.it/350x150" />
