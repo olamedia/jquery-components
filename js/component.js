@@ -448,11 +448,38 @@
 			self.createElement = function(tag){
 				return document.createElement(tag);
 			};
+			//self.listeners = {};
+			/*self.addListener = function(eventname, callback){
+				var self = this;
+				if ('undefined' === typeof eventListeners[eventname]){
+					eventListeners[eventname] = [];
+				}
+				eventListeners[eventname].push(callback);
+			}*/
+			var eventListeners = {};
 			self.on = function(eventname, callback){
+				//console.info('Trigger ' + eventname + '');
 				var self = this;
 				callback.target = self;
-				addListener(eventname, callback);
+				addListener(eventname, callback); // listen global events
+				//self.addListener(eventname, callback);
+				// listen events on element
+				if ('undefined' === typeof eventListeners[eventname]){
+					eventListeners[eventname] = [];
+				}
+				eventListeners[eventname].push(callback);
 			}
+			self.trigger = function(eventname){
+				console.info('Trigger ' + eventname + '');
+				var self = this;
+				for (var k in eventListeners[eventname]){
+					var l = eventListeners[eventname][k];
+					var e = new componentEvent(eventname);
+					e.target = self;
+					l(e);
+				}
+			}
+
 			self.parent = function(){
 				var self = this;
 				if (!self.$e){
