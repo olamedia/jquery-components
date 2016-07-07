@@ -23,7 +23,7 @@ Custom scrollbar
 		background: #656565;
 	}
 	.scrollbar-vertical{
-		width: 8px;
+		width: 10px;
 		padding: 0 1px;
 		height: 100%;
 	}
