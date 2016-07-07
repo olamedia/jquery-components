@@ -18,6 +18,9 @@ Custom scrollbar
 		height: 100px;
 		border: solid 1px #6D6D6D;
 	}
+	.scrollbar>.bar:hover{
+		background: #656565;
+	}
 	.scrollbar-vertical{
 		width: 8px;
 		height: 100%;
