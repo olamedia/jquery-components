@@ -57,9 +57,13 @@
 				//width: self.options.width + 'px',
 				//height: '100%',
 			});
+			self.$bar.on('dragstart', function(e){
+				self.dragY = e.clientY;
+			});
 			self.$bar.on('drag', function(e){
-				dragged = e.target;
-				console.log('drag', e, dragged);
+				var dy = e.clientY - self.dragY;
+				self.dragY = e.clientY;
+				console.log('drag', dy);
 			});
 			self.$e.on('scroll', function(e){
 				self.resize();
