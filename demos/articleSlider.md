@@ -43,7 +43,7 @@ Very basic article slider
 	overflow: hidden;
 	padding: 0 10px;
 }
-.articleSlider-header-selected .articleSlider-header{
+.articleSlider-header-selected{
 	background: rgba(0,0,0,1);
 }
 </style>
