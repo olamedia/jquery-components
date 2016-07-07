@@ -30,11 +30,6 @@
 			//self.height = self.$e.height();
 			//self.scrollHeight = self.$e[0].scrollHeight;
 			self.padding = 5;
-			self.barHeight = function(){
-				var h = self.$e.height();
-				var sh = self.$e[0].scrollHeight;
-				return (h - self.padding * 2) * (h / sh);
-			}
 			self.$scrollbar = $(document.createElement('div'));
 			self.$bar = $(document.createElement('div'));
 			self.$scrollbar.append(self.$bar);
@@ -46,6 +41,9 @@
 					'position': 'relative'
 				});
 			}
+			self.$e.css({
+				'overflow': 'hidden'
+			});
 			//self.$scrollbar.width(self.options.width);
 			self.$scrollbar.addClass('scrollbar');
 			self.$bar.addClass('bar');
