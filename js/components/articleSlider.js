@@ -11,6 +11,7 @@
 			var self = this;
 			var w = self.$e.width();
 			var hw = w/3;
+			console.log('articleSlider resize', w, hw);
 			if (w > 600){
 				self.$headers.show();
 				self.$headers.width(hw + 'px');
