@@ -53,7 +53,7 @@
 				//var slideComponent = component('articleSlider-slide').instance();
 				//slideComponent.replace('');
 				var $media = $slide.children('articleSlider-media');
-				var $header = $slide.children('articleSlider-header');
+				var $header = $slide.children('articleSlider-header').html();
 				$header.addClass('articleSlider-header');
 				self.$headers.append($header);
 			}
