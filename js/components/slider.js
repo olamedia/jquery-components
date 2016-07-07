@@ -153,7 +153,9 @@
 			});
 			self.delayLeft = 0;//self.options.delay;
 			//console.log('vertical', );
-			if (self.$e[0].hasAttribute('slider-vertical')){
+			var v = self.$e.attr('slider-vertical');
+			if (false !== v && TYPE_UNDEF !== typeof v){ // ie6+
+			//if (self.$e[0].hasAttribute('slider-vertical')){ // ie8+
 				self.options.vertical = true;
 				console.info('vertical slider', self.options.vertical, self.options);
 			}else{
