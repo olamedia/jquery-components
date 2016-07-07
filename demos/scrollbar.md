@@ -13,9 +13,10 @@ Custom scrollbar
 		border-radius: 4px;
 	}
 	.scrollbar>.bar{
-		background: #656565;
+		background: #909190;
 		border-radius: 4px;
 		height: 100px;
+		border: solid 1px #6D6D6D;
 	}
 	.scrollbar-vertical{
 		width: 8px;
