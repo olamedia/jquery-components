@@ -13,13 +13,13 @@
 			var hw = w/3;
 			if (w > 600){
 				self.$headers.show();
-				self.$headers.width(hw);
-				self.$mediaSlider.css({
+				self.$headers.width(hw + 'px');
+				self.mediaSlider.$e.css({
 					'margin-right': hw + 'px'
 				});
 			}else{
 				self.$headers.hide();
-				self.$mediaSlider.css({
+				self.mediaSlider.$e.css({
 					'margin-right': 0 + 'px'
 				});
 			}
