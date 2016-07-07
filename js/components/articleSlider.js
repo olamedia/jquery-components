@@ -64,11 +64,12 @@
 			self.$e.append(self.$mediaSlider).append(self.$headers);
 			self.mediaSlider = component.replace(self.$mediaSlider[0], component('slider').instance(), true);
 			self.mediaSlider.on('slide-start', function(){
+				var $headers = self.$headers.children();
 				var $header;
-				$header = self.$headers.children()[self.index];
+				$header = $headers[self.index];
 				$header.removeClass('articleSlider-header-selected');
 				self.index = self.mediaSlider.index;
-				$header = self.$headers.children()[self.index];
+				$header = $headers[self.index];
 				$header.addClass('articleSlider-header-selected');
 			});
 			self.$e.css({
