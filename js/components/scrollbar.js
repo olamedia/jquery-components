@@ -60,9 +60,9 @@
 			self.$bar.on('dragstart', function(e){
 				self.dragY = e.clientY;
 			});
-			self.$bar.on('dragend', function(e){
+			self.$bar.on('drop', function(e){
 				e.preventDefault();
-				console.log('dragend', e);
+				console.log('drop', e);
 			});
 			self.$bar.on('drag', function(e){
 				e.preventDefault();
