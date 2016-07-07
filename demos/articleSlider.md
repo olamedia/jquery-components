@@ -95,8 +95,8 @@ Very basic article slider
 				<img src="http://placehold.it/350x150" style="object-fit: cover;" />
 			</div>
 			<div articleSlider-text>
-				<h1 style="color: #fff;">Article 1</h1>
-				<p>Article text article text. Article text article text.</p>
+				<h1 style="color: #fff;">Google's Now on Tap can translate any text on your Android screen</h1>
+				<p>Google sure took its own sweet time bringing its Now on Tap feature to Android Marshmallow, which surfaces contextual information based on ...</p>
 			</div>
 		</div>
 		<div style="background: #9C27B0; padding: 30px 60px; border: solid 4px #333;">
@@ -104,8 +104,8 @@ Very basic article slider
 				<img src="http://placehold.it/350x150" style="object-fit: cover;" />
 			</div>
 			<div articleSlider-text>
-				<h1 style="color: #fff;">Article 1</h1>
-				<p>Article text article text. Article text article text.</p>
+				<h1 style="color: #fff;">Google is reportedly working on its own Android Wear smartwatches</h1>
+				<p>Google is reportedly working on two Android Wear smartwatches, according to a new report from Android Police. Such a move would mark yet ...</p>
 			</div>
 		</div>
 		<div style="background: #3F51B5; padding: 30px 60px; border: solid 4px #333;">
@@ -113,8 +113,8 @@ Very basic article slider
 				<img src="http://placehold.it/350x150" style="object-fit: cover;" />
 			</div>
 			<div articleSlider-text>
-				<h1 style="color: #fff;">Article 1</h1>
-				<p>Article text article text. Article text article text.</p>
+				<h1 style="color: #fff;">Google Now weather card has been improved with detailed hourly ...</h1>
+				<p>Google Now's new weather card was spotted at the beginning of January then officially announced later that month. Ever since, it has been ...</p>
 			</div>
 		</div>
 		<div style="background: #009688; padding: 30px 60px; border: solid 4px #333;">
@@ -122,8 +122,8 @@ Very basic article slider
 				<img src="http://placehold.it/350x150" style="object-fit: cover;" />
 			</div>
 			<div articleSlider-text>
-				<h1 style="color: #fff;">Article 1</h1>
-				<p>Article text article text. Article text article text.</p>
+				<h1 style="color: #fff;">Google launches a more scalable and robust Kubernetes</h1>
+				<p>Google today announced the next version of Kubernetes, its open source orchestration service for deploying, scaling and managing software ...</p>
 			</div>
 		</div>
 	</div>
