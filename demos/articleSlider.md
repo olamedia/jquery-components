@@ -39,7 +39,9 @@ Very basic article slider
     width: 100%;
 }
 .articleSlider-headers .articleSlider-header{
-	background: rgba(0,0,0,0.3);
+	background: rgba(0,0,0,0.5);
+	overflow: hidden;
+	padding: 0 10px;
 }
 </style>
 <div component="articleSlider" class="articleSlider">
