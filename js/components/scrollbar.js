@@ -63,6 +63,8 @@
 			self.$bar.on('drag', function(e){
 				var dy = e.clientY - self.dragY;
 				self.dragY = e.clientY;
+				self.$e.scrollTop(self.$e.scrollTop() + dy);
+				self.resize();
 				console.log('drag', dy);
 			});
 			self.$e.on('scroll', function(e){
