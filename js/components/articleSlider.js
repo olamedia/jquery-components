@@ -37,8 +37,8 @@
 				'top': '0px',
 				'bottom': '0px',
 				'overflow-x': 'hidden',
-				'min-width': '240px',
-				'max-width': '300px',
+				//'min-width': '240px',
+				//'max-width': '300px',
 			});
 			self.$mediaSlider = $(document.createElement('div'));
 			var $c = self.$e.children();
