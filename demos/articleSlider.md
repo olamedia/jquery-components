@@ -28,15 +28,18 @@ Very basic article slider
 	height: 100%;
 	object-fit: cover;
 }
-.articleSlider-text, .articleSlider-text h3{
+.articleSlider-header, .articleSlider-header h3{
 	color: #fff;
 }
-.articleSlider-text{
+.articleSlider-slide .articleSlider-header{
 	background: rgba(0,0,0,0.8);
 	padding: 10px 30px;
 	position: absolute;
     bottom: 0;
     width: 100%;
+}
+.articleSlider-headers .articleSlider-header{
+	background: rgba(0,0,0,0.3);
 }
 </style>
 <div component="articleSlider" class="articleSlider">
@@ -44,7 +47,7 @@ Very basic article slider
 		<div class="articleSlider-media">
 			<img src="http://placehold.it/350x150" />
 		</div>
-		<div class="articleSlider-text">
+		<div articleSlider-header class="articleSlider-header">
 			<h3>Article 1</h3>
 			<p>Article text article text. Article text article text.</p>
 		</div>
@@ -53,7 +56,7 @@ Very basic article slider
 		<div class="articleSlider-media">
 			<img src="http://placehold.it/350x150" />
 		</div>
-		<div class="articleSlider-text">
+		<div articleSlider-header class="articleSlider-header">
 			<h3>Article 1</h3>
 			<p>Article text article text. Article text article text.</p>
 		</div>
@@ -62,7 +65,7 @@ Very basic article slider
 		<div class="articleSlider-media">
 			<img src="http://placehold.it/350x150" />
 		</div>
-		<div class="articleSlider-text">
+		<div articleSlider-header class="articleSlider-header">
 			<h3>Article 1</h3>
 			<p>Article text article text. Article text article text.</p>
 		</div>
@@ -71,7 +74,7 @@ Very basic article slider
 		<div class="articleSlider-media">
 			<img src="http://placehold.it/350x150" />
 		</div>
-		<div class="articleSlider-text">
+		<div articleSlider-header class="articleSlider-header">
 			<h3>Article 1</h3>
 			<p>Article text article text. Article text article text.</p>
 		</div>

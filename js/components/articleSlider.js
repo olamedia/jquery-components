@@ -31,6 +31,7 @@
 				'position': 'relative',
 			});
 			self.$headers = $(document.createElement('div'));
+			self.$headers.addClass('articleSlider-headers');
 			self.$headers.css({
 				'background': '#00f',
 				'position': 'absolute',
@@ -51,7 +52,8 @@
 				//var slideComponent = component('articleSlider-slide').instance();
 				//slideComponent.replace('');
 				var $media = $slide.children('articleSlider-media');
-				//var $header = $slide.children('articleSlider-header');
+				var $header = $slide.children('articleSlider-header');
+				self.$headers.append($header);
 			}
 			self.$e.append(self.$mediaSlider).append(self.$headers);
 			self.mediaSlider = component.replace(self.$mediaSlider[0], component('slider').instance(), true);
