@@ -10,7 +10,7 @@ Custom scrollbar
 <style>
 	.scrollbar{
 		background: #f1f1f1;
-		border-radius: 4px;
+		border-radius: 6px;
 	}
 	.scrollbar>.bar{
 		position: sticky;
@@ -23,7 +23,7 @@ Custom scrollbar
 		background: #656565;
 	}
 	.scrollbar-vertical{
-		width: 8px;
+		width: 12px;
 		height: 100%;
 	}
 </style>
