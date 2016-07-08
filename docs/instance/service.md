@@ -37,7 +37,7 @@ title: instance.service()
 			<h1>Some placeholder content</h1>
 		</div>
 	</div>
-	<script src="component.js">
+	<script>
 		new component('component-codename', function(){
 			// render()
 		}, function(){
@@ -57,7 +57,7 @@ title: instance.service()
 		<h1>Some placeholder content</h1>
 	</div>
 </div>
-<script src="component.js">
+<script>
 	new component('component-codename2', {
 		'service': function(){
 			var self = this;
@@ -76,8 +76,11 @@ title: instance.service()
 			<h1>Some placeholder content</h1>
 		</div>
 	</div>
-	<script src="component.js">
+	<script>
 		new component('component-codename2', {
+			'render': function(){
+
+			},
 			'service': function(){
 				var self = this;
 				var i = 0;
