@@ -40,6 +40,7 @@
 			});
 			self.$headers = $(document.createElement('div'));
 			self.$headers.addClass('articleSlider-headers');
+			self.$headers.attr('component', 'scrollbar');
 			self.$headers.css({
 				'position': 'absolute',
 				'right': '0px',
