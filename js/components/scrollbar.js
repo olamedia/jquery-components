@@ -54,7 +54,8 @@
 				self.$bar.height(self.barHeight);
 				var activeY = self.scrollHeight > self.viewportHeight;
 				if (self.activeY != activeY){
-					if (self.activeY){
+					console.log('activeY', activeY);
+					if (activeY){
 						self.$e.addClass('scrollbar-active-y'); // add padding-right
 					}else{
 						self.$e.removeClass('scrollbar-active-y');
@@ -128,14 +129,10 @@
 				drag = false;
 			});
 			$(window).on('mousemove', function(e){
-				//e.preventDefault();
 				if (drag){
 					var dy = e.screenY - self.dragY;
 					self.dragY = e.screenY;
 					self.dragResize(0, dy);
-					//self.$e.scrollTop(self.dragStartScrollTop + dy);
-					//self.resize();
-					//console.log('drag', self.dragStartScrollTop, dy);
 				}
 			});
 			self.$e.on('scroll', function(e){
