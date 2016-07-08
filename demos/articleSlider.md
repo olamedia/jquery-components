@@ -56,7 +56,7 @@ Very basic article slider
 <div component="articleSlider" articleSlider-navigation="prev,next" class="articleSlider">
 	<div style="background: #F44336;">
 		<div class="articleSlider-media">
-			<img src="http://placehold.it/350x150" />
+			<img src="../images/sample/4.jpg" />
 		</div>
 		<div articleSlider-header>
 			<h3>Google's Now on Tap can translate any text on your Android screen</h3>
@@ -64,8 +64,8 @@ Very basic article slider
 		</div>
 	</div>
 	<div style="background: #9C27B0;">
-		<div class="articleSlider-media">
-			<img src="http://placehold.it/350x150" />
+		<div>
+			<img src="../images/sample/1.jpg" />
 		</div>
 		<div articleSlider-header>
 			<h3>Google is reportedly working on its own Android Wear smartwatches</h3>
@@ -73,8 +73,8 @@ Very basic article slider
 		</div>
 	</div>
 	<div style="background: #3F51B5;">
-		<div class="articleSlider-media">
-			<img src="http://placehold.it/350x150" />
+		<div>
+			<img src="../images/sample/2.jpg" />
 		</div>
 		<div articleSlider-header>
 			<h3>Google Now weather card has been improved with detailed hourly ...</h3>
@@ -82,8 +82,8 @@ Very basic article slider
 		</div>
 	</div>
 	<div style="background: #009688;">
-		<div class="articleSlider-media">
-			<img src="http://placehold.it/350x150" />
+		<div>
+			<img src="../images/sample/3.jpg" />
 		</div>
 		<div articleSlider-header>
 			<h3>Google launches a more scalable and robust Kubernetes</h3>
