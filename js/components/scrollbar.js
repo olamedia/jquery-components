@@ -1,12 +1,19 @@
 (function(window, $){
 
 	new component('scrollbar', {
-		'resize': function(){
-			var self = this;
-			var scrollTop = self.$e.scrollTop();
-			self.$scrollbar.css({
-				'top': scrollTop + 'px'
-			});
+		'barTopToScrollTop': function(barTop){
+			var viewportHeight = self.$e.height();//outerHeight(true);
+			var scrollbarHeight = viewportHeight - self.padding * 2;
+			var scrollHeight = self.$e[0].scrollHeight;
+			//var scrollCenter = scrollTop + viewportHeight / 2;
+			var barHeight = scrollbarHeight * viewportHeight / scrollHeight - 2 * self.border;
+
+			var barCenter = barTop + barHeight / 2 - self.padding + self.border;
+			var scrollCenter = barCenter * scrollHeight / scrollbarHeight;
+			var scrollTop = scrollCenter - viewportHeight / 2;
+			return scrollTop;
+		},
+		'scrollTopToBarTop': function(scrollTop){
 			var viewportHeight = self.$e.height();//outerHeight(true);
 			var scrollbarHeight = viewportHeight - self.padding * 2;
 			var scrollHeight = self.$e[0].scrollHeight;
@@ -15,11 +22,40 @@
 			//var lh = h - bh;
 			var barCenter = scrollbarHeight * scrollCenter / scrollHeight;
 			var barTop = barCenter - barHeight / 2 + self.padding - self.border;
+			return barTop;
+		},
+		'barHeight': function(){
+			var viewportHeight = self.$e.height();//outerHeight(true);
+			var scrollbarHeight = viewportHeight - self.padding * 2;
+			var scrollHeight = self.$e[0].scrollHeight;
+			var scrollCenter = scrollTop + viewportHeight / 2;
+			var barHeight = scrollbarHeight * viewportHeight / scrollHeight - 2 * self.border;
+			return barHeight;
+		},
+		'dragResize': function(dx, dy){
+			var self = this;
+			var barTop = self.$bar.offset().top + dy;
+			var scrollTop = self.barTopToScrollTop(barTop);
+			self.$scrollbar.css({
+				'top': scrollTop + 'px'
+			});
+			self.$bar.css({
+				'top': barTop + 'px'
+			});
+			self.$bar.height(self.barHeight());
+		},
+		'resize': function(){
+			var self = this;
+			var scrollTop = self.$e.scrollTop();
+			var barTop = self.scrollTopToBarTop(scrollTop);
+			self.$scrollbar.css({
+				'top': scrollTop + 'px'
+			});
 			self.$bar.css({
 				//'position': 'absolute',
 				'top': barTop + 'px'
 			});
-			self.$bar.height(barHeight);
+			self.$bar.height(self.barHeight());
 		},
 		'render': function(){
 			var self = this;
