@@ -14,7 +14,7 @@ Custom scrollbar
 		/*border-radius: 4px;*/
 	}
 	.scrollbar>.bar{
-		position: absolute;
+		position: relative;
 		background: #909190;
 		border-radius: 4px;
 		height: 100px;
