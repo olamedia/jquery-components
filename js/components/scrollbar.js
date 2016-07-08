@@ -1,26 +1,14 @@
 (function(window, $){
 
 	new component('scrollbar', {
-		'barTopToScrollTop': function(barTop){
-			var self = this;
-			var barCenter = barTop + self.barHeight / 2 - self.padding + self.border;
-			var scrollCenter = barCenter * self.scrollHeight / self.scrollbarHeight;
-			var scrollTop = scrollCenter - self.viewportHeight / 2;
-			return scrollTop;
-		},
-		'scrollTopToBarTop': function(scrollTop){
-			var self = this;
-			var scrollCenter = self.scrollTop + self.viewportHeight / 2;
-			//var lh = h - bh;
-			var barCenter = self.scrollbarHeight * self.scrollCenter / self.scrollHeight;
-			var barTop = barCenter - self.barHeight / 2 + self.padding - self.border;
-			return barTop;
-		},
 		'dragResize': function(dx, dy){
 			var self = this;
 			self.sync(); // ?
+			console.log('self.$bar.offset().top', self.$bar.offset().top);
 			var barTop = self.$bar.offset().top + dy;
-			var scrollTop = self.barTopToScrollTop(barTop);
+			var barCenter = barTop + self.barHeight / 2 - self.padding + self.border;
+			var scrollCenter = barCenter * self.scrollHeight / self.scrollbarHeight;
+			var scrollTop = scrollCenter - self.viewportHeight / 2;
 			self.$scrollbar.css({
 				'top': scrollTop + 'px'
 			});
@@ -32,10 +20,10 @@
 		'sync': function(){
 			// Syncronize internal variables with real content scrollTop and scrollHeight after browser scroll or resize
 			var self = this;
+			self.scrollHeight = self.$e[0].scrollHeight;
 			self.scrollTop = self.$e.scrollTop();
 			self.viewportHeight = self.$e.height();
-			self.scrollbarHeight = self.viewportHeight - self.padding * 2 - 2 * self.border;
-			self.scrollHeight = self.$e[0].scrollHeight;
+			self.scrollbarHeight = self.viewportHeight - 2 * (self.padding - self.border);
 			self.barHeight = self.scrollbarHeight * self.viewportHeight / self.scrollHeight;
 		},
 		'resize': function(){
@@ -43,7 +31,7 @@
 			self.sync();
 			var scrollCenter = self.scrollTop + self.viewportHeight / 2;
 			var barCenter = self.scrollbarHeight * scrollCenter / self.scrollHeight;
-			var barTop = barCenter - self.barHeight / 2 + self.padding - self.border;
+			var barTop = barCenter - self.barHeight / 2 + (self.padding - self.border);
 			//var barTop = self.scrollTopToBarTop(scrollTop);
 			self.$scrollbar.css({
 				'top': self.scrollTop + 'px'
