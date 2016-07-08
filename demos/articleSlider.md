@@ -8,49 +8,8 @@ Very basic article slider
 ## Example
 
 <style>
-.articleSlider{
-	border: solid 4px #689F38;
-	background: #f00;
-}
 .articleSlider-slide{
 	height: 400px;
-	position: relative;
-	border: solid 4px #333;
-}
-.articleSlider-media{
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0;
-}
-.articleSlider-media img{
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-.articleSlider-headers{
-	background: #fff;
-	border-left: solid 4px #222;
-}
-.articleSlider-header, .articleSlider-header h3{
-	color: #fff;
-}
-.articleSlider-slide .articleSlider-header{
-	background: rgba(0,0,0,0.8);
-	padding: 10px 30px;
-	position: absolute;
-    bottom: 0;
-    width: 100%;
-}
-.articleSlider-headers .articleSlider-header{
-	background: #444;
-	overflow: hidden;
-	padding: 0 10px;
-	transition: background-color 1s;
-}
-.articleSlider-headers .articleSlider-header-selected{
-	background: #222;
-	transition: background-color 1s;
 }
 </style>
 <div component="articleSlider" articleSlider-navigation="prev,next" class="articleSlider">
