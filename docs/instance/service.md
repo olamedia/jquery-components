@@ -7,7 +7,7 @@ title: instance.service()
 
 * Standard way to schedule component's internal tasks
 * SHOULD NOT be called directly if component will be rendered.
-* Called automatically after setting `instance.render()`
+* Called automatically after `instance.render()`
 
 ## Example
 
