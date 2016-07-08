@@ -1,6 +1,6 @@
 ---
 layout: method
-title: .update()
+title: component.update()
 ---
 
 Initialize new components
