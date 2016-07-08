@@ -28,6 +28,7 @@
 		},
 		'barHeight': function(){
 			var self = this;
+			var scrollTop = self.$e.scrollTop();
 			var viewportHeight = self.$e.height();//outerHeight(true);
 			var scrollbarHeight = viewportHeight - self.padding * 2;
 			var scrollHeight = self.$e[0].scrollHeight;
