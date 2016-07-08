@@ -41,6 +41,7 @@ $(function(){
 $(function(){
 	new component('my-component', {
 		'service': function(){
+			console.log('my-component instance service()');
 			var instance = this;
 			setInterval(function(){
 				instance.trigger('my-component-tick');
@@ -50,6 +51,7 @@ $(function(){
 
 	new component('my-component2', {
 		'service': function(){
+			console.log('my-component2 instance service()');
 			var instance = this;
 			var myComponentInstance = component('my-component').instance();
 			myComponentInstance.on('my-component-tick', function(){
@@ -59,5 +61,4 @@ $(function(){
 	});
 	var myComponent2Instance = component('my-component2').instance();
 });
-
 </script>
