@@ -5,14 +5,14 @@
 			var self = this;
 			self.sync(); // ?
 			var barTop = self.$bar.position().top + dy;
-			var barY = barTop - (self.padding - self.border);
+			var barY = barTop - (self.padding);// - self.border
 			if (barY < 0){
 				barY = 0;
 			}
 			if (barY > self.scrollbarHeight - self.barHeight){
 				barY = self.scrollbarHeight - self.barHeight;
 			}
-			barTop = barY + (self.padding - self.border);
+			barTop = barY + (self.padding);// - self.border
 			console.log('self.scrollbarHeight', self.scrollbarHeight, 'barY', barY, 'barTop', barTop);
 			var barCenter = barTop + self.barHeight / 2 - self.padding + self.border;
 			var scrollCenter = barCenter * self.scrollHeight / self.scrollbarHeight;
