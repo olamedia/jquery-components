@@ -46,12 +46,25 @@
 				// Syncronize internal variables with real content scrollTop and scrollHeight after browser scroll or resize
 				var self = this;
 				self.scrollHeight = self.$e[0].scrollHeight;
+				self.scrollLeft = self.$e.scrollLeft();
 				self.scrollTop = self.$e.scrollTop();
+				self.viewportWidth = self.$e.width();
 				self.viewportHeight = self.$e.height();
 				self.scrollbarHeight = self.viewportHeight - 2 * (self.padding - self.border);
 				self.barHeight = self.scrollbarHeight * self.viewportHeight / self.scrollHeight;
 				self.$bar.height(self.barHeight);
+				var activeY = self.scrollHeight > self.viewportHeight;
+				if (self.activeY != activeY){
+					if (self.activeY){
+						self.$e.addClass('scrollbar-active-y'); // add padding-right
+					}else{
+						self.$e.removeClass('scrollbar-active-y');
+					}
+				}
+				self.activeY = activeY;
 			};
+			self.activeX = false;
+			self.activeY = false;
 			self.options = {
 				width: 16
 			}
@@ -72,7 +85,8 @@
 				});
 			}
 			self.$e.css({
-				'overflow-y': 'scroll'
+				//'overflow-x': 'hidden',
+				'overflow-y': 'hidden'
 			});
 			//self.$scrollbar.width(self.options.width);
 			self.$scrollbar.addClass('scrollbar');
