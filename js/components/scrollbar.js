@@ -5,17 +5,15 @@
 			var self = this;
 			self.sync(); // ?
 			var barTop = self.$bar.position().top + dy;
-			var barY = barTop - (self.padding);// - self.border
-			if (barY < 0){
-				barY = 0;
+			if (barTop < 0){
+				barTop = 0;
 			}
-			if (barY > self.scrollbarHeight - self.barHeight){
-				barY = self.scrollbarHeight - self.barHeight;
+			if (barTop > self.scrollbarHeight - self.barHeight){
+				barTop = self.scrollbarHeight - self.barHeight;
 			}
-			barTop = barY + (self.padding - self.border);// - self.border
 			//console.log('self.scrollbarHeight', self.scrollbarHeight, 'barY', barY, 'barTop', barTop);
 			//var barCenter = barTop + self.barHeight / 2 - self.padding;// + self.border;
-			var scrollCenter = (barY + self.barHeight / 2) * self.scrollHeight / self.scrollbarHeight;
+			var scrollCenter = (barTop + self.barHeight / 2) * self.scrollHeight / self.scrollbarHeight;
 			var scrollTop = scrollCenter - self.viewportHeight / 2;
 			self.$e.scrollTop(scrollTop);
 			self.resize();
@@ -31,7 +29,7 @@
 			self.sync();
 			var scrollCenter = self.scrollTop + self.viewportHeight / 2;
 			var barCenter = self.scrollbarHeight * scrollCenter / self.scrollHeight;
-			var barTop = barCenter - self.barHeight / 2 + (self.padding - self.border);
+			var barTop = barCenter - self.barHeight / 2;
 			//var barTop = self.scrollTopToBarTop(scrollTop);
 			self.$scrollbar.css({
 				'top': self.scrollTop + 'px'
@@ -51,7 +49,7 @@
 				self.scrollTop = self.$e.scrollTop();
 				self.viewportWidth = self.$e.width();
 				self.viewportHeight = self.$e.height();
-				self.scrollbarHeight = self.viewportHeight - 2 * (self.padding - self.border);
+				self.scrollbarHeight = self.$scrollbar.innerHeight();//self.viewportHeight - 2 * (self.padding - self.border);
 				self.barHeight = self.scrollbarHeight * self.viewportHeight / self.scrollHeight;
 				self.$bar.height(self.barHeight);
 				var activeY = self.scrollHeight > self.viewportHeight;

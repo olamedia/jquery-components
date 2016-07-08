@@ -11,6 +11,7 @@ Custom scrollbar
 	.scrollbar{
 		background: #f1f1f1;
 		position: fixed;
+		padding: 5px 0;
 		/*border-radius: 4px;*/
 	}
 	.scrollbar>.bar{
