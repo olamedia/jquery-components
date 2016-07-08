@@ -6,9 +6,16 @@
 			self.sync(); // ?
 			console.log('self.$bar.position().top', self.$bar.position().top);
 			var barTop = self.$bar.position().top + dy;
+			if (barTop < 0){
+				barTop = 0;
+			}
+			if (barTop > self.scrollbarHeight - self.barHeight){
+				barTop = self.scrollbarHeight - self.barHeight;
+			}
 			var barCenter = barTop + self.barHeight / 2 - self.padding + self.border;
 			var scrollCenter = barCenter * self.scrollHeight / self.scrollbarHeight;
 			var scrollTop = scrollCenter - self.viewportHeight / 2;
+			self.$e.scrollTop(scrollTop);
 			self.$scrollbar.css({
 				'top': scrollTop + 'px'
 			});
