@@ -1,13 +1,17 @@
 ---
 layout: default
-title: Component vs Instance
+title: Component vs Class vs Instance
 ---
 
 
-## Component
+## component.
 
-`component` refers to component "class" (for example, `var myComponent = component('my-component')`)
+`component` refers to global object, `window.component`.
 
-## Instance
+## class.
 
-`instance` refers to component instance (for example, `var myComponentInstance = myComponent.instance()`)
+`class` refers to component "class" (for example, `var myComponentClass = component('my-component')`)
+
+## instance.
+
+`instance` refers to component instance (for example, `var myComponentInstance = myComponentClass.instance()`)
