@@ -57,8 +57,9 @@
 				//width: self.options.width + 'px',
 				//height: '100%',
 			});
-			self.$scrollbar.on('dragover', function(e){
+			self.$scrollbar.on('dragstart', function(e){ // prevent drag
 				e.preventDefault();
+				return false;
 			});
 			var drag = false;
 			self.$bar.on('mousedown', function(e){
