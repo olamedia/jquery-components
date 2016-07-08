@@ -2,6 +2,7 @@
 
 	new component('scrollbar', {
 		'barTopToScrollTop': function(barTop){
+			var self = this;
 			var viewportHeight = self.$e.height();//outerHeight(true);
 			var scrollbarHeight = viewportHeight - self.padding * 2;
 			var scrollHeight = self.$e[0].scrollHeight;
@@ -14,6 +15,7 @@
 			return scrollTop;
 		},
 		'scrollTopToBarTop': function(scrollTop){
+			var self = this;
 			var viewportHeight = self.$e.height();//outerHeight(true);
 			var scrollbarHeight = viewportHeight - self.padding * 2;
 			var scrollHeight = self.$e[0].scrollHeight;
@@ -25,6 +27,7 @@
 			return barTop;
 		},
 		'barHeight': function(){
+			var self = this;
 			var viewportHeight = self.$e.height();//outerHeight(true);
 			var scrollbarHeight = viewportHeight - self.padding * 2;
 			var scrollHeight = self.$e[0].scrollHeight;
