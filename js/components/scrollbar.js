@@ -61,6 +61,10 @@
 				e.preventDefault();
 				return false;
 			});
+			self.$scrollbar.on('selectstart', function(e){ // prevent select
+				e.preventDefault();
+				return false;
+			});
 			var drag = false;
 			self.$bar.on('mousedown', function(e){
 				self.dragStartScrollTop = self.$e.scrollTop();
