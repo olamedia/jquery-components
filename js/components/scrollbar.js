@@ -4,8 +4,8 @@
 		'dragResize': function(dx, dy){
 			var self = this;
 			self.sync(); // ?
-			console.log('self.$bar.offset().top', self.$bar.offset().top);
-			var barTop = self.$bar.offset().top + dy;
+			console.log('self.$bar.position().top', self.$bar.position().top);
+			var barTop = self.$bar.position().top + dy;
 			var barCenter = barTop + self.barHeight / 2 - self.padding + self.border;
 			var scrollCenter = barCenter * self.scrollHeight / self.scrollbarHeight;
 			var scrollTop = scrollCenter - self.viewportHeight / 2;
