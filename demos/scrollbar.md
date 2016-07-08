@@ -23,6 +23,9 @@ Custom scrollbar
 	.scrollbar .bar:hover{
 		background: #656565;
 	}
+	.scrollbar-active-y{
+		padding-right: 12px;
+	}
 	.scrollbar-vertical{
 		width: 10px;
 		padding: 5px 1px;
