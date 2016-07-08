@@ -13,14 +13,14 @@ Custom scrollbar
 		position: fixed;
 		/*border-radius: 4px;*/
 	}
-	.scrollbar>.bar{
+	.scrollbar .bar{
 		position: relative;
 		background: #909190;
 		border-radius: 4px;
 		height: 100px;
 		border: solid 1px rgba(109, 109, 109, 0.9);
 	}
-	.scrollbar>.bar:hover{
+	.scrollbar .bar:hover{
 		background: #656565;
 	}
 	.scrollbar-vertical{

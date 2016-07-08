@@ -94,7 +94,9 @@
 			self.$bar.addClass('bar');
 			self.$scrollbar.addClass('scrollbar-vertical');
 			self.$scrollArea.css({
-				'position': 'relative'
+				'position': 'relative',
+				'width': '100%',
+				'height': '100%',
 			});
 			self.$scrollbar.css({
 				'position': 'absolute',
