@@ -31,9 +31,11 @@ $(function(){
 			myComponentInstance.on('my-component-tick', function(){
 				component.notify.success('myComponentInstance tick');
 			});
+			myComponentInstance.service();
 		}
 	});
 	var myComponent2Instance = component('my-component2').instance();
+	myComponent2Instance.service();
 });
 ```
 
@@ -57,8 +59,10 @@ $(function(){
 			myComponentInstance.on('my-component-tick', function(){
 				component.notify.success('myComponentInstance tick');
 			});
+			myComponentInstance.service();
 		}
 	});
 	var myComponent2Instance = component('my-component2').instance();
+	myComponent2Instance.service();
 });
 </script>
