@@ -3,41 +3,39 @@
 	new component('scrollbar', {
 		'barTopToScrollTop': function(barTop){
 			var self = this;
-			var viewportHeight = self.$e.height();//outerHeight(true);
-			var scrollbarHeight = viewportHeight - self.padding * 2;
-			var scrollHeight = self.$e[0].scrollHeight;
-			//var scrollCenter = scrollTop + viewportHeight / 2;
-			var barHeight = scrollbarHeight * viewportHeight / scrollHeight - 2 * self.border;
-
-			var barCenter = barTop + barHeight / 2 - self.padding + self.border;
-			var scrollCenter = barCenter * scrollHeight / scrollbarHeight;
-			var scrollTop = scrollCenter - viewportHeight / 2;
+			var barCenter = barTop + self.barHeight / 2 - self.padding + self.border;
+			var scrollCenter = barCenter * self.scrollHeight / self.scrollbarHeight;
+			var scrollTop = scrollCenter - self.viewportHeight / 2;
 			return scrollTop;
 		},
 		'scrollTopToBarTop': function(scrollTop){
 			var self = this;
-			var viewportHeight = self.$e.height();//outerHeight(true);
-			var scrollbarHeight = viewportHeight - self.padding * 2;
-			var scrollHeight = self.$e[0].scrollHeight;
-			var scrollCenter = scrollTop + viewportHeight / 2;
-			var barHeight = scrollbarHeight * viewportHeight / scrollHeight - 2 * self.border;
+			var scrollCenter = self.scrollTop + self.viewportHeight / 2;
 			//var lh = h - bh;
-			var barCenter = scrollbarHeight * scrollCenter / scrollHeight;
-			var barTop = barCenter - barHeight / 2 + self.padding - self.border;
+			var barCenter = self.scrollbarHeight * self.scrollCenter / self.scrollHeight;
+			var barTop = barCenter - self.barHeight / 2 + self.padding - self.border;
 			return barTop;
+		},
+		'scrollbarHeight': function(){
+			var self = this;
+			var scrollTop = self.$e.scrollTop();
+			var viewportHeight = self.$e.height();//outerHeight(true);
+			var scrollbarHeight = viewportHeight - self.padding * 2 - 2 * self.border;
+			return scrollbarHeight;
 		},
 		'barHeight': function(){
 			var self = this;
 			var scrollTop = self.$e.scrollTop();
 			var viewportHeight = self.$e.height();//outerHeight(true);
 			var scrollbarHeight = viewportHeight - self.padding * 2 - 2 * self.border;
+
 			var scrollHeight = self.$e[0].scrollHeight;
-			//var scrollCenter = scrollTop + viewportHeight / 2;
 			var barHeight = scrollbarHeight * viewportHeight / scrollHeight;
 			return barHeight;
 		},
 		'dragResize': function(dx, dy){
 			var self = this;
+			self.sync(); // ?
 			var barTop = self.$bar.offset().top + dy;
 			var scrollTop = self.barTopToScrollTop(barTop);
 			self.$scrollbar.css({
@@ -46,20 +44,32 @@
 			self.$bar.css({
 				'top': barTop + 'px'
 			});
-			self.$bar.height(self.barHeight());
+			self.$bar.height(self.barHeight);
+		},
+		'sync': function(){
+			// Syncronize internal variables with real content scrollTop and scrollHeight after browser scroll or resize
+			var self = this;
+			self.scrollTop = self.$e.scrollTop();
+			self.viewportHeight = self.$e.height();
+			self.scrollbarHeight = self.viewportHeight - self.padding * 2 - 2 * self.border;
+			self.scrollHeight = self.$e[0].scrollHeight;
+			self.barHeight = self.scrollbarHeight * self.viewportHeight / self.scrollHeight;
 		},
 		'resize': function(){
 			var self = this;
-			var scrollTop = self.$e.scrollTop();
-			var barTop = self.scrollTopToBarTop(scrollTop);
+			self.sync();
+			var scrollCenter = self.scrollTop + self.viewportHeight / 2;
+			var barCenter = self.scrollbarHeight * scrollCenter / self.scrollHeight;
+			var barTop = barCenter - self.barHeight / 2 + self.padding - self.border;
+			//var barTop = self.scrollTopToBarTop(scrollTop);
 			self.$scrollbar.css({
-				'top': scrollTop + 'px'
+				'top': self.scrollTop + 'px'
 			});
 			self.$bar.css({
 				//'position': 'absolute',
 				'top': barTop + 'px'
 			});
-			self.$bar.height(self.barHeight());
+			self.$bar.height(self.barHeight);
 		},
 		'render': function(){
 			var self = this;
@@ -111,6 +121,7 @@
 				self.dragStartY = e.screenY;
 				self.dragY = e.screenY;
 				drag = true;
+				console.log('mousedown');
 				e.preventDefault();
         return false;
 			});
@@ -120,11 +131,12 @@
 			$(window).on('mousemove', function(e){
 				//e.preventDefault();
 				if (drag){
-					var dy = e.screenY - self.dragStartY;
+					var dy = e.screenY - self.dragY;
 					self.dragY = e.screenY;
-					self.$e.scrollTop(self.dragStartScrollTop + dy);
-					self.resize();
-					console.log('drag', self.dragStartScrollTop, dy);
+					self.dragResize(0, dy);
+					//self.$e.scrollTop(self.dragStartScrollTop + dy);
+					//self.resize();
+					//console.log('drag', self.dragStartScrollTop, dy);
 				}
 			});
 			self.$e.on('scroll', function(e){
