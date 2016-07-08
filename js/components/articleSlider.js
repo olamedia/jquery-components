@@ -89,6 +89,7 @@
 				self.index = self.mediaSlider.index;
 				$header = $($headers.get(self.index));
 				$header.addClass('articleSlider-header-selected');
+				self.$headers.scrollTop($header.position().top);
 			});
 			self.$e.css({
 				'min-height': self.$mediaSlider.outerHeight(true) + 'px'
