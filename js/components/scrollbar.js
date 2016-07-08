@@ -111,6 +111,8 @@
 				self.dragStartY = e.screenY;
 				self.dragY = e.screenY;
 				drag = true;
+				e.preventDefault();
+        return false;
 			});
 			$(window).on('mouseup', function(e){
 				drag = false;
