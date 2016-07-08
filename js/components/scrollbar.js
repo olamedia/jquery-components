@@ -8,12 +8,12 @@
 			if (barTop < 0){
 				barTop = 0;
 			}
-			if (barTop > self.scrollbarHeight - self.barHeight){
-				barTop = self.scrollbarHeight - self.barHeight;
+			if (barTop > self.scrollAreaHeight - self.barHeight){
+				barTop = self.scrollAreaHeight - self.barHeight;
 			}
 			//console.log('self.scrollbarHeight', self.scrollbarHeight, 'barY', barY, 'barTop', barTop);
 			//var barCenter = barTop + self.barHeight / 2 - self.padding;// + self.border;
-			var scrollCenter = (barTop + self.barHeight / 2) * self.scrollHeight / self.scrollbarHeight;
+			var scrollCenter = (barTop + self.barHeight / 2) * self.scrollHeight / self.scrollAreaHeight;
 			var scrollTop = scrollCenter - self.viewportHeight / 2;
 			self.$e.scrollTop(scrollTop);
 			self.resize();
@@ -28,7 +28,7 @@
 			var self = this;
 			self.sync();
 			var scrollCenter = self.scrollTop + self.viewportHeight / 2;
-			var barCenter = self.scrollbarHeight * scrollCenter / self.scrollHeight;
+			var barCenter = self.scrollAreaHeight * scrollCenter / self.scrollHeight;
 			var barTop = barCenter - self.barHeight / 2;
 			//var barTop = self.scrollTopToBarTop(scrollTop);
 			self.$scrollbar.css({
@@ -49,8 +49,8 @@
 				self.scrollTop = self.$e.scrollTop();
 				self.viewportWidth = self.$e.width();
 				self.viewportHeight = self.$e.height();
-				self.scrollbarHeight = self.$scrollbar.innerHeight();//self.viewportHeight - 2 * (self.padding - self.border);
-				self.barHeight = self.scrollbarHeight * self.viewportHeight / self.scrollHeight;
+				self.scrollAreaHeight = self.$scrollArea.height();//self.viewportHeight - 2 * (self.padding - self.border);
+				self.barHeight = self.scrollAreaHeight * self.viewportHeight / self.scrollHeight;
 				self.$bar.height(self.barHeight);
 				var activeY = self.scrollHeight > self.viewportHeight;
 				if (self.activeY != activeY){
@@ -73,8 +73,10 @@
 			self.padding = 5;
 			self.border = 1;
 			self.$scrollbar = $(document.createElement('div'));
+			self.$scrollArea = $(document.createElement('div'));
 			self.$bar = $(document.createElement('div'));
-			self.$scrollbar.append(self.$bar);
+			self.$scrollbar.append(self.$scrollArea);
+			self.$scrollArea.append(self.$bar);
 			self.$e.append(self.$scrollbar);
 			var p = self.$e.css("position");
 			if ('absolute' == p || 'relative' == p){
@@ -91,6 +93,9 @@
 			self.$scrollbar.addClass('scrollbar');
 			self.$bar.addClass('bar');
 			self.$scrollbar.addClass('scrollbar-vertical');
+			self.$scrollArea.css({
+				'position': 'relative'
+			});
 			self.$scrollbar.css({
 				'position': 'absolute',
 				'top': '0px',
