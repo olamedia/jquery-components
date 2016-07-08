@@ -93,15 +93,13 @@
 				var b = t + $header.outerHeight(true);
 				var st = self.$headers.scrollTop();
 				var h = self.$headers.height();
-				if (t < st || b > st + h){
-					if (t < st){
-						// scroll down, touch upper border
-						self.$headers.scrollTop(t);
-					}
-					if (b > st + h){
-						// scroll up, touch bottom border
-						self.$headers.scrollTop(b - h);
-					}
+				if (b > st + h){
+					// scroll up, touch bottom border
+					self.$headers.scrollTop(b - h);
+				}
+				if (t < st){
+					// scroll down, touch upper border
+					self.$headers.scrollTop(t);
 				}
 			});
 			self.$e.css({
