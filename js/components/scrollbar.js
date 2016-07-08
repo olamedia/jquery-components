@@ -12,18 +12,19 @@
 			if (barY > self.scrollbarHeight - self.barHeight){
 				barY = self.scrollbarHeight - self.barHeight;
 			}
-			//barTop = barY + (self.padding - self.border);// - self.border
+			barTop = barY + (self.padding - self.border);// - self.border
 			//console.log('self.scrollbarHeight', self.scrollbarHeight, 'barY', barY, 'barTop', barTop);
 			//var barCenter = barTop + self.barHeight / 2 - self.padding;// + self.border;
 			var scrollCenter = (barY + self.barHeight / 2) * self.scrollHeight / self.scrollbarHeight;
 			var scrollTop = scrollCenter - self.viewportHeight / 2;
 			self.$e.scrollTop(scrollTop);
-			self.$scrollbar.css({
+			self.resize();
+			/*self.$scrollbar.css({
 				'top': scrollTop + 'px'
 			});
 			self.$bar.css({
 				'top': barTop + 'px'
-			});
+			});*/
 		},
 		'resize': function(){
 			var self = this;
