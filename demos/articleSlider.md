@@ -64,7 +64,7 @@ Very basic article slider
 		</div>
 	</div>
 	<div style="background: #9C27B0;">
-		<div>
+		<div class="articleSlider-media">
 			<img src="../images/sample/1.jpg" />
 		</div>
 		<div articleSlider-header>
@@ -73,7 +73,7 @@ Very basic article slider
 		</div>
 	</div>
 	<div style="background: #3F51B5;">
-		<div>
+		<div class="articleSlider-media">
 			<img src="../images/sample/2.jpg" />
 		</div>
 		<div articleSlider-header>
@@ -82,7 +82,7 @@ Very basic article slider
 		</div>
 	</div>
 	<div style="background: #009688;">
-		<div>
+		<div class="articleSlider-media">
 			<img src="../images/sample/3.jpg" />
 		</div>
 		<div articleSlider-header>
