@@ -24,7 +24,7 @@ Custom scrollbar
 		background: #656565;
 	}
 	.scrollbar-active-y{
-		padding-right: 12px;
+		padding-right: 10px;
 	}
 	.scrollbar-vertical{
 		width: 10px;
