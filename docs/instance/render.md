@@ -22,7 +22,7 @@ new component('my-component', function(){
 	this.$e.text('my-component');
 })
 new component('my-component2', {
-	'render': function{
+	'render': function(){
 		this.$e.text('my-component2');
 	}
 });
@@ -40,7 +40,7 @@ new component('my-component', function(){
 	this.$e.text('my-component');
 })
 new component('my-component2', {
-	'render': function{
+	'render': function(){
 		this.$e.text('my-component2');
 	}
 });
