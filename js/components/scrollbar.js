@@ -25,16 +25,6 @@
 				'top': barTop + 'px'
 			});
 		},
-		'sync': function(){
-			// Syncronize internal variables with real content scrollTop and scrollHeight after browser scroll or resize
-			var self = this;
-			self.scrollHeight = self.$e[0].scrollHeight;
-			self.scrollTop = self.$e.scrollTop();
-			self.viewportHeight = self.$e.height();
-			self.scrollbarHeight = self.viewportHeight - 2 * (self.padding - self.border);
-			self.barHeight = self.scrollbarHeight * self.viewportHeight / self.scrollHeight;
-			self.$bar.height(self.barHeight);
-		},
 		'resize': function(){
 			var self = this;
 			self.sync();
@@ -52,6 +42,16 @@
 		},
 		'render': function(){
 			var self = this;
+			self.sync = function(){
+				// Syncronize internal variables with real content scrollTop and scrollHeight after browser scroll or resize
+				var self = this;
+				self.scrollHeight = self.$e[0].scrollHeight;
+				self.scrollTop = self.$e.scrollTop();
+				self.viewportHeight = self.$e.height();
+				self.scrollbarHeight = self.viewportHeight - 2 * (self.padding - self.border);
+				self.barHeight = self.scrollbarHeight * self.viewportHeight / self.scrollHeight;
+				self.$bar.height(self.barHeight);
+			};
 			self.options = {
 				width: 16
 			}
