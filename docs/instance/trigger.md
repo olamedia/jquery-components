@@ -30,7 +30,7 @@ new component('my-component2', {
 		});
 	}
 });
-var myComponent2Instance = component('my-component').instance();
+var myComponent2Instance = component('my-component2').instance();
 
 ```
 
@@ -53,5 +53,5 @@ new component('my-component2', {
 		});
 	}
 });
-var myComponent2Instance = component('my-component').instance();
+var myComponent2Instance = component('my-component2').instance();
 </script>
