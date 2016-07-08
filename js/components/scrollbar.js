@@ -16,23 +16,6 @@
 			var barTop = barCenter - self.barHeight / 2 + self.padding - self.border;
 			return barTop;
 		},
-		'scrollbarHeight': function(){
-			var self = this;
-			var scrollTop = self.$e.scrollTop();
-			var viewportHeight = self.$e.height();//outerHeight(true);
-			var scrollbarHeight = viewportHeight - self.padding * 2 - 2 * self.border;
-			return scrollbarHeight;
-		},
-		'barHeight': function(){
-			var self = this;
-			var scrollTop = self.$e.scrollTop();
-			var viewportHeight = self.$e.height();//outerHeight(true);
-			var scrollbarHeight = viewportHeight - self.padding * 2 - 2 * self.border;
-
-			var scrollHeight = self.$e[0].scrollHeight;
-			var barHeight = scrollbarHeight * viewportHeight / scrollHeight;
-			return barHeight;
-		},
 		'dragResize': function(dx, dy){
 			var self = this;
 			self.sync(); // ?
