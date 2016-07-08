@@ -89,7 +89,22 @@
 				self.index = self.mediaSlider.index;
 				$header = $($headers.get(self.index));
 				$header.addClass('articleSlider-header-selected');
-				self.$headers.scrollTop($header.position().top);
+				var t = $header.position().top;
+				var b = t + $header.outerHeight(true);
+				var st = self.$headers.scrollTop();
+				var h = self.$headers.height();
+				if (t >= st && t <= st + h && b >= st && b <= st + h){
+					// inside
+				}else{
+					if (!(t >= st && b >= st)){
+						// scroll down, touch upper border
+						self.$headers.scrollTop(t);
+					}
+					if (!(t <= st + h && b <= st + h)){
+						// scroll up, touch bottom border
+						self.$headers.scrollTop(b - h);
+					}
+				}
 			});
 			self.$e.css({
 				'min-height': self.$mediaSlider.outerHeight(true) + 'px'
