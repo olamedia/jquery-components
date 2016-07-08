@@ -5,7 +5,7 @@ title: component.replace()
 
 ## component.replace(DOMElement, classOrInstance, isInstance)
 
-Initialize component on specific DOMElement.
+Initialize component on specific DOMElement. (`render()` then `service()`)
 
 ## Example
 
