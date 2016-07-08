@@ -30,10 +30,10 @@
 			var self = this;
 			var scrollTop = self.$e.scrollTop();
 			var viewportHeight = self.$e.height();//outerHeight(true);
-			var scrollbarHeight = viewportHeight - self.padding * 2;
+			var scrollbarHeight = viewportHeight - self.padding * 2 - 2 * self.border;
 			var scrollHeight = self.$e[0].scrollHeight;
-			var scrollCenter = scrollTop + viewportHeight / 2;
-			var barHeight = scrollbarHeight * viewportHeight / scrollHeight - 2 * self.border;
+			//var scrollCenter = scrollTop + viewportHeight / 2;
+			var barHeight = scrollbarHeight * viewportHeight / scrollHeight;
 			return barHeight;
 		},
 		'dragResize': function(dx, dy){
