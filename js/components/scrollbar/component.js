@@ -142,6 +142,7 @@
 			self.on('resize', function(){
 				self.resize();
 			});
+			self.sync();
 			self.resize();
 		}
 	});
