@@ -1,3 +1,4 @@
+(function(window, component, $){
 var placeholders = {};
 var placeholder = function(e){
 	var self = this;
@@ -160,3 +161,5 @@ component.query = function(selector){
 	}
 	return null;
 };
+
+})(window, component, jQuery);
