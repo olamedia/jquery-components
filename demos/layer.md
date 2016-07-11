@@ -10,29 +10,33 @@ Utility for overlay creation
 ```js
 <script>
 $(function(){
-	var layer = component.layer();
-	layer.setPosition('bottom center');
-	layer.$e.text('Layer');
-	layer.$e.css({
-		'background': '#fff',
-		'padding': '30px',
-		'border': 'dashed 4px #f00'
-	});
-	console.log('layer', layer);
+	component.require(['layer'], function(layer){
+		var layer = new layer();
+		layer.setPosition('bottom center');
+		layer.$e.text('Layer');
+		layer.$e.css({
+			'background': '#fff',
+			'padding': '30px',
+			'border': 'dashed 4px #f00'
+		});
+		console.log('layer', layer);
+	}
 });
 </script>
 ```
 
 <script>
 $(function(){
-	var layer = component.layer();
-	layer.setPosition('bottom center');
-	layer.$e.text('Layer');
-	layer.$e.css({
-		'background': '#fff',
-		'padding': '30px',
-		'border': 'dashed 4px #f00'
-	});
-	console.log('layer', layer);
+	component.require(['layer'], function(layer){
+		var layer = new layer();
+		layer.setPosition('bottom center');
+		layer.$e.text('Layer');
+		layer.$e.css({
+			'background': '#fff',
+			'padding': '30px',
+			'border': 'dashed 4px #f00'
+		});
+		console.log('layer', layer);
+	}
 });
 </script>
