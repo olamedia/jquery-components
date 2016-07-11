@@ -4,19 +4,29 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width">
 		<title>jQuery Components Tests</title>
-		<script src="uuid.js"></script>
-		<script src="component-amd.js"></script>
+		<script src="component.js"></script>
+		<script src="jquery.min.js"></script>
+		<script src="component-dom.js"></script>
 		<script src="component-loader.js"></script>
 		<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.0.0.css">
 	</head>
 	<body>
+		<div component="show-id"></div>
+		<div component="show-id"></div>
 		<div id="qunit"></div>
   		<div id="qunit-fixture"></div>
 		<script src="https://code.jquery.com/qunit/qunit-2.0.0.js"></script>
 		<script src="component-tests.js"></script>
 <script>
 
+var showId = new component('show-id', function(){
+	var self = this;
+	self.render = function(){
+		self.$e.text(self.id);
+	}
+});
 
+console.dir(showId);
 
 
 

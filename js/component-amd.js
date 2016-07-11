@@ -1,3 +1,39 @@
+var loadedComponents = {}; // key is component name
+var loadedInstances = {}; // key is uuid
+var isLoaded = function(id){
+	return 'undefined' !== typeof loadedComponents[id];
+}
+var requireId = function(id, callback){
+	if (isLoaded(id)){
+		return callback(loadedComponents[id]);
+	}
+	// FIXME load component
+	component.loadComponent(id, callback);
+}
+var requireAll = function(components, callback){
+	if (0 === components.length){
+		return callback.apply(this, []);
+	}
+	var onLoad = function(callback){
+		var list = [];
+		for (var k in components){
+			var id = components[k];
+			if (!isLoaded(id)){
+				return false;
+			}
+			list.push(loadedComponents[id]);
+		}
+		return callback(list);
+	}
+	for (var k in components){
+		var id = components[k];
+		requireId(id, function(){
+			onLoad(function(list){
+				callback.apply(this, list);
+			});
+		});
+	}
+}
 var uuid = (function(){
 	var base = (function(){
 		return {
@@ -68,42 +104,6 @@ var uuid = (function(){
 })();
 
 var component = (function(name){
-	var loadedComponents = {}; // key is component name
-	var loadedInstances = {}; // key is uuid
-	var isLoaded = function(id){
-		return 'undefined' !== typeof loadedComponents[id];
-	}
-	var requireId = function(id, callback){
-		if (isLoaded(id)){
-			return callback(loadedComponents[id]);
-		}
-		// FIXME load component
-		component.loadComponent(id, callback);
-	}
-	var requireAll = function(components, callback){
-		if (0 === components.length){
-			return callback.apply(this, []);
-		}
-		var onLoad = function(callback){
-			var list = [];
-			for (var k in components){
-				var id = components[k];
-				if (!isLoaded(id)){
-					return false;
-				}
-				list.push(loadedComponents[id]);
-			}
-			return callback(list);
-		}
-		for (var k in components){
-			var id = components[k];
-			requireId(id, function(){
-				onLoad(function(list){
-					callback.apply(this, list);
-				});
-			});
-		}
-	}
 	var extend = function(){
 		var parent = null;
 		var id = null, guid = uuid.v4s(), depsId = [], deps = [], factory = null, extendWith = [], copyParentProperties = true;
