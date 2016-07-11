@@ -109,24 +109,26 @@ component.update = function(domElement){
 	component.lookup(domElement);
 	//console.log(placeholders);
 	for (var componentName in placeholders){
-		if (isLoaded(componentName)){ // FIXME MOVE TO COMPONENT DEFINITION
-			console.info(componentName, 'loaded at component.update');
-			var foundComponent = loadedComponents[componentName];
-			var el = null;
-			while (placeholder = placeholders[componentName].pop()){
-				var instance = new foundComponent();
-				placeholder.replace(foundComponent, instance, true);
-				//replacePlaceholderInstance(placeholder, instance, true);
-				component.lookup(placeholder.e); // lookup newly rendered placeholders
-				found++;
-				founda.push(componentName);
+		component.require([componentName], function(foundComponent){
+			if (isLoaded(componentName)){ // FIXME MOVE TO COMPONENT DEFINITION
+				console.info(componentName, 'loaded at component.update');
+				//var foundComponent = loadedComponents[componentName];
+				//var el = null;
+				while (placeholder = placeholders[componentName].pop()){
+					var instance = new foundComponent();
+					placeholder.replace(foundComponent, instance, true);
+					//replacePlaceholderInstance(placeholder, instance, true);
+					component.lookup(placeholder.e); // lookup newly rendered placeholders
+					found++;
+					founda.push(componentName);
+				}
 			}
-		}
+		});
 	}
-	if (found){
+	/*if (found){
 		console.log('update found', found, founda);
 		self.update();
-	}
+	}*/
 };
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ EVENTS
