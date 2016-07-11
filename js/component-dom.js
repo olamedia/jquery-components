@@ -115,7 +115,7 @@ component.update = function(domElement){
 				console.info(componentName, 'loaded at component.update');
 				//var foundComponent = loadedComponents[componentName];
 				//var el = null;
-				while (placeholder = placeholders[componentName].pop()){
+				while (var placeholder = placeholders[componentName].pop()){
 					var instance = new foundComponent();
 					placeholder.replace(foundComponent, instance, true);
 					//replacePlaceholderInstance(placeholder, instance, true);
