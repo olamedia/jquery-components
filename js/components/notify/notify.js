@@ -7,6 +7,7 @@
 
 
 	var notify = function(text, options, state){
+		console.log('notify()');
 		component.require(['notify'], function(notifyComponent){
 			var options = options || {};
 			options.text = text;
@@ -25,6 +26,7 @@
 			return this.notify(text, options, 'info');
 		},
 		'success': function(text, options){
+			console.log('notifyComponent.success');
 			return this.notify(text, options, 'success');
 		},
 		'error': function(text, options){
@@ -43,6 +45,7 @@
 			alertsLayer.setSpacing(spacing);
 		},
 		'render': function(){
+			console.log('notifyComponent.render()');
 			var self = this;
 			self.options = self.options || {};
 			self.delay = self.options.delay || 3200;
@@ -129,7 +132,7 @@
 	});
 
 
-	
+
 
 
 //notify.setSpacing('32px');
