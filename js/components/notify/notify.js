@@ -19,7 +19,7 @@
 
 	notify.container = alertsLayer;
 
-	new component('notify', {
+	var notifyComponent = new component('notify', {
 		'notify': notify,
 		'info': function(text, options){
 			return this.notify(text, options, 'info');
@@ -129,11 +129,11 @@
 	});
 
 
-	component.notify = notify;
+	
 
 
 //notify.setSpacing('32px');
-	component.notify.setSpacing(40);
+	notifyComponent.setSpacing(40);
 	/*component.growl({
 		'text': 'message text'
 	});*/
