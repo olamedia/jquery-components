@@ -35,6 +35,7 @@ var getPlaceholder = function(e){
 	var p = e.componentPlaceholder;
 	return p;
 };
+
 component.lookup = function(context){
 	//console.log('lookupPlaceholders', context);
 	var list = null;
@@ -94,6 +95,11 @@ component.prependTo = function(tagName, target, options){
 component.replace = function(domElement, options){ // replace domElement placeholder content with component instance content
 	var self = this;
 	return getPlaceholder(domElement).replace(self, new self(), options); // return new instance
+};
+component.instance = function(options){
+	var self = this;
+	var domElement = document.createElement('div');
+	return self.replace(domElement, options);
 };
 component.update = function(domElement){
 	//console.log('component.update', domElement);
