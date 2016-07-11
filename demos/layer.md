@@ -27,8 +27,8 @@ $(function(){
 
 <script>
 $(function(){
-	component.require(['layer'], function(layer){
-		var layer = new layer();
+	component.require(['layer'], function(layerComponent){
+		var layer = new layerComponent();
 		layer.setPosition('bottom center');
 		layer.$e.text('Layer');
 		layer.$e.css({
