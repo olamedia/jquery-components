@@ -12,7 +12,7 @@ var loadScript = function(id, callback){
 	loading[id] = true;
 	//console.log('loadScript', id);
 	//var src = id + '.js';
-	var src = "components/" + id + '/component.js'; // npm-like naming
+	var src = component.baseUrl + "/" + id + '/component.js'; // npm-like naming
 	if (typeof define === 'function' && define.amd) { // AMD
 		define([id], function(module){
 			//loadedComponents[id] = component;
@@ -36,6 +36,7 @@ var loadScript = function(id, callback){
 		//console.log('loadScript', id, head);
 	}
 }
+component.baseUrl = '.';
 component.loadComponent = function(id, callback){
 	loadScript(id, function(){
 		callback();
