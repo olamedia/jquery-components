@@ -104,6 +104,7 @@
 			self.$scrollbar.css({
 				'position': 'absolute',
 				'top': '0px',
+				'bottom': '0px',
 				'right': '0px',
 				'user-select': 'none'
 				//width: self.options.width + 'px',
