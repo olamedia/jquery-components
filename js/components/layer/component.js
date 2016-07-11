@@ -15,6 +15,7 @@
 		'instance': function(options){
 			var self = this;
 			var e = document.createElement('div');
+			$layersContainer.append($(e));
 			return self.replace(e, options);
 		},
 		'resize': function(){
