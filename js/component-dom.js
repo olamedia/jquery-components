@@ -142,4 +142,7 @@ component.init = function(){
 
 $(function(){
 	component.update();
+	$(window).on('resize', function(){
+		component.trigger('resize');
+	});
 });

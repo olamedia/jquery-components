@@ -1,3 +1,38 @@
+// +++++++++++++++++++++++++++++ EVENTS ++++++++++++++++++++++++++++++++++
+
+var eventListeners = {};
+var componentEvent = function(eventname){
+	var self = this;
+	self.name = eventname;
+}
+var addListener = function(eventname, listener){
+	if ('undefined' === typeof eventListeners[eventname]){
+		eventListeners[eventname] = [];
+	}
+	eventListeners[eventname].push(listener);
+}
+var removeListener = function(eventname, listener){
+	if ('undefined' === typeof eventListeners[eventname]){
+		return;
+	}
+	for (var k in eventListeners[eventname]){
+		if (listener === eventListeners[eventname][k]){
+			eventListeners[eventname].splice(k, 1);
+		}
+	}
+}
+var triggerGlobal = function(eventname){
+	console.info('global event', eventname);
+	for (var k in eventListeners[eventname]){
+		var l = eventListeners[eventname][k];
+		var e = new componentEvent(eventname);
+		e.target = l.target;
+		l(e);
+	}
+}
+// ----------------------------- EVENTS ----------------------------------
+
+
 var loadedComponents = {}; // key is component name
 var loadedInstances = {}; // key is uuid
 var isLoaded = function(id){
@@ -207,7 +242,30 @@ var component = (function(name){
 		loadedInstances[instance.id] = instance;
 		return instance;
 	}
-	return new extend(function(){}, name, function(){}, {
+	return new extend(function(){}, name, function(){
+		var self = this;
+		self.eventListeners = {};
+		self.on = function(eventname, callback){
+			var self = this;
+			callback.target = self;
+			addListener(eventname, callback); // listen global events
+			if ('undefined' === typeof eventListeners[eventname]){
+				self.eventListeners[eventname] = [];
+			}
+			self.eventListeners[eventname].push(callback);
+		}
+		self.trigger = function(eventname){
+			console.info('Trigger ' + eventname + '');
+			var self = this;
+			for (var k in self.eventListeners[eventname]){
+				var listener = self.eventListeners[eventname][k];
+				var evt = new componentEvent(eventname);
+				evt.target = self;
+				listener(evt);
+			}
+		};
+
+	}, {
 		require: function(idList, callback){
 			return requireAll(idList, function(){
 				callback.apply(this, arguments);
