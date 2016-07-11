@@ -14,29 +14,33 @@ Bootstrap alert based notifications
 ```js
 <script>
 $(function(){
-	component.notify.setSpacing(40);
-	component.notify.success('success text');
-	component('notify').notify('info text', {
-		// class: 'alert-info'
-	}, 'info');
-	component.notify.warning('warning text');
-	component.notify.warn('warn text');
-	component.notify.error('error text');
-	component.notify.danger('danger text');
+	component.require(['notify'], function(notify){
+		notify.setSpacing(40);
+		notify.success('success text');
+		notify.notify('info text', {
+			// class: 'alert-info'
+		}, 'info');
+		notify.warning('warning text');
+		notify.warn('warn text');
+		notify.error('error text');
+		notify.danger('danger text');
+	});
 });
 </script>
 ```
 
 <script>
 $(function(){
-	component.notify.setSpacing(40);
-	component.notify.success('success text');
-	component('notify').notify('info text', {
-		// class: 'alert-info'
-	}, 'info');
-	component.notify.warning('warning text');
-	component.notify.warn('warn text');
-	component.notify.error('error text');
-	component.notify.danger('danger text');
+	component.require(['notify'], function(notify){
+		notify.setSpacing(40);
+		notify.success('success text');
+		notify.notify('info text', {
+			// class: 'alert-info'
+		}, 'info');
+		notify.warning('warning text');
+		notify.warn('warn text');
+		notify.error('error text');
+		notify.danger('danger text');
+	});
 });
 </script>
