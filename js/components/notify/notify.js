@@ -42,6 +42,7 @@
 			return this.notify(text, options, 'warning');
 		},
 		'setSpacing': function(spacing){
+			console.log('notifyComponent.setSpacing');
 			alertsLayer.setSpacing(spacing);
 		},
 		'render': function(){
