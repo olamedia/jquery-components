@@ -31,7 +31,7 @@ $(function(){
 
 <script>
 $(function(){
-	console.log('component.require(['notify'], function(notify){');
+	console.log('component.require([\'notify\'], function(notify){');
 	component.require(['notify'], function(notify){
 		console.log('notify loaded');
 		notify.setSpacing(40);
