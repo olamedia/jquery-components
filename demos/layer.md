@@ -20,7 +20,7 @@ $(function(){
 			'border': 'dashed 4px #f00'
 		});
 		console.log('layer', layer);
-	}
+	});
 });
 </script>
 ```
@@ -37,6 +37,6 @@ $(function(){
 			'border': 'dashed 4px #f00'
 		});
 		console.log('layer', layer);
-	}
+	});
 });
 </script>
