@@ -249,7 +249,7 @@ var component = (function(name){
 			var self = this;
 			callback.target = self;
 			addListener(eventname, callback); // listen global events
-			if ('undefined' === typeof eventListeners[eventname]){
+			if ('undefined' === typeof self.eventListeners[eventname]){
 				self.eventListeners[eventname] = [];
 			}
 			self.eventListeners[eventname].push(callback);
