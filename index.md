@@ -135,6 +135,7 @@ new component('component-codename', {
 </body>
 ```
 
+<!--
 ## Binding
 
 <div class="panel panel-default">
@@ -185,6 +186,7 @@ new component('bind-example', function(){
 	}, 1000);
 })
 ```
+-->
 
 
 ## Clock Example
