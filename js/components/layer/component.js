@@ -1,4 +1,4 @@
-(function(window, $){
+(function(window, component, $){
 
 	var layers = [];
 
@@ -12,6 +12,11 @@
 	};
 
 	new component('layer', {
+		'instance': function(options){
+			var self = this;
+			var e = document.createElement('div');
+			return self.replace(e, options);
+		},
 		'resize': function(){
 			var self = this;
 			if (self.center){
@@ -135,10 +140,10 @@
 		//layer.$e.text('Boo');
 	});
 
-	component.layer = function(options){
+	/*component.layer = function(options){
 		return component('layer').appendTo('div', layersContainer, options || {});
-	};
+	};*/
 
 
 
-})(window, jQuery);
+})(window, component, jQuery);
