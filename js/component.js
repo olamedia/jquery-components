@@ -1,84 +1,4 @@
-
-(function(context, nameInContext, $, undef){
-
-	var attrPrefix = 'component';
-	var placeholderPrefix = 'placeholder';
-	var placeholderIdAttr = placeholderPrefix + '-found'
-	var components = {};
-	var renderedComponents = [];
-	var placeholders = {};
-
-	var eventListeners = {};
-	var componentEvent = function(eventname){
-		var self = this;
-		self.name = eventname;
-	}
-
-	var removeEventListener = function(el, eventName, handler) {
-		if (el.removeEventListener){
-			el.removeEventListener(eventName, handler);
-		}else{
-			el.detachEvent('on' + eventName, handler);
-		}
-	}
-	var addEventListener = function(el, eventName, handler) {
-		if (el.addEventListener) {
-			el.addEventListener(eventName, handler);
-		}else{
-			el.attachEvent('on' + eventName, function(){
-				handler.call(el);
-			});
-		}
-	}
-	var addListener = function(eventname, listener){
-		if ('undefined' === typeof eventListeners[eventname]){
-			eventListeners[eventname] = [];
-		}
-		eventListeners[eventname].push(listener);
-	}
-	var removeListener = function(eventname, listener){
-		if ('undefined' === typeof eventListeners[eventname]){
-			return;
-		}
-		for (var k in eventListeners[eventname]){
-			if (listener === eventListeners[eventname][k]){
-				eventListeners[eventname].splice(k, 1);
-			}
-		}
-	}
-	var triggerGlobal = function(eventname){
-		console.info('global event', eventname);
-		for (var k in eventListeners[eventname]){
-			var l = eventListeners[eventname][k];
-			var e = new componentEvent(eventname);
-			e.target = l.target;
-			l(e);
-		}
-	}
-
-	var uuid = (function(){
-		return {
-			v4: function(){
-				return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-					var r = Math.random()*16|0,
-					v = c == 'x' ? r : (r&0x3|0x8);
-					return v.toString(16);
-				});
-			},
-			v4n: function(){
-				return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-					var r = Math.random()*16|0,
-					v = c == 'x' ? r : (r&0x3|0x8);
-					return v.toString(16);
-				});
-			},
-			v4s: function(){
-				return base.convert(this.v4n(), base.b16, base.b60ola);
-			}
-		};
-	})();
-
-
+var uuid = (function(){
 	var base = (function(){
 		return {
 			//b2: '01',
@@ -126,411 +46,181 @@
 			}
 		};
 	})();
-
-	var placeholder = function(e){
-		var self = this;
-		self.components = {};
-		self.active = [];
-		self.e = e;
-		self.$e = $(e);
-		self.activate = function(cid){
-			self.components[cid] = true;
-			self.active.push(cid);
-			self.$e.attr('component-active', self.active.join(' '));
+	return {
+		v4: function(){
+			return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+				var r = Math.random()*16|0,
+				v = c == 'x' ? r : (r&0x3|0x8);
+				return v.toString(16);
+			});
+		},
+		v4n: function(){
+			return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+				var r = Math.random()*16|0,
+				v = c == 'x' ? r : (r&0x3|0x8);
+				return v.toString(16);
+			});
+		},
+		v4s: function(){
+			return base.convert(this.v4n(), base.b16, base.b60ola);
 		}
 	};
-	var getPlaceholder = function(e){
-		if ('undefined' === typeof e.componentPlaceholder){
-			e.componentPlaceholder = new placeholder(e);
-		}
-		var p = e.componentPlaceholder;
-		return p;
-	};
-	var lookupPlaceholders = function(context){
-		//console.log('lookupPlaceholders');
-		var list = null;
-		var selector = '[component]';
-		if (context){
-			list = $(selector, context)
-		}else{
-			list = $(selector)
-		}
-		var found = 0;
-		var foundComponents = [];
-		list.each(function(){
-			var el = this;
-			var p = getPlaceholder(el);
-			var cid = p.$e.attr('component');
-			var cida = cid.split(' ');
-			var inactive = 0;
-			for (var k in cida){
-				var cid = cida[k];
-				if (!placeholders[cid]){
-					placeholders[cid] = [];
-				}
-				//console.log('lookupPlaceholders cid', cid);
-				if ('' !== cid){
-					var status = p.components[cid];
-					//console.log('lookupPlaceholders cid found?', status);
-					if ('undefined' === typeof status){
-						p.components[cid] = false;
-						foundComponents.push(cid);
-						placeholders[cid].push(el);
-						//console.log('lookupPlaceholders cid found', status);
-						found++;
-					}
-					if(false === status){
-						inactive++;
-					}
-				}
-			}
-			p.$e.attr('component', '');
-			p.e.removeAttribute('component');
-			//console.log('lookupPlaceholders', p.components, p);
-			/*if (el.placeholderFound){
-				return;
-			}*/
-			//var id = uuid.v4s();
-			//$el.attr(placeholderIdAttr, id);
-			/*if (!placeholders[cid]){
-				placeholders[cid] = [];
-			}
-			found++;
-			el.placeholderFound = true;*/
-			//placeholders[cid].push(el);
-			//console.log('lookupPlaceholders', p);
-		});
-		//console.log('lookupPlaceholders', found, foundComponents, placeholders);
-	};
-	var replacePlaceholderInstance = function(p, component, isInstance, options){
-		/*if (!el.componentPlaceholder){
-			el.componentPlaceholder = new placeholder(el);
-		}
-		var p = el.componentPlaceholder;*/
-		//return replacePlaceholder(p.e, component, isInstance);
-		var el = p.e;
-		//console.log('replacePlaceholderInstance', el, p, component.codename);
-		if ('undefined' !== typeof p.components[component.codename] && true === p.components[component.codename]){
-			return; // already activated the same component
-		}
-		p.activate(component.codename); // mark active
-		p.$e.addClass(component.codename + '-component');
+})();
 
-
-		var c;
-		if (!isInstance){
-			c = component.instance();
-		}else{
-			c = component;
-		}
-		c.options = options;
-		p.e.component = c;
-		//$(el).removeAttr(placeholderIdAttr);
-		//el.placeholderReplaced = true;
-		p.$e.attr(component.codename + '-component', c.id);
-		//$(el).removeAttr('component');
-
-		c.e = p.e;
-		c.$e = p.$e;
-		renderedComponents.push(c);
-		//console.log('render', c.codename, c.id);
-		!c.render || c.render();
-		c.bindScope();
-		!c.service || c.service();
-
-		//c.bindModels();
-		///}
-		return c; // return instance
+var component = (function(name){
+	var loadedComponents = {}; // key is component name
+	var loadedInstances = {}; // key is uuid
+	var isLoaded = function(id){
+		return 'undefined' !== typeof loadedComponents[id];
 	}
-	var replacePlaceholderElement = function(el, component, isInstance, options){
-		var p = getPlaceholder(el);
-		//console.log('replacePlaceholderElement', el, p, component.codename);
-		return replacePlaceholderInstance(p, component, isInstance, options);
-		//if ($(el).attr(attrPrefix)){
-
+	var requireId = function(id, callback){
+		if (isLoaded(id)){
+			return callback(loadedComponents[id]);
+		}
+		// FIXME load component
+		component.loadComponent(id, callback);
 	}
-	var resize = function(domElement){
-		console.log('component.resize');
-		var c = this;
-
-	};
-	var update = function(domElement){
-		//console.log('component.update');
-		var c = this;
-		if (c){
-			//console.log(c);
-//			c.bindScope();
+	var requireAll = function(components, callback){
+		if (0 === components.length){
+			return callback.apply(this, []);
 		}
-		var found = 0;
-		var founda = [];
-		lookupPlaceholders(domElement);
-		for (var cid in placeholders){
-			if (components[cid]){
-				var component = components[cid];
-				var el = null;
-				while (e = placeholders[cid].pop()){
-					replacePlaceholderElement(e, component);
-					lookupPlaceholders(e); // lookup newly rendered placeholders
-					found++;
-					founda.push(cid);
+		var onLoad = function(callback){
+			var list = [];
+			for (var k in components){
+				var id = components[k];
+				if (!isLoaded(id)){
+					return false;
 				}
+				list.push(loadedComponents[id]);
 			}
+			return callback(list);
 		}
-		if (found){
-			console.log('update found', found, founda);
-			update();
-		}
-	}
-
-	var boundVariable = function(e){
-		var self = this;
-		self.change = null;
-		var value = null; // private
-		self.bind = function(e){
-			self.e = e;
-			if (null === value){
-				self.updateLocal();
-			}else{
-				self.updateDom();
-			}
-		};
-		self.updateLocal = function(){
-			value = self.get();
-		};
-		self.updateDom = function(){
-			if (self.e){
-				if (hasVal){
-					self.e.val(value);
-				}
-				self.e.text(value);
-			}
-		};
-		//self.e = $('');
-		self.set = function(val){
-			value = '' + val;
-			self.updateDom();
-		}
-		self.get = function(){
-			if (hasVal){
-				return self.e.val();
-			}
-			return self.e.text();
-		}
-		if (typeof '' == typeof e){
-			e = $('<'+e+'></'+e+'>');
-		}
-		e = e || $('<value></value>');
-		self.bind(e);
-		var tagName = $(e).get(0).tagName.toLowerCase();
-		var isEditable = (function(){
-			return 'input' == tagName || 'textarea' == tagName;
-		})();
-		var hasVal = (function(){
-			return 'input' == tagName || 'textarea' == tagName;
-		})();
-		if (isEditable){
-			$(e).on('change keyup paste', function(){
-				self.updateLocal();
-				if (self.change){
-					self.change();
-				}
+		for (var k in components){
+			var id = components[k];
+			requireId(id, function(){
+				onLoad(function(list){
+					callback.apply(this, list);
+				});
 			});
 		}
-
-	};
-
-	var bindVariable = function(el){
-		var v = new boundVariable(el);
-		return v;
 	}
-
-
-
-	var TYPE_FUNCTION = typeof function(){};
-
-	var componentInstance = function(codename){
-		var self = component(codename);
-		var inst = $.extend({}, self, {
-			id: uuid.v4s(),
-			//id: null,
-			scope: {},
-			scopeVar: {},
-			locals: {},
-			parent: null,
-			e: null
-		});
-		return inst;
-	}
-	var component = function(codename, render, service){
-		var self = this;
-		if (!render){
-			return component.get(codename);
+	var extend = function(){
+		var parent = null;
+		var id = null, guid = uuid.v4s(), depsId = [], deps = [], factory = null, extendWith = [], copyParentProperties = true;
+		// Parse arguments:
+		for (var k in arguments){ // arguments of extend()
+			var arg = arguments[k];
+			if (0 == k){
+				parent = arg;
+			}else{
+				if (true === arg || false === arg){
+					//console.log('bool');
+					copyParentProperties = arg;
+				}else if (typeof '' === typeof arg){
+					if ('' != arg && Object.defineProperty){
+						id = arg;
+					}
+				}else if (typeof function(){} === typeof arg){
+					factory = arg;//.apply(instance, []); // factory
+				}else if (typeof {} === typeof arg){
+					if (arg instanceof [].constructor){
+						depsId = arg;
+					}else{
+						extendWith.push(arg);
+						//for (var j in arg){
+						//	instance[j] = arg[j];
+						//}
+					}
+				}
+			}
 		}
-		self.codename = codename;
-		//$(function(){
-			// initialize components only after dom ready
-			var wasExtended = false;
-			if (TYPE_FUNCTION !== typeof render){
-				// object
-				wasExtended = true;
-				$.extend(self, render);
-				//console.log(self.codename, render, self);
-				render = null;
-			}
-			self.appendTo = function(tagName, target, options){
-				//var self = this;
-				target = $(target);
-				var $e = $('<'+tagName+'></'+tagName+'>');
-				$e.appendTo(target);
-				//self.$e = $e;
-				//self.e = $e.get(0);
-				//console.log('appendTo', $e.get(0), target.get(0));
-				return self.replace($e.get(0), options); // return instance
-			};
-			self.prependTo = function(tagName, target, options){
-				//var self = this;
-				target = $(target);
-				var $e = $('<'+tagName+'></'+tagName+'>');
-				$e.prependTo(target);
-				//self.$e = $e;
-				//self.e = $e.get(0);
-				//console.log('prependTo', $e.get(0), target.get(0));
-				return self.replace($e.get(0), options); // return instance
-			};
-			self.replace = function(e, options){
-				//var self = this;
-				return replacePlaceholderElement(e, self, false, options); // return instance
-				//return self;
-			};
-			self.render = wasExtended ? self.render : render; // check if was extended with object
-			self.service = wasExtended ? self.service : service; // check if was extended with object
-			self.update = update; // update
-			self.sync = function(){
+		if (copyParentProperties && parent){
+			extendWith.unshift(parent);
+		}
+		// Create constructor
+		var instance = (function(extend, id, parent, copyParentProperties, extendWith, depsId, factory){
+			//console.info('Creating constructor for', id);
+			var constructor = function(){
+				var parent = constructor;
 				var self = this;
-				for (var k in self.scopeVar){
-					self.scopeVar[k].set(self.scope[k]);
+				var a = [];
+				a.push(parent); // extend with parent
+				//a.push(constructor); // extend with self
+				for (var k in arguments){ // arguments of new component()
+					a.push(arguments[k]);
 				}
+				return extend.apply(parent, a);
 			};
-			self.update.bind(self);
-			self.bind = bindVariable;
-			self.bindScope = function(cb){
-				var self = this;
-				$('[model]', self.e).each(function(){
-					var me = this;
-					var $me = $(me);
-
-					var model = $me.attr('model').split('.');
-					$me.removeAttr('model');
-
-					var value = self.scope[model] || null;
-
-					var v = self.bind($me);
-					v.set(value);
-
-					self.scopeVar[model] = v;
-
+			var recursiveFactory = function(){
+				var instance = this;
+				//console.log('recursiveFactory', factory, extendWith);
+				requireAll(depsId, function(){
+					for (var i in extendWith){
+						var obj = extendWith[i];
+						for (var j in obj){
+							instance[j] = obj[j];
+						}
+					}
+					if (copyParentProperties && parent && parent.prototype.factory){
+						//console.log('recursiveFactory parent', parent.prototype.factory);
+						parent.prototype.factory.apply(instance, arguments);
+					}
+					if (null != factory){
+						factory.apply(instance, arguments);
+					}
 				});
-			}
-			self.instance = function(){
-				var self = this;
-				var inst = $.extend({}, self, {
-					id: uuid.v4s(),
-					//id: null,
-					scope: {},
-					scopeVar: {},
-					locals: {},
-					//parent: null,
-					e: null
+			};
+			/*if (null != factory){
+				console.log(id, 'factory()');
+				requireAll(depsId, function(){
+					factory.apply(constructor, arguments);
 				});
-				//!inst.resize || inst.on('resize', inst.resize);
-				return inst;
-			};
-			self.createElement = function(tag){
-				return document.createElement(tag);
-			};
-			//self.listeners = {};
-			/*self.addListener = function(eventname, callback){
-				var self = this;
-				if ('undefined' === typeof eventListeners[eventname]){
-					eventListeners[eventname] = [];
-				}
-				eventListeners[eventname].push(callback);
 			}*/
-			var eventListeners = {};
-			self.on = function(eventname, callback){
-				//console.info('Trigger ' + eventname + '');
-				var self = this;
-				callback.target = self;
-				addListener(eventname, callback); // listen global events
-				//self.addListener(eventname, callback);
-				// listen events on element
-				if ('undefined' === typeof eventListeners[eventname]){
-					eventListeners[eventname] = [];
-				}
-				eventListeners[eventname].push(callback);
-			}
-			self.trigger = function(eventname){
-				console.info('Trigger ' + eventname + '');
-				var self = this;
-				for (var k in eventListeners[eventname]){
-					var l = eventListeners[eventname][k];
-					var e = new componentEvent(eventname);
-					e.target = self;
-					l(e);
-				}
-			}
+			constructor.prototype.factory = recursiveFactory;
+			recursiveFactory.apply(constructor, []);
+			//console.dir(constructor);
+			return constructor;
+		})(extend, id, parent, copyParentProperties, extendWith, depsId, factory);
 
-			self.parent = function(){
-				var self = this;
-				if (!self.$e){
-					console.log('no element');
-					return null;
-				}
-				var parent = self.$e.parents('[component-active]');
-				//console.log('parent element', parent, parent.length ? parent.get(0).component : null);
-				return parent.length ? parent.get(0).component : null;
+
+		// extend class with
+		/*for (var i in extendWith){
+			var obj = extendWith[i];
+			for (var j in obj){
+				instance[j] = obj[j];
 			}
+		}*/
 
-			// FIXME move to instance  !self.resize || self.on('resize', self.resize);
-			//$(function(){
-				// wait for <body>
-				!self.extend || self.extend(); // run class extend() if exists
-			//});
-
-			update();
-		//});
-		components[codename] = self;
-	};
-	component.get = function(id){
-		return components[id];
-	};
-	var queryComponent = function(selector){
-		var $e = $(selector);
-		if ($e.length){
-			var e = $e.get(0);
-			if (e.component){
-				return e.component; // direct match
+		if (null !== id){
+			instance.componentName = id;
+			loadedComponents[id] = instance;
+			if (Object.defineProperty){
+				Object.defineProperty(instance, 'name', { // ie9+
+					enumerable: false,
+					configurable: false,
+					writable: false,
+					value: id
+				});
 			}
 		}
-		return null;
-	};
-	component.query = queryComponent;
-	component.trigger = triggerGlobal;
-	component.componentInstance = componentInstance;
-	component.replace = replacePlaceholderElement;
-	component.list = components;
-	component.rendered = renderedComponents;
-	component.update = update;
-	component.lookup = lookupPlaceholders;
-	context[nameInContext] = component;
-	component.v = boundVariable;
-	component.bind = bindVariable;
-	// component.lookup();
-	$(function(){
-		update();
-		$(window).on('resize', function(){
-			component.trigger('resize');
-		});
+		instance.id = uuid.v4s();
+		loadedInstances[instance.id] = instance;
+		return instance;
+	}
+	return new extend(function(){}, name, function(){}, {
+		require: function(idList, callback){
+			return requireAll(idList, function(){
+				callback.apply(this, arguments);
+			});
+		},
+		isLoaded: function(id){
+			return isLoaded(id);
+		},
+		setComponent: function(id, component){
+			loadedComponents[id] = component; // the only way to change loadedComponents from outside
+		},
+		loadComponent: function(id, callback){
+			console.error('Component', id, 'was not loaded');
+		}
 	});
-
-})(this, 'component', jQuery);
+})('component');
