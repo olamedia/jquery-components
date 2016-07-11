@@ -174,3 +174,5 @@
 	};*/
 	});
 })(window, jQuery);
+
+console.info('notify.js loaded');
