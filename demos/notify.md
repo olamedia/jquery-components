@@ -34,8 +34,11 @@ $(function(){
 	console.log('component.require([\'notify\'], function(notify){');
 	component.require(['notify'], function(notify){
 		console.log('notify loaded');
+		console.log('notify spacing');
 		notify.setSpacing(40);
+		console.log('notify success');
 		notify.success('success text');
+		console.log('notify notify');
 		notify.notify('info text', {
 			// class: 'alert-info'
 		}, 'info');
