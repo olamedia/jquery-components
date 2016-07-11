@@ -7,39 +7,41 @@
 
 
 	var notify = function(text, options, state){
-		var options = options || {};
-		options.text = text;
-		if (state){
-			options.class = 'alert-' + state;
-		}
-		return component('notify').prependTo('div', alertsLayer.$e, options || {});
+		component.require(['notify'], function(notifyComponent){
+			var options = options || {};
+			options.text = text;
+			if (state){
+				options.class = 'alert-' + state;
+			}
+			return (new notifyComponent()).prependTo('div', alertsLayer.$e, options || {});
+		});
 	};
 
 	notify.container = alertsLayer;
-	notify.info = function(text, options){
-		return component.notify(text, options, 'info');
-	}
-	notify.success = function(text, options){
-		return component.notify(text, options, 'success');
-	}
-	notify.error = function(text, options){
-		return component.notify(text, options, 'danger');
-	}
-	notify.danger = function(text, options){
-		return component.notify(text, options, 'danger');
-	}
-	notify.warn = function(text, options){
-		return component.notify(text, options, 'warning');
-	}
-	notify.warning = function(text, options){
-		return component.notify(text, options, 'warning');
-	}
-	notify.setSpacing = function(spacing){
-		alertsLayer.setSpacing(spacing);
-	};
 
 	new component('notify', {
 		'notify': notify,
+		'info': function(text, options){
+			return this.notify(text, options, 'info');
+		},
+		'success': function(text, options){
+			return this.notify(text, options, 'success');
+		},
+		'error': function(text, options){
+			return this.notify(text, options, 'danger');
+		},
+		'danger': function(text, options){
+			return this.notify(text, options, 'danger');
+		},
+		'warn': function(text, options){
+			return this.notify(text, options, 'warning');
+		},
+		'warning': function(text, options){
+			return this.notify(text, options, 'warning');
+		},
+		'setSpacing': function(spacing){
+			alertsLayer.setSpacing(spacing);
+		},
 		'render': function(){
 			var self = this;
 			self.options = self.options || {};
