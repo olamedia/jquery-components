@@ -28,6 +28,7 @@
 		});
 	});
 	new component('popup', {
+		'includeCss': true,
 		'resize': function(){
 			var self = this;
 			console.log(self);
