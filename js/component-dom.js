@@ -148,3 +148,15 @@ $(function(){
 		component.trigger('resize');
 	});
 });
+
+
+component.query = function(selector){
+	var $e = $(selector);
+	if ($e.length){
+		var e = $e.get(0);
+		if (e.component){
+			return e.component; // direct match
+		}
+	}
+	return null;
+};
