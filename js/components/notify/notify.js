@@ -23,27 +23,28 @@
 	var notifyComponent = new component('notify', {
 		'notify': notify,
 		'info': function(text, options){
-			return this.notify(text, options, 'info');
+			return notify(text, options, 'info');
 		},
 		'success': function(text, options){
 			console.log('notifyComponent.success');
-			return this.notify(text, options, 'success');
+			return notify(text, options, 'success');
 		},
 		'error': function(text, options){
-			return this.notify(text, options, 'danger');
+			return notify(text, options, 'danger');
 		},
 		'danger': function(text, options){
-			return this.notify(text, options, 'danger');
+			return notify(text, options, 'danger');
 		},
 		'warn': function(text, options){
-			return this.notify(text, options, 'warning');
+			return notify(text, options, 'warning');
 		},
 		'warning': function(text, options){
-			return this.notify(text, options, 'warning');
+			return notify(text, options, 'warning');
 		},
 		'setSpacing': function(spacing){
 			console.log('notifyComponent.setSpacing');
 			alertsLayer.setSpacing(spacing);
+			console.log('notifyComponent.setSpacing OK');
 		},
 		'render': function(){
 			console.log('notifyComponent.render()');
