@@ -20,8 +20,8 @@ var loadScript = function(id, callback){
 	//console.log('loadScript', id);
 	//var src = id + '.js';
 	var path = component.baseUrl + "/" + id;
-	var src = path + '/component.js'; // npm-like naming
-	var css = path + '/component.css';
+	var src = path + '/' + id + '.js'; // npm-like naming
+	var css = path + '/' + id + '.css';
 	if (typeof define === 'function' && define.amd) { // AMD
 		define([id], function(module){
 			//loadedComponents[id] = component;
