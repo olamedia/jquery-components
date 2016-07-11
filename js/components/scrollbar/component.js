@@ -124,7 +124,7 @@
 				drag = true;
 				console.log('mousedown');
 				e.preventDefault();
-        return false;
+				return false;
 			});
 			$(window).on('mouseup', function(e){
 				drag = false;
