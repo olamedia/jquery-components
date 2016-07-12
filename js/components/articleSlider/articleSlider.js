@@ -1,12 +1,13 @@
 (function(window, $, undef){
 
-	new component('articleSlider-slide', {
+	/*new component('articleSlider-slide', {
 		'render': function(){
 
 		}
-	});
+	});*/
 
-	new component('articleSlider', {
+	var articleSliderComponent = new component('articleSlider', {
+		'includeCss': true,
 		'resize': function(){
 			var self = this;
 			var w = self.$e.width();
@@ -111,5 +112,6 @@
 			self.resize();
 		}
 	});
-
+	
+	articleSliderComponent.ready();
 })(window, jQuery);

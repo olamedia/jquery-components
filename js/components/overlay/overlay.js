@@ -1,5 +1,5 @@
 (function(){
-
+ /// DEPRECATED
 	var $container = $(document.createElement('div')).css({
 		'z-index': 1999999999
 	});
