@@ -48,6 +48,16 @@ var requireId = function(componentName, callback){
 }
 var onComponentLoad = function(componentName){
 	console.log('onComponentLoad', componentName);
+
+	var foundComponent = loadedComponents[componentName];
+
+	var path = component.baseUrl + "/" + componentName;
+	//var src = path + '/' + id + '.js'; // npm-like naming
+	var css = path + '/' + componentName + '.css';
+
+	if (true === foundComponent.includeCss){
+		loadCss(css);
+	}
 	//var self = this;
 	//var componentName = self.componentName;
 	if ('undefined' != typeof onLoadListeners[componentName]){
