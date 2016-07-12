@@ -2,7 +2,7 @@
 
 	var TYPE_UNDEF = typeof undef;
 
-	new component('slider', {
+	var sliderComponent = new component('slider', {
 		'extend': function(){
 			var self = this; // class object
 
@@ -215,6 +215,6 @@
 			//self.$e.children
 		}
 	});
-
+	sliderComponent.ready();
 
 })(window, jQuery);
