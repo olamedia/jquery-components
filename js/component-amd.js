@@ -267,8 +267,9 @@ var component = (function(name){
 
 	}, {
 		require: function(idList, callback){
+			var self = this;
 			return requireAll(idList, function(){
-				callback.apply(this, arguments);
+				callback.apply(self, arguments);
 			});
 		},
 		isLoaded: function(id){
