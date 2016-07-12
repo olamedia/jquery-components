@@ -5,6 +5,7 @@
 
 
 	var appmenuComponent = new component('appmenu', {
+		'includeCss': true,
 		'render': function(){
 			var self = this;
 			self.moreText = self.$e.attr('more-text') || 'more';
