@@ -63,31 +63,33 @@ var requireAll = function(components, callback){
 	if (0 === components.length){
 		return callback.apply(this, []);
 	}
-	var onLoad = function(callback){
-		console.log(onLoad, components);
-		var list = [];
-		var complete = true;
-		for (var k in components){
-			var id = components[k];
-			if (!isLoaded(id)){
-				if ('undefined' == typeof onLoadListeners[id]){
-					onLoadListeners[id] = [];
-				}
-				onLoadListeners[id].push(function(){
-					onLoad(function(list){
-						callback.apply(this, list);
+	var onLoad = (function(components, callback){
+		return function(callback){
+			console.log(onLoad, components);
+			var list = [];
+			var complete = true;
+			for (var k in components){
+				var id = components[k];
+				if (!isLoaded(id)){
+					if ('undefined' == typeof onLoadListeners[id]){
+						onLoadListeners[id] = [];
+					}
+					onLoadListeners[id].push(function(){
+						onLoad(function(list){
+							callback.apply(this, list);
+						});
 					});
-				});
-				complete = false;
-			}else{
-				list.push(loadedComponents[id]);
+					complete = false;
+				}else{
+					list.push(loadedComponents[id]);
+				}
 			}
+			if (!complete){
+				return false;
+			}
+			return callback(list);
 		}
-		if (!complete){
-			return false;
-		}
-		return callback(list);
-	}
+	})(components, callback);
 	for (var k in components){
 		var id = components[k];
 		if ('undefined' == typeof onLoadListeners[id]){
