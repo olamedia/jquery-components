@@ -3,6 +3,7 @@
 	component.require(['layer'], function(layerComponent){
 		var drawerComponent = new component('drawer', {
 			'detached': function(){
+				var e = document.createElement('div');
 				return drawerComponent.replace(e);
 			},
 			'render': function(){
