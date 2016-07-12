@@ -307,10 +307,12 @@ var component = (function(name){
 		require: function(idList, callback){
 			var self = this;
 			console.log('component.require', idList, self, callback);
-			return requireAll(idList, function(){
-				console.log('component.require OK', idList, self, callback);
-				callback.apply(self, arguments);
-			});
+			return (function(callback){
+				return requireAll(idList, function(){
+					console.log('component.require OK', idList, self, callback);
+					callback.apply(self, arguments);
+				});
+			})(callback);
 		},
 		isLoaded: function(id){
 			return isLoaded(id);
