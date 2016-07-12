@@ -27,7 +27,7 @@
 					$test.detach();
 					return w;
 				})();
-				self.scrollEmu = component('overlay').personal();
+				self.scrollEmu = layerComponent.instance();//component('overlay').personal();
 				self.scrollEmu.$e.css({
 					'background': '#fff',
 					'overflow-x': 'hidden',
