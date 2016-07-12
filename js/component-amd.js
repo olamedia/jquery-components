@@ -52,6 +52,7 @@ var onComponentLoad = function(componentName){
 	//var componentName = self.componentName;
 	if ('undefined' != typeof onLoadListeners[componentName]){
 		var listeners = onLoadListeners[componentName];
+		console.info('onComponentLoad', componentName, 'listeners', listeners);
 		for (var k in listeners){
 			var listener = listeners[k];
 			listener();
