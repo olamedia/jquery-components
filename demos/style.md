@@ -22,7 +22,9 @@ Appending to `style` tag
 <div id="style-example"></div>
 <script>
 $(function(){
-	component('style').instance().append('#style-example{padding: 10px; background: tomato;}');
+	component.require(['style'], function(style){
+		style.append('#style-example{padding: 10px; background: tomato;}');
+	});
 });
 </script>
 
@@ -31,5 +33,9 @@ $(function(){
 ```
 
 ```js
-component('style').instance().append('#style-example{padding: 10px; background: tomato;}');
+$(function(){
+	component.require(['style'], function(style){
+		style.append('#style-example{padding: 10px; background: tomato;}');
+	});
+});
 ```
