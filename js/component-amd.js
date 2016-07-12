@@ -88,7 +88,7 @@ var requireAll = function(components, callback){
 			if (!complete){
 				return false;
 			}
-			return callback(list);
+			return callback.apply(this, list);
 		}
 	})(components, callback);
 	/*for (var k in components){
