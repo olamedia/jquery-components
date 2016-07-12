@@ -110,7 +110,7 @@ component.update = function(domElement){
 	component.lookup(domElement);
 	//console.log(placeholders);
 	for (var componentName in placeholders){
-		component.require([componentName], function(foundComponent){
+		component.require([componentName], function domLoader(foundComponent){
 			if (isLoaded(componentName)){ // FIXME MOVE TO COMPONENT DEFINITION
 				console.info(componentName, 'loaded at component.update');
 				//var foundComponent = loadedComponents[componentName];
