@@ -47,6 +47,7 @@ var requireId = function(id, callback){
 	component.loadComponent(id, callback);
 }
 var onComponentLoad = function(componentName){
+	console.log('onComponentLoad', componentName);
 	//var self = this;
 	//var componentName = self.componentName;
 	if ('undefined' != typeof onLoadListeners[componentName]){

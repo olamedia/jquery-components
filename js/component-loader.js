@@ -54,7 +54,7 @@ var loadScript = function(id, callback){
 component.baseUrl = '.';
 component.loadComponent = function(id, callback){
 	loadScript(id, function(){
-		onComponentLoad();
+		onComponentLoad(id);
 		callback();
 	});
 }
