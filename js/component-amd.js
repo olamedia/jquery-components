@@ -90,7 +90,7 @@ var requireAll = function(components, callback){
 			return callback(list);
 		}
 	})(components, callback);
-	for (var k in components){
+	/*for (var k in components){
 		var id = components[k];
 		if ('undefined' == typeof onLoadListeners[id]){
 			onLoadListeners[id] = [];
@@ -100,7 +100,7 @@ var requireAll = function(components, callback){
 				callback.apply(this, list);
 			});
 		});
-	}
+	}*/
 	for (var k in components){
 		var id = components[k];
 		requireId(id, function(){
