@@ -8,14 +8,14 @@
 
 	var notify = function(text, options, state){
 		console.log('notify()');
-		component.require(['notify'], function(notifyComponent){
+		//component.require(['notify'], function(notifyComponent){
 			var options = options || {};
 			options.text = text;
 			if (state){
 				options.class = 'alert-' + state;
 			}
 			return (new notifyComponent()).prependTo('div', alertsLayer.$e, options || {});
-		});
+		//});
 	};
 
 	notify.container = alertsLayer;
