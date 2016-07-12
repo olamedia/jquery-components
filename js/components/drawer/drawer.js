@@ -175,6 +175,7 @@
 				self.open = function(){
 					self.overlay.detach();
 					self.overlay.reattach();
+					self.overlay.show();
 					self.$e.stop();
 					if (right){
 						self.$e.animate({

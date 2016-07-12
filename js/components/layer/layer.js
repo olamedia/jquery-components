@@ -18,6 +18,14 @@
 			$layersContainer.append($(e));
 			return self.replace(e, options);
 		},
+		'hide': function(){
+			var self = this;
+			self.$e.hide();
+		},
+		'show': function(){
+			var self = this;
+			self.$e.show();
+		},
 		'detach': function(){
 			var self = this;
 			self.$e.detach();
