@@ -33,7 +33,7 @@ var loadScript = function(id, callback){
 	}else{	// Browser
 		var head = document.getElementsByTagName('head')[0];
 		var script = document.createElement('script');
-		script.onload = function(){
+		/*script.onload = function(){
 			//console.log('loadScript onload', id, callback);
 			if (isLoaded(id)){
 				var component = loadedComponents[id];
@@ -45,16 +45,16 @@ var loadScript = function(id, callback){
 				var callback = loadCallbacks[id][k];
 				callback();
 			}
-		}
+		}*/
 		script.src = src;
 		head.appendChild(script);
 		//console.log('loadScript', id, head);
 	}
 }
 component.baseUrl = '.';
-component.loadComponent = function(id, callback){
-	loadScript(id, function(){
-		onComponentLoad(id);
-		callback();
+component.loadComponent = function(componentName){
+	loadScript(componentName, function(){
+		/*onComponentLoad(id);
+		callback();*/
 	});
 }

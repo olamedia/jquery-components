@@ -11,11 +11,11 @@ Bootstrap alert based notifications
 
 ## Example
 
-```js
 <script>
 $(function(){
-	component.require(['notify'], function(notify){
-		notify.setSpacing(40);
+	component.require(['layer','notify'], function(notify){
+		console.log('LAYER, NOTIFY');
+		/*notify.setSpacing(40);
 		notify.success('success text');
 		notify.notify('info text', {
 			// class: 'alert-info'
@@ -23,29 +23,7 @@ $(function(){
 		notify.warning('warning text');
 		notify.warn('warn text');
 		notify.error('error text');
-		notify.danger('danger text');
-	});
-});
-</script>
-```
-
-<script>
-$(function(){
-	console.log('component.require([\'notify\'], function(notify){');
-	component.require(['notify'], function(notify){
-		console.log('component.require notify callback');
-		console.log('notify spacing');
-		notify.setSpacing(40);
-		console.log('notify success');
-		notify.success('success text');
-		console.log('notify notify');
-		notify.notify('info text', {
-			// class: 'alert-info'
-		}, 'info');
-		notify.warning('warning text');
-		notify.warn('warn text');
-		notify.error('error text');
-		notify.danger('danger text');
+		notify.danger('danger text');*/
 	});
 });
 </script>

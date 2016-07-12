@@ -27,7 +27,7 @@
 			closeAllPopups();
 		});
 	});
-	new component('popup', {
+	var popupComponent = new component('popup', {
 		'includeCss': true,
 		'resize': function(){
 			var self = this;
@@ -197,4 +197,5 @@
 			}
 		}
 	});
+	popupComponent.ready();
 })(window, jQuery);

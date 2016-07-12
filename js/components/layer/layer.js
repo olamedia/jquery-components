@@ -11,7 +11,7 @@
 
 	};
 
-	new component('layer', {
+	var layerComponent = new component('layer', {
 		'instance': function(options){
 			var self = this;
 			var e = document.createElement('div');
@@ -140,7 +140,7 @@
 		});*/
 		//layer.$e.text('Boo');
 	});
-
+	layerComponent.ready();
 	/*component.layer = function(options){
 		return component('layer').appendTo('div', layersContainer, options || {});
 	};*/

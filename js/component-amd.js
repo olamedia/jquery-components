@@ -39,12 +39,12 @@ var isLoaded = function(id){
 	return 'undefined' !== typeof loadedComponents[id];
 }
 var onLoadListeners = {};
-var requireId = function(id, callback){
-	if (isLoaded(id)){
-		return callback(loadedComponents[id]);
+var requireId = function(componentName, callback){
+	if (isLoaded(componentName)){
+		return onComponentLoad(componentName);//callback(loadedComponents[id]);
 	}
 	// FIXME load component
-	component.loadComponent(id, callback);
+	component.loadComponent(componentName);
 }
 var onComponentLoad = function(componentName){
 	console.log('onComponentLoad', componentName);
@@ -64,33 +64,44 @@ var requireAll = function(components, callback){
 	if (0 === components.length){
 		return callback.apply(this, []);
 	}
-	var onLoad = (function(components, callback){
+	var onLoadAll = (function(components, callback){
+		var executed = false;
 		return function(){
 			console.log('onLoad', components, callback);
 			var list = [];
 			var complete = true;
 			for (var k in components){
-				var id = components[k];
-				if (!isLoaded(id)){
-					if ('undefined' == typeof onLoadListeners[id]){
-						onLoadListeners[id] = [];
-					}
-					onLoadListeners[id].push(function(){
-						onLoad(function(list){
-							callback.apply(this, list);
-						});
-					}); // defer onload
+				var componentName = components[k];
+				if (!isLoaded(componentName)){
 					complete = false;
 				}else{
-					list.push(loadedComponents[id]);
+					list.push(loadedComponents[componentName]);
 				}
 			}
 			if (!complete){
 				return false;
 			}
-			return callback.apply(this, list);
+			if (!executed){ // execute once only
+				executed = true;
+				return callback.apply(this, list);
+			}
 		}
 	})(components, callback);
+
+	for (var k in components){
+		var componentName = components[k];
+		if (!isLoaded(componentName)){
+			if ('undefined' == typeof onLoadListeners[componentName]){
+				onLoadListeners[componentName] = [];
+			}
+			onLoadListeners[componentName].push(function(){
+				onLoadAll(function(list){
+					callback.apply(this, list);
+				});
+			}); // defer onload
+		}
+	}
+
 	/*for (var k in components){
 		var id = components[k];
 		if ('undefined' == typeof onLoadListeners[id]){
@@ -103,8 +114,8 @@ var requireAll = function(components, callback){
 		});
 	}*/
 	for (var k in components){
-		var id = components[k];
-		requireId(id, onLoad);
+		var componentName = components[k];
+		requireId(componentName);
 	}
 }
 var uuid = (function(){
@@ -266,7 +277,7 @@ var component = (function(name){
 
 		if (null !== id){
 			instance.componentName = id;
-			loadedComponents[id] = instance;
+			//loadedComponents[id] = instance;
 			if (Object.defineProperty){
 				Object.defineProperty(instance, 'name', { // ie9+
 					enumerable: false,
@@ -304,9 +315,18 @@ var component = (function(name){
 		};
 
 	}, {
+		ready: function(){
+			var self = this;
+			// component is created in configured, call onload callbacks
+			if ('undefined' != typeof self.componentName){
+				console.log(self.componentName, 'READY');
+				loadedComponents[self.componentName] = self;
+				onComponentLoad(self.componentName);
+			}
+		},
 		require: function(idList, callback){
 			var self = this;
-			console.log('component.require', idList, self, callback);
+			console.log('component.require', idList, callback);
 			return (function(callback){
 				return requireAll(idList, function(){
 					console.log('component.require OK', idList, self, callback);
@@ -320,7 +340,7 @@ var component = (function(name){
 		setComponent: function(id, component){
 			loadedComponents[id] = component; // the only way to change loadedComponents from outside
 		},
-		loadComponent: function(id, callback){
+		loadComponent: function(id){
 			console.error('Component', id, 'was not loaded');
 		}
 	});
