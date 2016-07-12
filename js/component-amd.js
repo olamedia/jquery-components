@@ -64,7 +64,9 @@ var requireAll = function(components, callback){
 		return callback.apply(this, []);
 	}
 	var onLoad = function(callback){
+		console.log(onLoad, components);
 		var list = [];
+		var complete = true;
 		for (var k in components){
 			var id = components[k];
 			if (!isLoaded(id)){
@@ -76,9 +78,13 @@ var requireAll = function(components, callback){
 						callback.apply(this, list);
 					});
 				});
-				return false;
+				complete = false;
+			}else{
+				list.push(loadedComponents[id]);
 			}
-			list.push(loadedComponents[id]);
+		}
+		if (!complete){
+			return false;
 		}
 		return callback(list);
 	}
