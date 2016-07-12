@@ -1,5 +1,5 @@
 (function(window, $){
-	new component('menu', {
+	var menuComponent = new component('menu', {
 		'includeCss': true,
 		'render': function(){
 			var self = this;
@@ -47,5 +47,5 @@
 			});
 		}
 	});
-
+	menuComponent.ready();
 })(window, jQuery);

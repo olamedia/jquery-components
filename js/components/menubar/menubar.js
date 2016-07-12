@@ -1,4 +1,4 @@
-new component('menubar', {
+var menubarComponent = new component('menubar', {
 	'render': function(){
 		var self = this;
 		self.focus = function(){
@@ -56,3 +56,4 @@ new component('menubar', {
 		});
 	}
 });
+menubarComponent.ready();

@@ -1,6 +1,6 @@
 (function(window, $){
 
-	new component('scrollbar', {
+	var scrollbarComponent = new component('scrollbar', {
 		'includeCss': true,
 		'dragResize': function(dx, dy){
 			var self = this;
@@ -148,5 +148,5 @@
 			self.resize();
 		}
 	});
-
+	scrollbarComponent.ready();
 })(window, jQuery);
