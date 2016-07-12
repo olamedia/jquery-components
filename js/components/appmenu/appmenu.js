@@ -4,15 +4,9 @@
 
 
 
-	new component('appmenu', {
-		'extend': function(){
-			//component('overlay').instance();
-		},
+	var appmenuComponent = new component('appmenu', {
 		'render': function(){
 			var self = this;
-			component(self.codename).instance = function(){
-				return self; // singleton
-			}
 			self.moreText = self.$e.attr('more-text') || 'more';
 			//component('overlay').instance();
 			var $placeholder = self.$e;
@@ -164,5 +158,5 @@
 			}, 1000);*/
 		}
 	});
-
+	appmenuComponent.ready();
 })();
