@@ -18,6 +18,14 @@
 			$layersContainer.append($(e));
 			return self.replace(e, options);
 		},
+		'detach': function(){
+			var self = this;
+			self.$e.detach();
+		},
+		'reattach': function(){
+			var self = this;
+			self.$e.appendTo($layersContainer);
+		},
 		'resize': function(){
 			var self = this;
 			if (self.center){
