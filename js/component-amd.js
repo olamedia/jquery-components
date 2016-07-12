@@ -79,7 +79,7 @@ var requireAll = function(components, callback){
 						onLoad(function(list){
 							callback.apply(this, list);
 						});
-					});
+					}); // defer onload
 					complete = false;
 				}else{
 					list.push(loadedComponents[id]);
@@ -307,6 +307,7 @@ var component = (function(name){
 		require: function(idList, callback){
 			var self = this;
 			return requireAll(idList, function(){
+				console.log('require', idList, self, callback);
 				callback.apply(self, arguments);
 			});
 		},
