@@ -64,8 +64,8 @@ var requireAll = function(components, callback){
 		return callback.apply(this, []);
 	}
 	var onLoad = (function(components, callback){
-		return function(callback){
-			console.log(onLoad, components);
+		return function(){
+			console.log('onLoad', components, callback);
 			var list = [];
 			var complete = true;
 			for (var k in components){
@@ -103,11 +103,7 @@ var requireAll = function(components, callback){
 	}*/
 	for (var k in components){
 		var id = components[k];
-		requireId(id, function(){
-			onLoad(function(list){
-				callback.apply(this, list);
-			});
-		});
+		requireId(id, onLoad);
 	}
 }
 var uuid = (function(){
