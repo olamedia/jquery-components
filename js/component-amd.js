@@ -306,8 +306,9 @@ var component = (function(name){
 	}, {
 		require: function(idList, callback){
 			var self = this;
+			console.log('component.require', idList, self, callback);
 			return requireAll(idList, function(){
-				console.log('require', idList, self, callback);
+				console.log('component.require OK', idList, self, callback);
 				callback.apply(self, arguments);
 			});
 		},
