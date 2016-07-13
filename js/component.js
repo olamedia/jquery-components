@@ -367,7 +367,8 @@
 		});
 	})('component');
 
-	component.require(['jquery'], function($){
+	component.require(['jquery'], function(jquery){
+		var $ = jquery.jQuery;
 		var placeholders = {};
 		var placeholder = function(e){
 			var self = this;
