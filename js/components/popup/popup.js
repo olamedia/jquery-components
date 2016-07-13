@@ -31,7 +31,7 @@
 		'includeCss': true,
 		'resize': function(){
 			var self = this;
-			console.log(self);
+			//console.log(self);
 			self.$p.css({
 				'left': (self.$e.offset().left - self.$e.offsetParent().offset().left + (self.aside?self.$e.outerWidth():0)) + 'px'
 			});
@@ -42,7 +42,7 @@
 			}
 		},
 		'render': function(){
-			console.log('render popup');
+			//console.log('render popup');
 			var self = this;
 			popups.push(self);
 			self.$t = self.$e.children('[popup-trigger]');
