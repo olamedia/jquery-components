@@ -367,6 +367,77 @@
 		});
 	})('component');
 
+
+
+	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ LOADER
+	var loadCallbacks = {};
+	var loading = {};
+	component.loadCss = function(src, callback){
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.href = src;
+		link.onload = function(){
+			if (callback){
+				callback();
+			}
+		};
+		var head = document.getElementsByTagName('head')[0];
+		head.appendChild(link);
+	}
+	var loadScript = function(id, callback){
+		// load once, execute all callbacks
+		if ('undefined' === typeof loadCallbacks[id]){
+			loadCallbacks[id] = [];
+		}
+		loadCallbacks[id].push(callback);
+		if ('undefined' !== typeof loading[id]){
+			return;
+		}
+		loading[id] = true;
+		//console.log('loadScript', id);
+		//var src = id + '.js';
+		var path = component.baseUrl + "/" + id;
+		var src = path + '/' + id + '.js'; // npm-like naming
+		var css = path + '/' + id + '.css';
+		if (typeof define === 'function' && define.amd) { // AMD
+			define([id], function(module){
+				//loadedComponents[id] = component;
+				callback();
+			});
+		}else if (typeof module === 'object' && module.exports) { // Node
+			var module = require(src);
+			callback();
+		}else{	// Browser
+			var head = document.getElementsByTagName('head')[0];
+			var script = document.createElement('script');
+			/*script.onload = function(){
+				//console.log('loadScript onload', id, callback);
+				if (isLoaded(id)){
+					var component = loadedComponents[id];
+					if (true === component.includeCss){
+						loadCss(css);
+					}
+				}
+				for (var k in loadCallbacks[id]){
+					var callback = loadCallbacks[id][k];
+					callback();
+				}
+			}*/
+			script.src = src;
+			head.appendChild(script);
+			//console.log('loadScript', id, head);
+		}
+	}
+	component.baseUrl = '.';
+	component.loadComponent = function(componentName){
+		loadScript(componentName, function(){
+			/*onComponentLoad(id);
+			callback();*/
+		});
+	}
+
+	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ DOM
+
 	component.require(['jquery'], function(jquery){
 		var $ = jquery.jQuery;
 		var placeholders = {};
@@ -521,10 +592,6 @@
 			}*/
 		};
 
-		// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ EVENTS
-
-		// ------------------------------------------------------------------- EVENTS
-
 		component.init = function(){
 			var self = this;
 			!self.render || self.render();
@@ -553,72 +620,6 @@
 
 	});
 
-	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ LOADER
-	var loadCallbacks = {};
-	var loading = {};
-	component.loadCss = function(src, callback){
-		var link = document.createElement('link');
-		link.rel = 'stylesheet';
-		link.href = src;
-		link.onload = function(){
-			if (callback){
-				callback();
-			}
-		};
-		var head = document.getElementsByTagName('head')[0];
-		head.appendChild(link);
-	}
-	var loadScript = function(id, callback){
-		// load once, execute all callbacks
-		if ('undefined' === typeof loadCallbacks[id]){
-			loadCallbacks[id] = [];
-		}
-		loadCallbacks[id].push(callback);
-		if ('undefined' !== typeof loading[id]){
-			return;
-		}
-		loading[id] = true;
-		//console.log('loadScript', id);
-		//var src = id + '.js';
-		var path = component.baseUrl + "/" + id;
-		var src = path + '/' + id + '.js'; // npm-like naming
-		var css = path + '/' + id + '.css';
-		if (typeof define === 'function' && define.amd) { // AMD
-			define([id], function(module){
-				//loadedComponents[id] = component;
-				callback();
-			});
-		}else if (typeof module === 'object' && module.exports) { // Node
-			var module = require(src);
-			callback();
-		}else{	// Browser
-			var head = document.getElementsByTagName('head')[0];
-			var script = document.createElement('script');
-			/*script.onload = function(){
-				//console.log('loadScript onload', id, callback);
-				if (isLoaded(id)){
-					var component = loadedComponents[id];
-					if (true === component.includeCss){
-						loadCss(css);
-					}
-				}
-				for (var k in loadCallbacks[id]){
-					var callback = loadCallbacks[id][k];
-					callback();
-				}
-			}*/
-			script.src = src;
-			head.appendChild(script);
-			//console.log('loadScript', id, head);
-		}
-	}
-	component.baseUrl = '.';
-	component.loadComponent = function(componentName){
-		loadScript(componentName, function(){
-			/*onComponentLoad(id);
-			callback();*/
-		});
-	}
 
 	context[nameInContext] = component;
 })(this, 'component');
