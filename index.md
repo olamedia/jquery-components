@@ -50,27 +50,10 @@ title: jQuery components
 
 ## Component definition
 
-new component(String codename, Function render[, Function service])
-
-```js
-new component('component-codename', function(){
-	// "render": create basic template
-	var self = this; // "this" points to component instance
-}, function(){
-	// "service": deferred updates (ajax, setInterval, etc)
-});
-```
-
-## Alternative (extended) component definition
-
-new component(String codename, Object definition)
+new component(String name, Object definition)
 
 ```js
 new component('component-codename', {
-	'extend': function(){
-		// modify/extend component class before creating first instance
-		var self = this; // "this" points to component class
-	},
 	'render': function(){
 		// create basic template
 		var self = this; // "this" points to component instance
@@ -98,17 +81,18 @@ new component('component-codename', {
 	</div>
 </div>
 <script>
-	new component('component-codename', function(){
-		var self = this;
-		self.$e.before($(document.createElement('div')).addClass('panel-heading').text('Sample text'));
-	}, function(){
-		var self = this;
-		var i = 0;
-		setInterval(function(){
-			// simple example
-			self.$e.text(i++);
-		}, 1000);
-	});
+	(new component('component-codename', {
+		'render': function(){
+			var self = this;
+			self.$e.before($(document.createElement('div')).addClass('panel-heading').text('Sample text'));
+
+			var i = 0;
+			setInterval(function(){
+				// simple example
+				self.$e.text(i++);
+			}, 1000);
+		}
+	})).ready();
 </script>
 
 ```html
@@ -119,18 +103,19 @@ new component('component-codename', {
 			<p>For search engines and other clients without javascript</p>
 		</div>
 	</div>
-	<script src="component.js">
-		new component('component-codename', function(){
-			var self = this;
-			self.$e.before($(document.createElement('div')).addClass('panel-heading').text('Sample text'));
-		}, function(){
-			var self = this;
-			var i = 0;
-			setInterval(function(){
-				// simple example
-				self.$e.text(i++);
-			}, 1000);
-		});
+	<script>
+		(new component('component-codename', {
+			'render': function(){
+				var self = this;
+				self.$e.before($(document.createElement('div')).addClass('panel-heading').text('Sample text'));
+
+				var i = 0;
+				setInterval(function(){
+					// simple example
+					self.$e.text(i++);
+				}, 1000);
+			}
+		})).ready();
 	</script>
 </body>
 ```
