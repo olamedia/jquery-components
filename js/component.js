@@ -1,4 +1,4 @@
-(function(context, nameInContext){
+(function(context, nameInContext, $){
 
 	// +++++++++++++++++++++++++++++ EVENTS ++++++++++++++++++++++++++++++++++
 
@@ -439,7 +439,7 @@
 	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ DOM
 
 	//component.require(['jquery'], function(jquery){
-		var $ = jquery.jQuery;
+	//	var $ = jquery.jQuery;
 		var placeholders = {};
 		var placeholder = function(e){
 			var self = this;
@@ -622,4 +622,4 @@
 
 
 	context[nameInContext] = component;
-})(this, 'component');
+})(this, 'component', jQuery);
