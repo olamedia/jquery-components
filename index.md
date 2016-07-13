@@ -83,6 +83,7 @@ new component(String name, Object definition)
 			self.$e.before($(document.createElement('div')).addClass('panel-heading').text('Sample text'));
 		},
 		'service': function(){
+			var self = this;
 			var i = 0;
 			setInterval(function(){
 				// simple example
@@ -101,18 +102,20 @@ new component(String name, Object definition)
 		</div>
 	</div>
 	<script>
-		(new component('component-codename', {
-			'render': function(){
-				var self = this;
-				self.$e.before($(document.createElement('div')).addClass('panel-heading').text('Sample text'));
-
-				var i = 0;
-				setInterval(function(){
-					// simple example
-					self.$e.text(i++);
-				}, 1000);
-			}
-		})).ready();
+	(new component('component-codename', {
+		'render': function(){
+			var self = this;
+			self.$e.before($(document.createElement('div')).addClass('panel-heading').text('Sample text'));
+		},
+		'service': function(){
+			var self = this;
+			var i = 0;
+			setInterval(function(){
+				// simple example
+				self.$e.text(i++);
+			}, 1000);
+		}
+	})).ready();
 	</script>
 </body>
 ```
