@@ -52,11 +52,11 @@
 				self.viewportHeight = self.$e.height();
 				self.scrollAreaHeight = self.$scrollArea.height();//self.viewportHeight - 2 * (self.padding - self.border);
 				self.barHeight = self.scrollAreaHeight * self.viewportHeight / self.scrollHeight;
-				console.log('scrollAreaHeight viewportHeight scrollHeight', self.scrollAreaHeight, self.viewportHeight, self.scrollHeight);
+				//console.log('scrollAreaHeight viewportHeight scrollHeight', self.scrollAreaHeight, self.viewportHeight, self.scrollHeight);
 				self.$bar.height(self.barHeight);
 				var activeY = self.scrollHeight > self.viewportHeight;
 				if (self.activeY != activeY){
-					console.log('activeY', activeY);
+					//console.log('activeY', activeY);
 					if (activeY){
 						self.$e.addClass('scrollbar-active-y'); // add padding-right
 					}else{
