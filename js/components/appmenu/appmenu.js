@@ -151,7 +151,7 @@
 					//console.log('scroll', lastScrollTop, st, value, top);
 				});
 				//component.update();
-				self.scope.unreadMessages = null;
+				//self.scope.unreadMessages = null;
 			},
 			'service': function(){
 				var self = this;
