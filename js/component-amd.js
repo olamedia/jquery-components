@@ -323,7 +323,7 @@ var component = (function(name){
 			self.eventListeners[eventname].push(callback);
 		}
 		self.trigger = function(eventname){
-			console.info('Trigger ' + eventname + '');
+			//console.info('Trigger ' + eventname + '');
 			var self = this;
 			for (var k in self.eventListeners[eventname]){
 				var listener = self.eventListeners[eventname][k];

@@ -18,7 +18,7 @@
 			self.scheduleSlide();
 		},
 		'scheduleSlide': function(){
-			console.log('scheduleSlide');
+			//console.log('scheduleSlide');
 			var self = this;
 			var f = function(){
 				self.next(function(){

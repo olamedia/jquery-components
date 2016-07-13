@@ -86,7 +86,7 @@
 					var $headers = self.$headers.children();
 					var $header;
 					$header = $($headers.get(self.index));
-					console.log('$header', $header);
+					//console.log('$header', $header);
 					$header.removeClass('articleSlider-header-selected');
 					self.index = self.mediaSlider.index;
 					$header = $($headers.get(self.index));
