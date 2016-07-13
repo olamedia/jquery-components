@@ -111,6 +111,7 @@
 					self.resize();
 				});
 				self.resize();
+				component.update(self.e);
 			}
 		});
 
