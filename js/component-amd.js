@@ -338,7 +338,7 @@ var component = (function(name){
 			var self = this;
 			// component is created in configured, call onload callbacks
 			if ('undefined' != typeof self.componentName){
-				console.log(self.componentName, 'READY');
+				//console.log(self.componentName, 'READY');
 				loadedComponents[self.componentName] = self;
 				onComponentLoad(self.componentName);
 			}
