@@ -438,7 +438,7 @@
 
 	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ DOM
 
-	component.require(['jquery'], function(jquery){
+	//component.require(['jquery'], function(jquery){
 		var $ = jquery.jQuery;
 		var placeholders = {};
 		var placeholder = function(e){
@@ -618,7 +618,7 @@
 			return null;
 		};
 
-	});
+	//});
 
 
 	context[nameInContext] = component;
