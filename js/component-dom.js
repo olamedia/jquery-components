@@ -109,7 +109,7 @@ component.instance = function(options){
 	return self.replace(domElement, options);
 };
 component.update = function(domElement, callback){
-	console.log('component.update', domElement);
+	//console.log('component.update', domElement);
 	var self = this;
 	var found = 0;
 	var founda = [];
@@ -119,14 +119,14 @@ component.update = function(domElement, callback){
 	for (var componentName in localPlaceholders){
 		(function(componentName, localPlaceholders){
 			var waiting = true;
-			console.log('DOM is waiting for ', componentName, '...');
+			//console.log('DOM is waiting for ', componentName, '...');
 			setTimeout(function(){
 				if (waiting){
 					console.error('DOM was not able to load', componentName,' in 3 seconds');
 				}
 			}, 3000);
 			component.require([componentName], function domLoader(foundComponent){
-				console.log('DOM loaded ', componentName, '');
+				//console.log('DOM loaded ', componentName, '');
 				if (isLoaded(componentName)){
 					waiting = false;
 					//console.info(componentName, 'loaded at component.update');

@@ -47,7 +47,7 @@ var requireId = function(componentName, callback){
 	component.loadComponent(componentName);
 }
 var onComponentLoad = function(componentName){
-	console.log('onComponentLoad', componentName);
+	//console.log('onComponentLoad', componentName);
 
 	var foundComponent = loadedComponents[componentName];
 
