@@ -1,7 +1,7 @@
 (function(){
 
 
-	component.require(['layer'], function(layerComponent){
+	component.require(['layer', 'popup'], function(layerComponent){
 		var appmenuComponent = new component('appmenu', {
 			'includeCss': true,
 			'render': function(){
@@ -56,12 +56,14 @@
 					//console.log(li);
 				});
 				var dropAllItems = function(){
+					//console.log('dropAllItems()');
 					$moreDropdownLi.detach();
 					while (dropMenuItem()){
 
 					}
 				}
 				var pullMenuItem = function(){
+					//console.log('pullMenuItem()');
 					var li;
 					if (li = moreMenu.shift()){
 						var $li = $(li);
@@ -73,6 +75,7 @@
 					return null;
 				}
 				var dropMenuItem = function(){
+					//console.log('dropMenuItem()');
 					var li;
 					if (li = longMenu.pop()){
 						var $li = $(li);
@@ -84,12 +87,15 @@
 					return null;
 				}
 				var adaptSize = function(){
+					//console.log('adaptSize()++', longMenu, moreMenu);
 					// adapt overlay
 					var offset = $placeholder.offset();
-					console.log();
+					//console.log();
 					overlay.$e.css({
-						'left': offset.left,
-						'right': $(window).width() - (offset.left + $placeholder.innerWidth())
+						'width': $placeholder.innerWidth(),
+						'margin': '0 auto'
+						//'left': offset.left,
+						//'right': $(window).width() - (offset.left + $placeholder.innerWidth())
 					});
 					dropAllItems();
 					$moreDropdownLi.detach();
@@ -99,8 +105,9 @@
 					var li;
 					while (li = pullMenuItem()){
 						var $li = $(li);
-						var lw = $li.outerWidth();
+						var lw = $li.outerWidth(true);
 						if (leftWidth + lw + space > widthAvailable){
+							//console.log(leftWidth, li, lw, space, '>', widthAvailable);
 							dropMenuItem();
 							break;
 						}
@@ -115,13 +122,18 @@
 							//break;
 						}
 					}
-					component.update($nav.get(0));
+					//console.log('adaptSize()--', longMenu, moreMenu);
 					// $(window).trigger('component-resize');
 				}
-				adaptSize();
+				//adaptSize();
 				$(function(){
+					component.update($nav.get(0));
 					adaptSize();
+					//adaptSize();
 				});
+				/*setTimeout(function(){
+					adaptSize();
+				}, 500);*/
 				$(window).on('resize', adaptSize);
 				var lastScrollTop = $(window).scrollTop();
 				$(window).on('scroll', function(e){

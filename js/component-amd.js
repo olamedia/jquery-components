@@ -55,20 +55,26 @@ var onComponentLoad = function(componentName){
 	//var src = path + '/' + id + '.js'; // npm-like naming
 	var css = path + '/' + componentName + '.css';
 
+	var onLoad = function(){
+		if ('undefined' != typeof onLoadListeners[componentName]){
+			var listeners = onLoadListeners[componentName];
+			//console.info('onComponentLoad', componentName, 'listeners', listeners);
+			for (var k in listeners){
+				var listener = listeners[k];
+				listener();
+			}
+			delete onLoadListeners[componentName];
+		}
+	}
 	if (true === foundComponent.includeCss){
-		loadCss(css);
+		component.loadCss(css, function(){
+			onLoad();
+		});
+	}else{
+		onLoad();
 	}
 	//var self = this;
 	//var componentName = self.componentName;
-	if ('undefined' != typeof onLoadListeners[componentName]){
-		var listeners = onLoadListeners[componentName];
-		//console.info('onComponentLoad', componentName, 'listeners', listeners);
-		for (var k in listeners){
-			var listener = listeners[k];
-			listener();
-		}
-		delete onLoadListeners[componentName];
-	}
 }
 var requireAll = function(components, callback){
 	if (0 === components.length){

@@ -38,6 +38,7 @@ var getPlaceholder = function(e){
 };
 
 component.lookup = function(context){
+	var localPlaceholders = [];
 	//console.log('lookupPlaceholders', context);
 	var list = null;
 	var selector = '[component]';
@@ -60,12 +61,16 @@ component.lookup = function(context){
 			if (!placeholders[componentName]){
 				placeholders[componentName] = [];
 			}
+			if (!localPlaceholders[componentName]){
+				localPlaceholders[componentName] = [];
+			}
 			if ('' !== componentName){
 				var status = placeholder.components[componentName];
 				if ('undefined' === typeof status){
 					placeholder.components[componentName] = false;
 					foundComponents.push(componentName);
 					placeholders[componentName].push(placeholder); // (el)
+					localPlaceholders[componentName].push(placeholder);
 					found++;
 				}
 				if(false === status){
@@ -76,6 +81,7 @@ component.lookup = function(context){
 		placeholder.$e.attr('component', '');
 		placeholder.e.removeAttribute('component');
 	});
+	return localPlaceholders;
 };
 
 
@@ -102,20 +108,21 @@ component.instance = function(options){
 	var domElement = document.createElement('div');
 	return self.replace(domElement, options);
 };
-component.update = function(domElement){
+component.update = function(domElement, callback){
 	console.log('component.update', domElement);
 	var self = this;
 	var found = 0;
 	var founda = [];
-	component.lookup(domElement);
+	var localPlaceholders = component.lookup(domElement);
+
 	//console.log(placeholders);
-	for (var componentName in placeholders){
+	for (var componentName in localPlaceholders){
 		console.log('componentName', componentName);
 		(function(componentName){
 			component.require([componentName], function domLoader(foundComponent){
-				console.log('component.update require OK', componentName);
+				//console.log('component.update require OK', componentName);
 				if (isLoaded(componentName)){ // FIXME MOVE TO COMPONENT DEFINITION
-					console.info(componentName, 'loaded at component.update');
+					//console.info(componentName, 'loaded at component.update');
 					//var foundComponent = loadedComponents[componentName];
 					//var el = null;
 					var placeholder;

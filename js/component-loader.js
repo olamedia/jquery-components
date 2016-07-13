@@ -1,9 +1,14 @@
 var loadCallbacks = {};
 var loading = {};
-var loadCss = function(src){
+component.loadCss = function(src, callback){
 	var link = document.createElement('link');
 	link.rel = 'stylesheet';
 	link.href = src;
+	link.onload = function(){
+		if (callback){
+			callback();
+		}
+	};
 	var head = document.getElementsByTagName('head')[0];
 	head.appendChild(link);
 }
