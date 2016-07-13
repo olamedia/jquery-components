@@ -169,11 +169,11 @@
 			if (false !== v && TYPE_UNDEF !== typeof v){ // ie6+
 			//if (self.$e[0].hasAttribute('slider-vertical')){ // ie8+
 				self.options.vertical = true;
-				console.info('vertical slider', self.options.vertical, self.options);
+				//console.info('vertical slider', self.options.vertical, self.options);
 			}else{
-				console.info('horizontal slider', self.options.vertical, self.options);
+				//console.info('horizontal slider', self.options.vertical, self.options);
 			}
-			console.log('options', self.options);
+			//console.log('options', self.options);
 			self.index = 0;
 			var $c = self.$e.children();
 			self.maxIndex = $c.length;
