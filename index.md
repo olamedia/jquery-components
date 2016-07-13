@@ -183,15 +183,18 @@ new component('bind-example', function(){
 </div>
 
 <script>
-new component('example-clock', function(){
-	var self = this;
-	self.$e.text((new Date()).toTimeString());
-}, function(){
-	var self = this;
-	setInterval(function(){
+(new component('example-clock', {
+	'render': function(){
+		var self = this;
 		self.$e.text((new Date()).toTimeString());
-	}, 1000);
-});
+	},
+	'service': function(){
+		var self = this;
+		setInterval(function(){
+			self.$e.text((new Date()).toTimeString());
+		}, 1000);
+	}
+})).ready();
 </script>
 
 ```html
@@ -203,15 +206,18 @@ new component('example-clock', function(){
 ```
 
 ```js
-new component('example-clock', function(){
-	var self = this;
-	self.$e.text((new Date()).toTimeString());
-}, function(){
-	var self = this;
-	setInterval(function(){
+(new component('example-clock', {
+	'render': function(){
+		var self = this;
 		self.$e.text((new Date()).toTimeString());
-	}, 1000);
-});
+	},
+	'service': function(){
+		var self = this;
+		setInterval(function(){
+			self.$e.text((new Date()).toTimeString());
+		}, 1000);
+	}
+})).ready();
 ```
 
 
