@@ -80,6 +80,7 @@ var requireAll = function(components, callback){
 	if (0 === components.length){
 		return callback.apply(this, []);
 	}
+	console.log('requireAll', components);
 	var onLoadAll = (function(components, callback){
 		var executed = false;
 		return function(){
@@ -89,8 +90,10 @@ var requireAll = function(components, callback){
 			for (var k in components){
 				var componentName = components[k];
 				if (!isLoaded(componentName)){
+					console.log(componentName, 'is not loaded yet');
 					complete = false;
 				}else{
+					console.log(componentName, 'is loaded');
 					list.push(loadedComponents[componentName]);
 				}
 			}
@@ -106,7 +109,7 @@ var requireAll = function(components, callback){
 
 	for (var k in components){
 		var componentName = components[k];
-		if (!isLoaded(componentName)){
+		//if (!isLoaded(componentName)){
 			if ('undefined' == typeof onLoadListeners[componentName]){
 				onLoadListeners[componentName] = [];
 			}
@@ -115,7 +118,7 @@ var requireAll = function(components, callback){
 					callback.apply(this, list);
 				});
 			}); // defer onload
-		}
+		//}
 	}
 
 	/*for (var k in components){

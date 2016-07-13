@@ -117,16 +117,23 @@ component.update = function(domElement, callback){
 
 	//console.log(placeholders);
 	for (var componentName in localPlaceholders){
-		console.log('componentName', componentName);
-		(function(componentName){
+		(function(componentName, localPlaceholders){
+			var waiting = true;
+			console.log('DOM is waiting for ', componentName, '...');
+			setTimeout(function(){
+				if (waiting){
+					console.error('DOM was not able to load', componentName,' in 3 seconds');
+				}
+			}, 3000);
 			component.require([componentName], function domLoader(foundComponent){
-				//console.log('component.update require OK', componentName);
-				if (isLoaded(componentName)){ // FIXME MOVE TO COMPONENT DEFINITION
+				console.log('DOM loaded ', componentName, '');
+				if (isLoaded(componentName)){
+					waiting = false;
 					//console.info(componentName, 'loaded at component.update');
-					//var foundComponent = loadedComponents[componentName];
+					var foundComponent = loadedComponents[componentName];
 					//var el = null;
 					var placeholder;
-					while (placeholder = placeholders[componentName].pop()){
+					while (placeholder = localPlaceholders[componentName].pop()){
 						var instance = new foundComponent();
 						placeholder.replace(foundComponent, instance, true);
 						//replacePlaceholderInstance(placeholder, instance, true);
@@ -136,7 +143,7 @@ component.update = function(domElement, callback){
 					}
 				}
 			});
-		})(componentName);
+		})(componentName, localPlaceholders);
 	}
 	/*if (found){
 		console.log('update found', found, founda);

@@ -53,19 +53,15 @@ title: jQuery components
 new component(String name, Object definition)
 
 ```js
-new component('component-codename', {
+(new component('component-codename', {
 	'render': function(){
-		// create basic template
 		var self = this; // "this" points to component instance
+
 	},
-	'service': function(){
-		// deferred updates (ajax, setInterval, etc)
-	}
-});
+})).ready();
 ```
 
 ### Component lifecycle
-- `component.instance()` is called - to clone component with unique id and scope
 - `DOMElement` is passed to `component.e` & `component.$e`
 - `component.render()` is called
 - `[model=*]` bindings are applied
@@ -85,7 +81,8 @@ new component('component-codename', {
 		'render': function(){
 			var self = this;
 			self.$e.before($(document.createElement('div')).addClass('panel-heading').text('Sample text'));
-
+		},
+		'service': function(){
 			var i = 0;
 			setInterval(function(){
 				// simple example
