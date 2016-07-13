@@ -62,7 +62,7 @@ var onComponentLoad = function(componentName){
 	//var componentName = self.componentName;
 	if ('undefined' != typeof onLoadListeners[componentName]){
 		var listeners = onLoadListeners[componentName];
-		console.info('onComponentLoad', componentName, 'listeners', listeners);
+		//console.info('onComponentLoad', componentName, 'listeners', listeners);
 		for (var k in listeners){
 			var listener = listeners[k];
 			listener();
@@ -77,7 +77,7 @@ var requireAll = function(components, callback){
 	var onLoadAll = (function(components, callback){
 		var executed = false;
 		return function(){
-			console.log('onLoad', components, callback);
+			//console.log('onLoad', components, callback);
 			var list = [];
 			var complete = true;
 			for (var k in components){
@@ -336,10 +336,10 @@ var component = (function(name){
 		},
 		require: function(idList, callback){
 			var self = this;
-			console.log('component.require', idList, callback);
+			//console.log('component.require', idList, callback);
 			return (function(callback){
 				return requireAll(idList, function(){
-					console.log('component.require OK', idList, self, callback);
+					//console.log('component.require OK', idList, self, callback);
 					callback.apply(self, arguments);
 				});
 			})(callback);

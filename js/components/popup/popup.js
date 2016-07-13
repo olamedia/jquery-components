@@ -42,6 +42,7 @@
 			}
 		},
 		'render': function(){
+			console.log('render popup');
 			var self = this;
 			popups.push(self);
 			self.$t = self.$e.children('[popup-trigger]');

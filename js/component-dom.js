@@ -103,29 +103,33 @@ component.instance = function(options){
 	return self.replace(domElement, options);
 };
 component.update = function(domElement){
-	//console.log('component.update', domElement);
+	console.log('component.update', domElement);
 	var self = this;
 	var found = 0;
 	var founda = [];
 	component.lookup(domElement);
 	//console.log(placeholders);
 	for (var componentName in placeholders){
-		component.require([componentName], function domLoader(foundComponent){
-			if (isLoaded(componentName)){ // FIXME MOVE TO COMPONENT DEFINITION
-				console.info(componentName, 'loaded at component.update');
-				//var foundComponent = loadedComponents[componentName];
-				//var el = null;
-				var placeholder;
-				while (placeholder = placeholders[componentName].pop()){
-					var instance = new foundComponent();
-					placeholder.replace(foundComponent, instance, true);
-					//replacePlaceholderInstance(placeholder, instance, true);
-					component.lookup(placeholder.e); // lookup newly rendered placeholders
-					found++;
-					founda.push(componentName);
+		console.log('componentName', componentName);
+		(function(componentName){
+			component.require([componentName], function domLoader(foundComponent){
+				console.log('component.update require OK', componentName);
+				if (isLoaded(componentName)){ // FIXME MOVE TO COMPONENT DEFINITION
+					console.info(componentName, 'loaded at component.update');
+					//var foundComponent = loadedComponents[componentName];
+					//var el = null;
+					var placeholder;
+					while (placeholder = placeholders[componentName].pop()){
+						var instance = new foundComponent();
+						placeholder.replace(foundComponent, instance, true);
+						//replacePlaceholderInstance(placeholder, instance, true);
+						component.lookup(placeholder.e); // lookup newly rendered placeholders
+						found++;
+						founda.push(componentName);
+					}
 				}
-			}
-		});
+			});
+		})(componentName);
 	}
 	/*if (found){
 		console.log('update found', found, founda);
