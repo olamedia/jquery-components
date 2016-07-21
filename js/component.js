@@ -1,4 +1,4 @@
-(function(context, nameInContext, $){
+;(function(context, nameInContext, $){
 
 	// +++++++++++++++++++++++++++++ EVENTS ++++++++++++++++++++++++++++++++++
 
@@ -24,7 +24,7 @@
 		}
 	}
 	var triggerGlobal = function(eventname){
-		console.info('global event', eventname);
+		//console.info('global event', eventname);
 		for (var k in eventListeners[eventname]){
 			var l = eventListeners[eventname][k];
 			var e = new componentEvent(eventname);
@@ -263,7 +263,12 @@
 						for (var i in extendWith){
 							var obj = extendWith[i];
 							for (var j in obj){
-								instance[j] = obj[j];
+								var value = obj[j];
+								if (typeof function(){} === typeof value){
+									instance[j] = obj[j].bind(instance);
+								}else{
+									instance[j] = obj[j];
+								}
 							}
 						}
 						if (copyParentProperties && parent && parent.prototype.factory){
@@ -300,12 +305,16 @@
 				instance.componentName = id;
 				//loadedComponents[id] = instance;
 				if (Object.defineProperty){
-					Object.defineProperty(instance, 'name', { // ie9+
-						enumerable: false,
-						configurable: false,
-						writable: false,
-						value: id
-					});
+					try{
+						Object.defineProperty(instance, 'name', { // ie9+
+							enumerable: false,
+							configurable: false,
+							writable: false,
+							value: id
+						});
+					}catch(ex){
+						// opera does not allow modifying name
+					}
 				}
 			}
 			instance.id = uuid.v4s();
@@ -460,7 +469,7 @@
 				// activate --
 				self.$e.addClass(componentName + '-component');
 				instance.options = options;
-				self.e.component = instance;
+				self.e.componentInstance = instance;
 				self.$e.attr(componentName + '-component', instance.id);
 				instance.e = self.e;
 				instance.$e = self.$e;
@@ -495,6 +504,10 @@
 				var placeholder = getPlaceholder(el);
 				//console.log('found', el, placeholder);
 				var cid = placeholder.$e.attr('component');
+				console.log('cid', cid);
+				if (!cid){
+					return;
+				}
 				var cida = cid.split(' ');
 				var inactive = 0;
 				for (var k in cida){
@@ -602,7 +615,8 @@
 		$(function(){
 			component.update();
 			$(window).on('resize', function(){
-				component.trigger('resize');
+				triggerGlobal('resize');
+				//component.trigger('resize');
 			});
 		});
 
@@ -611,8 +625,8 @@
 			var $e = $(selector);
 			if ($e.length){
 				var e = $e.get(0);
-				if (e.component){
-					return e.component; // direct match
+				if (e.componentInstance){
+					return e.componentInstance; // direct match
 				}
 			}
 			return null;
