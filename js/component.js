@@ -1,34 +1,20 @@
-
-(function(context, nameInContext, $, undef){
-
-	var attrPrefix = 'component';
-	var placeholderPrefix = 'placeholder';
-	var placeholderIdAttr = placeholderPrefix + '-found'
-	var components = {};
-	var renderedComponents = [];
-	var placeholders = {};
-
+;(function( window ){
+;(function(context, nameInContext, jQuery){
+	var $ = jQuery;//.noConflict();
+	// +++++++++++++++++++++++++++++ EVENTS ++++++++++++++++++++++++++++++++++
+/*
+	if (!('querySelectorAll' in document)){
+		return;
+	}
+	
+	var query = function(selector){
+		return document.querySelectorAll(selector);
+	}
+*/
 	var eventListeners = {};
 	var componentEvent = function(eventname){
 		var self = this;
 		self.name = eventname;
-	}
-
-	var removeEventListener = function(el, eventName, handler) {
-		if (el.removeEventListener){
-			el.removeEventListener(eventName, handler);
-		}else{
-			el.detachEvent('on' + eventName, handler);
-		}
-	}
-	var addEventListener = function(el, eventName, handler) {
-		if (el.addEventListener) {
-			el.addEventListener(eventName, handler);
-		}else{
-			el.attachEvent('on' + eventName, function(){
-				handler.call(el);
-			});
-		}
 	}
 	var addListener = function(eventname, listener){
 		if ('undefined' === typeof eventListeners[eventname]){
@@ -47,7 +33,7 @@
 		}
 	}
 	var triggerGlobal = function(eventname){
-		console.info('global event', eventname);
+		//console.info('global event', eventname);
 		for (var k in eventListeners[eventname]){
 			var l = eventListeners[eventname][k];
 			var e = new componentEvent(eventname);
@@ -55,8 +41,167 @@
 			l(e);
 		}
 	}
+	// ----------------------------- EVENTS ----------------------------------
 
+
+	var loadedComponents = {}; // key is component name
+	var loadedInstances = {}; // key is uuid
+	var isLoaded = function(id){
+		//xonsole.log('isLoaded', id, 'undefined' !== typeof loadedComponents[id]);
+		return 'undefined' !== typeof loadedComponents[id];
+	}
+	var onLoadListeners = {};
+	var requireId = function(componentName, callback){
+		if (isLoaded(componentName)){
+			return onComponentLoad(componentName);//callback(loadedComponents[id]);
+		}
+		// FIXME load component
+		component.loadComponent(componentName);
+	}
+	var onComponentLoad = function(componentName){
+		//xonsole.log('onComponentLoad', componentName);
+
+		var foundComponent = loadedComponents[componentName];
+
+		var path = component.baseUrl + "/" + componentName;
+		//var src = path + '/' + id + '.js'; // npm-like naming
+		var css = path + '/' + componentName + '.css';
+
+		var onLoad = function(){
+			if ('undefined' != typeof onLoadListeners[componentName]){
+				var listeners = onLoadListeners[componentName];
+				//console.info('onComponentLoad', componentName, 'listeners', listeners);
+				for (var k in listeners){
+					var listener = listeners[k];
+					listener();
+				}
+				delete onLoadListeners[componentName];
+			}
+		}
+		if (true === foundComponent.includeCss){
+			component.loadCss(css, function(){
+				onLoad();
+			});
+		}else{
+			onLoad();
+		}
+		//var self = this;
+		//var componentName = self.componentName;
+	}
+	var requireAll = function(components, callback){
+		if (0 === components.length){
+			return callback.apply(this, []);
+		}
+		//xonsole.log('requireAll', components);
+		var onLoadAll = (function(components, callback){
+			var executed = false;
+			return function(){
+				//xonsole.log('onLoad', components, callback);
+				var list = [];
+				var complete = true;
+				for (var k = 0; k<components.length; k++){
+					var componentName = components[k];
+					if (!isLoaded(componentName)){
+						//xonsole.log(componentName, 'is not loaded yet');
+						complete = false;
+					}else{
+						//xonsole.trace(componentName, 'is loaded');
+						var component = loadedComponents[componentName];
+						if (component.readyMethod){
+							list.push(component.readyMethod());
+						}else{
+							list.push(component);
+						}
+					}
+				}
+				if (!complete){
+					return false;
+				}
+				if (!executed){ // execute once only
+					executed = true;
+					return callback.apply(this, list);
+				}
+			}
+		})(components, callback);
+
+		for (var k = 0; k<components.length; k++){
+			var componentName = components[k];
+			//if (!isLoaded(componentName)){
+				if ('undefined' == typeof onLoadListeners[componentName]){
+					onLoadListeners[componentName] = [];
+				}
+				onLoadListeners[componentName].push(function(){
+					onLoadAll(function(list){
+						callback.apply(this, list);
+					});
+				}); // defer onload
+			//}
+		}
+
+		/*for (var k in components){
+			var id = components[k];
+			if ('undefined' == typeof onLoadListeners[id]){
+				onLoadListeners[id] = [];
+			}
+			onLoadListeners[id].push(function(){
+				onLoad(function(list){
+					callback.apply(this, list);
+				});
+			});
+		}*/
+		for (var k = 0; k<components.length; k++){
+			var componentName = components[k];
+			requireId(componentName);
+		}
+	}
 	var uuid = (function(){
+		var base = (function(){
+			return {
+				//b2: '01',
+				//b8: '01234567',
+				//b10: '0123456789',
+				b16: '0123456789abcdef',
+				//b32: '0123456789abcdefghijklmnopqrstuvwxyz',
+				//b58bitcoin: '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz',
+				b60ola: '0123456789ABCDEFGHJKLMNPQRSTUVWXYZ_abcdefghijkmnopqrstuvwxyz',
+				//b58ripple: 'rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz',
+				//b58flickr: '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ',
+				//b62: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+				encode: function(src, srctable){
+					return this.convert(src, srctable, this.b60ola);
+				},
+				decode: function(dest, srctable){
+					return this.convert(dest, this.b60ola, desttable);
+				},
+				encodeHex: function(src){
+					return this.encode(src, this.b16);
+				},
+				decodeHex: function(dest){
+					return this.decode(dest, this.b16);
+				},
+				convert: function(src, srctable, desttable){
+					var srclen = srctable.length;
+					var destlen = desttable.length;
+					var val = 0;
+					var numlen = src.length;
+					for(var i = 0; i < numlen; i++){
+						val = val*srclen + srctable.indexOf(src.charAt(i));
+					}
+					if (val<0){
+						return 0;
+					}
+					var r = val % destlen;
+					var dest = desttable.charAt(r);
+					var q = Math.floor(val / destlen);
+					while (q){
+						r = q % destlen;
+						q = Math.floor(q / destlen);
+						dest = desttable.charAt(r) + dest;
+					}
+					return dest;
+				}
+			};
+		})();
 		return {
 			v4: function(){
 				return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -78,432 +223,495 @@
 		};
 	})();
 
-
-	var base = (function(){
-		return {
-			//b2: '01',
-			//b8: '01234567',
-			//b10: '0123456789',
-			b16: '0123456789abcdef',
-			//b32: '0123456789abcdefghijklmnopqrstuvwxyz',
-			//b58bitcoin: '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz',
-			b60ola: '0123456789ABCDEFGHJKLMNPQRSTUVWXYZ_abcdefghijkmnopqrstuvwxyz',
-			//b58ripple: 'rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz',
-			//b58flickr: '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ',
-			//b62: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
-			encode: function(src, srctable){
-				return this.convert(src, srctable, this.b60ola);
-			},
-			decode: function(dest, srctable){
-				return this.convert(dest, this.b60ola, desttable);
-			},
-			encodeHex: function(src){
-				return this.encode(src, this.b16);
-			},
-			decodeHex: function(dest){
-				return this.decode(dest, this.b16);
-			},
-			convert: function(src, srctable, desttable){
-				var srclen = srctable.length;
-				var destlen = desttable.length;
-				var val = 0;
-				var numlen = src.length;
-				for(var i = 0; i < numlen; i++){
-					val = val*srclen + srctable.indexOf(src.charAt(i));
-				}
-				if (val<0){
-					return 0;
-				}
-				var r = val % destlen;
-				var dest = desttable.charAt(r);
-				var q = Math.floor(val / destlen);
-				while (q){
-					r = q % destlen;
-					q = Math.floor(q / destlen);
-					dest = desttable.charAt(r) + dest;
-				}
-				return dest;
-			}
-		};
-	})();
-
-	var placeholder = function(e){
-		var self = this;
-		self.components = {};
-		self.active = [];
-		self.e = e;
-		self.$e = $(e);
-		self.activate = function(cid){
-			self.components[cid] = true;
-			self.active.push(cid);
-			self.$e.attr('component-active', self.active.join(' '));
-		}
-	};
-	var getPlaceholder = function(e){
-		if ('undefined' === typeof e.componentPlaceholder){
-			e.componentPlaceholder = new placeholder(e);
-		}
-		var p = e.componentPlaceholder;
-		return p;
-	};
-	var lookupPlaceholders = function(context){
-		//console.log('lookupPlaceholders');
-		var list = null;
-		var selector = '[component]';
-		if (context){
-			list = $(selector, context)
-		}else{
-			list = $(selector)
-		}
-		var found = 0;
-		var foundComponents = [];
-		list.each(function(){
-			var el = this;
-			var p = getPlaceholder(el);
-			var cid = p.$e.attr('component');
-			var cida = cid.split(' ');
-			var inactive = 0;
-			for (var k in cida){
-				var cid = cida[k];
-				if (!placeholders[cid]){
-					placeholders[cid] = [];
-				}
-				//console.log('lookupPlaceholders cid', cid);
-				if ('' !== cid){
-					var status = p.components[cid];
-					//console.log('lookupPlaceholders cid found?', status);
-					if ('undefined' === typeof status){
-						p.components[cid] = false;
-						foundComponents.push(cid);
-						placeholders[cid].push(el);
-						//console.log('lookupPlaceholders cid found', status);
-						found++;
-					}
-					if(false === status){
-						inactive++;
+	var component = (function(name){
+		var extend = function(){
+			var parent = null;
+			var id = null, guid = uuid.v4s(), depsId = [], deps = [], factory = null, extendWith = [], copyParentProperties = true;
+			// Parse arguments:
+			//xonsole.log('extend pasre args');
+			for (var k = 0; k<arguments.length; k++){ // arguments of extend()
+				var arg = arguments[k];
+				//xonsole.log('extend pasre arg ' + arg);
+				if (0 == k){
+					parent = arg;
+					//xonsole.log('extend pasre arg = parent');
+				}else{
+					if (true === arg || false === arg){
+						//xonsole.log('bool');
+						copyParentProperties = arg;
+						//xonsole.log('extend pasre arg = boolean');
+					}else if (typeof '' === typeof arg){
+						//xonsole.log('extend parse String ', arg);
+						if ('' != arg){// && Object.defineProperty
+							id = arg;
+						}
+					}else if (typeof function(){} === typeof arg){
+						//xonsole.log('extend pasre arg = Function');
+						factory = arg;//.apply(instance, []); // factory
+					}else if (typeof {} === typeof arg){
+						//xonsole.log('extend pasre arg = Object');
+						if (arg instanceof [].constructor){
+							//xonsole.log('extend pasre arg = Array');
+							depsId = arg;
+						}else{
+							extendWith.push(arg);
+							//for (var j in arg){
+							//	instance[j] = arg[j];
+							//}
+						}
 					}
 				}
 			}
-			p.$e.attr('component', '');
-			p.e.removeAttribute('component');
-			//console.log('lookupPlaceholders', p.components, p);
-			/*if (el.placeholderFound){
-				return;
+			if (copyParentProperties && parent){
+				extendWith.unshift(parent);
+			}
+			// Create constructor
+			var instance = (function(extend, iid, parent, copyParentProperties, extendWith, depsId, factory){
+				//console.info('Creating constructor for', iid);
+				var constructor = function(){
+					var parent = constructor;
+					var self = this;
+					var a = [];
+					a.push(parent); // extend with parent
+					//a.push(constructor); // extend with self
+					for (var k = 0; k<arguments.length; k++){ // arguments of new component()
+						a.push(arguments[k]);
+					}
+					return extend.apply(parent, a);
+				};
+				var recursiveFactory = function(){
+					var instance = this;
+					//xonsole.log('recursiveFactory', factory, extendWith);
+					requireAll(depsId, function(){
+						//for (var i = 0; i<extendWith.length; i++){
+						for (var i in extendWith){
+							var obj = extendWith[i];
+							//for (var j = 0; j<extendWith.length; j++){
+							for (var j in obj){
+								var value = obj[j];
+								if (typeof function(){} === typeof value){
+									instance[j] = obj[j];
+									if (instance[j].bind){
+										instance[j].bind(instance);
+									}
+								}else{
+
+									instance[j] = obj[j];
+								}
+							}
+						}
+						if (copyParentProperties && parent && parent.prototype.factory){
+							//xonsole.log('recursiveFactory parent', parent.prototype.factory);
+							parent.prototype.factory.apply(instance, arguments);
+						}
+						if (null != factory){
+							factory.apply(instance, arguments);
+						}
+					});
+				};
+				/*if (null != factory){
+					xonsole.log(id, 'factory()');
+					requireAll(depsId, function(){
+						factory.apply(constructor, arguments);
+					});
+				}*/
+				constructor.prototype.factory = recursiveFactory;
+				recursiveFactory.apply(constructor, []);
+				//console.dir(constructor);
+				return constructor;
+			})(extend, id, parent, copyParentProperties, extendWith, depsId, factory);
+
+
+			// extend class with
+			/*for (var i in extendWith){
+				var obj = extendWith[i];
+				for (var j in obj){
+					instance[j] = obj[j];
+				}
 			}*/
-			//var id = uuid.v4s();
-			//$el.attr(placeholderIdAttr, id);
-			/*if (!placeholders[cid]){
-				placeholders[cid] = [];
-			}
-			found++;
-			el.placeholderFound = true;*/
-			//placeholders[cid].push(el);
-			//console.log('lookupPlaceholders', p);
-		});
-		//console.log('lookupPlaceholders', found, foundComponents, placeholders);
-	};
-	var replacePlaceholderInstance = function(p, component, isInstance, options){
-		/*if (!el.componentPlaceholder){
-			el.componentPlaceholder = new placeholder(el);
-		}
-		var p = el.componentPlaceholder;*/
-		//return replacePlaceholder(p.e, component, isInstance);
-		var el = p.e;
-		//console.log('replacePlaceholderInstance', el, p, component.codename);
-		if ('undefined' !== typeof p.components[component.codename] && true === p.components[component.codename]){
-			return; // already activated the same component
-		}
-		p.activate(component.codename); // mark active
-		p.$e.addClass(component.codename + '-component');
-
-
-		var c;
-		if (!isInstance){
-			c = component.instance();
-		}else{
-			c = component;
-		}
-		c.options = options;
-		p.e.component = c;
-		//$(el).removeAttr(placeholderIdAttr);
-		//el.placeholderReplaced = true;
-		p.$e.attr(component.codename + '-component', c.id);
-		//$(el).removeAttr('component');
-
-		c.e = p.e;
-		c.$e = p.$e;
-		renderedComponents.push(c);
-		//console.log('render', c.codename, c.id);
-		!c.render || c.render();
-		c.bindScope();
-		!c.service || c.service();
-
-		//c.bindModels();
-		///}
-		return c; // return instance
-	}
-	var replacePlaceholderElement = function(el, component, isInstance, options){
-		var p = getPlaceholder(el);
-		//console.log('replacePlaceholderElement', el, p, component.codename);
-		return replacePlaceholderInstance(p, component, isInstance, options);
-		//if ($(el).attr(attrPrefix)){
-
-	}
-	var resize = function(domElement){
-		console.log('component.resize');
-		var c = this;
-
-	};
-	var update = function(domElement){
-		//console.log('component.update');
-		var c = this;
-		if (c){
-			//console.log(c);
-//			c.bindScope();
-		}
-		var found = 0;
-		var founda = [];
-		lookupPlaceholders(domElement);
-		for (var cid in placeholders){
-			if (components[cid]){
-				var component = components[cid];
-				var el = null;
-				while (e = placeholders[cid].pop()){
-					replacePlaceholderElement(e, component);
-					lookupPlaceholders(e); // lookup newly rendered placeholders
-					found++;
-					founda.push(cid);
+			//xonsole.log('set component name?', id);
+			if (null !== id){
+				//xonsole.log('set component name', id);
+				instance.componentName = id;
+				//loadedComponents[id] = instance;
+				if (Object.defineProperty){
+					try{
+						Object.defineProperty(instance, 'name', { // ie9+
+							enumerable: false,
+							configurable: false,
+							writable: false,
+							value: id
+						});
+					}catch(ex){
+						// opera does not allow modifying name
+					}
 				}
 			}
+			instance.id = uuid.v4s();
+			loadedInstances[instance.id] = instance;
+			return instance;
 		}
-		if (found){
-			console.log('update found', found, founda);
-			update();
-		}
-	}
-
-	var boundVariable = function(e){
-		var self = this;
-		self.change = null;
-		var value = null; // private
-		self.bind = function(e){
-			self.e = e;
-			if (null === value){
-				self.updateLocal();
-			}else{
-				self.updateDom();
-			}
-		};
-		self.updateLocal = function(){
-			value = self.get();
-		};
-		self.updateDom = function(){
-			if (self.e){
-				if (hasVal){
-					self.e.val(value);
-				}
-				self.e.text(value);
-			}
-		};
-		//self.e = $('');
-		self.set = function(val){
-			value = '' + val;
-			self.updateDom();
-		}
-		self.get = function(){
-			if (hasVal){
-				return self.e.val();
-			}
-			return self.e.text();
-		}
-		if (typeof '' == typeof e){
-			e = $('<'+e+'></'+e+'>');
-		}
-		e = e || $('<value></value>');
-		self.bind(e);
-		var tagName = $(e).get(0).tagName.toLowerCase();
-		var isEditable = (function(){
-			return 'input' == tagName || 'textarea' == tagName;
-		})();
-		var hasVal = (function(){
-			return 'input' == tagName || 'textarea' == tagName;
-		})();
-		if (isEditable){
-			$(e).on('change keyup paste', function(){
-				self.updateLocal();
-				if (self.change){
-					self.change();
-				}
-			});
-		}
-
-	};
-
-	var bindVariable = function(el){
-		var v = new boundVariable(el);
-		return v;
-	}
-
-
-
-	var TYPE_FUNCTION = typeof function(){};
-
-	var componentInstance = function(codename){
-		var self = component(codename);
-		var inst = $.extend({}, self, {
-			id: uuid.v4s(),
-			//id: null,
-			scope: {},
-			scopeVar: {},
-			locals: {},
-			parent: null,
-			e: null
-		});
-		return inst;
-	}
-	var component = function(codename, render, service){
-		var self = this;
-		if (!render){
-			return component.get(codename);
-		}
-		self.codename = codename;
-		//$(function(){
-			// initialize components only after dom ready
-			var wasExtended = false;
-			if (TYPE_FUNCTION !== typeof render){
-				// object
-				wasExtended = true;
-				$.extend(self, render);
-				//console.log(self.codename, render, self);
-				render = null;
-			}
-			self.appendTo = function(tagName, target, options){
-				//var self = this;
-				target = $(target);
-				var $e = $('<'+tagName+'></'+tagName+'>');
-				$e.appendTo(target);
-				//self.$e = $e;
-				//self.e = $e.get(0);
-				//console.log('appendTo', $e.get(0), target.get(0));
-				return self.replace($e.get(0), options); // return instance
-			};
-			self.prependTo = function(tagName, target, options){
-				//var self = this;
-				target = $(target);
-				var $e = $('<'+tagName+'></'+tagName+'>');
-				$e.prependTo(target);
-				//self.$e = $e;
-				//self.e = $e.get(0);
-				//console.log('prependTo', $e.get(0), target.get(0));
-				return self.replace($e.get(0), options); // return instance
-			};
-			self.replace = function(e, options){
-				//var self = this;
-				return replacePlaceholderElement(e, self, false, options); // return instance
-				//return self;
-			};
-			self.render = wasExtended ? self.render : render; // check if was extended with object
-			self.service = wasExtended ? self.service : service; // check if was extended with object
-			self.update = update; // update
-			self.sync = function(){
-				var self = this;
-				for (var k in self.scopeVar){
-					self.scopeVar[k].set(self.scope[k]);
-				}
-			};
-			self.update.bind(self);
-			self.bind = bindVariable;
-			self.bindScope = function(cb){
-				var self = this;
-				$('[model]', self.e).each(function(){
-					var me = this;
-					var $me = $(me);
-
-					var model = $me.attr('model').split('.');
-					$me.removeAttr('model');
-
-					var value = self.scope[model] || null;
-
-					var v = self.bind($me);
-					v.set(value);
-
-					self.scopeVar[model] = v;
-
-				});
-			}
-			self.instance = function(){
-				var self = this;
-				var inst = $.extend({}, self, {
-					id: uuid.v4s(),
-					//id: null,
-					scope: {},
-					scopeVar: {},
-					locals: {},
-					//parent: null,
-					e: null
-				});
-				//!inst.resize || inst.on('resize', inst.resize);
-				return inst;
-			};
-			self.createElement = function(tag){
-				return document.createElement(tag);
-			};
+		return new extend(function(){}, name, function(){
+			var self = this;
+			self.eventListeners = {};
 			self.on = function(eventname, callback){
 				var self = this;
 				callback.target = self;
-				addListener(eventname, callback);
-			}
-			self.parent = function(){
-				var self = this;
-				if (!self.$e){
-					console.log('no element');
-					return null;
+				addListener(eventname, callback); // listen global events
+				if ('undefined' === typeof self.eventListeners[eventname]){
+					self.eventListeners[eventname] = [];
 				}
-				var parent = self.$e.parents('[component-active]');
-				//console.log('parent element', parent, parent.length ? parent.get(0).component : null);
-				return parent.length ? parent.get(0).component : null;
+				self.eventListeners[eventname].push(callback);
 			}
+			self.trigger = function(eventname, data){
+				//console.info('Trigger ' + eventname + '');
+				var self = this;
+				for (var k in self.eventListeners[eventname]){
+					var listener = self.eventListeners[eventname][k];
+					var evt = new componentEvent(eventname);
+					evt.target = self;
+					evt.data = data;
+					listener(evt);
+				}
+			};
 
-			// FIXME move to instance  !self.resize || self.on('resize', self.resize);
-			//$(function(){
-				// wait for <body>
-				!self.extend || self.extend(); // run class extend() if exists
-			//});
-
-			update();
-		//});
-		components[codename] = self;
-	};
-	component.get = function(id){
-		return components[id];
-	};
-	var queryComponent = function(selector){
-		var $e = $(selector);
-		if ($e.length){
-			var e = $e.get(0);
-			if (e.component){
-				return e.component; // direct match
+		}, {
+			ready: function(){
+				var self = this;
+				// component is created in configured, call onload callbacks
+				//xonsole.log('unnamed component ', 'READY', this);
+				if ('undefined' != typeof self.componentName){
+					//xonsole.log(self.componentName, 'READY');
+					loadedComponents[self.componentName] = self;
+					onComponentLoad(self.componentName);
+				}
+			},
+			require: function(idList, callback){
+				var self = this;
+				//console.log('component.require', idList, callback);
+				return (function(callback){
+					return requireAll(idList, function(){
+						//console.log('component.require OK', idList, self, callback);
+						callback.apply(self, arguments);
+					});
+				})(callback);
+			},
+			isLoaded: function(id){
+				return isLoaded(id);
+			},
+			setComponent: function(id, component){
+				loadedComponents[id] = component; // the only way to change loadedComponents from outside
+			},
+			loadComponent: function(id){
+				console.error('Component', id, 'was not loaded');
 			}
-		}
-		return null;
-	};
-	component.query = queryComponent;
-	component.trigger = triggerGlobal;
-	component.componentInstance = componentInstance;
-	component.replace = replacePlaceholderElement;
-	component.list = components;
-	component.rendered = renderedComponents;
-	component.update = update;
-	component.lookup = lookupPlaceholders;
-	context[nameInContext] = component;
-	component.v = boundVariable;
-	component.bind = bindVariable;
-	// component.lookup();
-	$(function(){
-		update();
-		$(window).on('resize', function(){
-			component.trigger('resize');
 		});
-	});
+	})('component');
 
+
+
+	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ LOADER
+	var loadCallbacks = {};
+	var loading = {};
+	component.loadCss = function(src, callback){
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.href = src;
+		//xonsole.log('loadCss ' + src);
+		link.onload = function(){
+			//xonsole.log('loadCss ' + src + ' finished');
+			if (callback){
+				callback();
+			}
+		};
+		var head = document.getElementsByTagName('head')[0];//.getElementsByTagName[0];
+		head.appendChild(link);
+	}
+	var useMinified = false;
+	var loadScript = function(id, callback){
+		// load once, execute all callbacks
+		//xonsole.log('loadScript', id);
+		if ('undefined' === typeof loadCallbacks[id]){
+			loadCallbacks[id] = [];
+		}
+		loadCallbacks[id].push(callback);
+		if ('undefined' !== typeof loading[id]){
+			return;
+		}
+		//xonsole.log('loadScript - ', id);
+		loading[id] = true;
+		//var src = id + '.js';
+		var path = component.baseUrl + "/" + id;
+		var src = path + '/' + id + (useMinified?'.min':'') + '.js'; // npm-like naming
+		var css = path + '/' + id + '.css';
+		
+		var head = document.getElementsByTagName('head')[0];
+		var script = document.createElement('script');
+		script.onload = function(){
+			//xonsole.log('loadScript - loaded ', id);
+		};
+			/*script.onload = function(){
+				//xonsole.log('loadScript onload', id, callback);
+				if (isLoaded(id)){
+					var component = loadedComponents[id];
+					if (true === component.includeCss){
+						loadCss(css);
+					}
+				}
+				for (var k in loadCallbacks[id]){
+					var callback = loadCallbacks[id][k];
+					callback();
+				}
+			}*/
+		script.src = src;
+		head.appendChild(script);
+			//xonsole.log('loadScript', id, head);
+	}
+	var loadedScripts = {};
+	var loadedScriptsCallbacks = {};
+	var loadingScripts = {};
+	var requireScript = function(path, callback){
+		var src = component.baseUrl + "/" + path;
+		if ('undefined' !== typeof loadedScripts[src] && true === loadedScripts[src]){
+			return;
+		}
+		if ('undefined' === typeof loadedScriptsCallbacks[src]){
+			loadedScriptsCallbacks[src] = [];
+		}
+		loadedScriptsCallbacks[src].push(callback);
+		if ('undefined' !== typeof loadingScripts[src]){
+			return;
+		}
+		loadingScripts[src] = true;
+		//xonsole.log('require script', src);
+		var head = document.getElementsByTagName('head')[0];
+		var script = document.createElement('script');
+		script.onload = function(){
+			loadedScripts[src] = true;
+			for (var k in loadedScriptsCallbacks[src]){
+				var cb = loadedScriptsCallbacks[src][k];
+				cb();
+			}
+		};
+		script.src = src;
+		head.appendChild(script);
+	}
+	component.baseUrl = '/js/jquery-components/components';
+	component.loadComponent = function(componentName){
+		loadScript(componentName, function(){
+			/*onComponentLoad(id);
+			callback();*/
+		});
+	}
+	component.requireScript = function(path, callback){
+		requireScript(path, callback);
+	};
+
+	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ DOM
+
+	//component.require(['jquery'], function(jquery){
+	//	var $ = jquery.jQuery;
+		var placeholders = {};
+		var placeholder = function(e){
+			var self = this;
+			self.components = {};
+			self.active = [];
+			self.e = e;
+			self.$e = $(e);
+			self.replace = function(component, instance, options){
+				var el = self.e;
+				var componentName = component.componentName;
+				if ('undefined' !== typeof self.components[componentName] && true === self.components[componentName]){
+					return; // already activated the same component
+				}
+				// activate ++
+				self.components[componentName] = true;
+				self.active.push(componentName);
+				self.$e.attr('component-active', self.active.join(' '));
+				// activate --
+				self.$e.addClass(componentName + '-component');
+				instance.options = options;
+				self.e.componentInstance = instance;
+				self.$e.attr(componentName + '-component', instance.id);
+				instance.e = self.e;
+				instance.$e = self.$e;
+				//renderedComponents.push(c);
+				instance.init();
+				return instance; // return instance
+			}
+		};
+
+		var getPlaceholder = function(e){
+			if ('undefined' === typeof e.componentPlaceholder){
+				e.componentPlaceholder = new placeholder(e);
+			}
+			var p = e.componentPlaceholder;
+			return p;
+		};
+
+		component.lookup = function(context){
+			var localPlaceholders = [];
+			//xonsole.log('lookupPlaceholders', context);
+			var list = null;
+			var selector = '[component]';
+			if (context){
+				list = $(selector, context)
+			}else{
+				list = $(selector)
+			}
+			var found = 0;
+			var foundComponents = [];
+			list.each(function(){
+				var el = this;
+				var placeholder = getPlaceholder(el);
+				//xonsole.log('found', el, placeholder);
+				var cid = placeholder.$e.attr('component');
+				//xonsole.log('cid ' + cid);
+				if (!cid){
+					return;
+				}
+				var cida = cid.split(' ');
+				var inactive = 0;
+				for (var k in cida){
+					var componentName = cida[k];
+					if (!placeholders[componentName]){
+						placeholders[componentName] = [];
+					}
+					if (!localPlaceholders[componentName]){
+						localPlaceholders[componentName] = [];
+					}
+					if ('' !== componentName){
+						var status = placeholder.components[componentName];
+						if ('undefined' === typeof status){
+							placeholder.components[componentName] = false;
+							foundComponents.push(componentName);
+							placeholders[componentName].push(placeholder); // (el)
+							localPlaceholders[componentName].push(placeholder);
+							found++;
+						}
+						if(false === status){
+							inactive++;
+						}
+					}
+				}
+				placeholder.$e.attr('component', '');
+				placeholder.e.removeAttribute('component');
+			});
+			return localPlaceholders;
+		};
+
+
+		component.appendTo = function(tagName, target, options){ // query required
+			target = $(target);
+			var e = document.createElement(tagName);
+			var $e = $(e);
+			$e.appendTo(target);
+			return this.replace(e, options); // return instance
+		};
+		component.prependTo = function(tagName, target, options){
+			target = $(target);
+			var e = document.createElement(tagName);
+			var $e = $(e);
+			$e.prependTo(target);
+			return this.replace(e, options); // return instance
+		};
+		component.replace = function(domElement, options){ // replace domElement placeholder content with component instance content
+			var self = this;
+			return getPlaceholder(domElement).replace(self, new self(), options); // return new instance
+		};
+		component.instance = function(options){
+			var self = this;
+			var domElement = document.createElement('div');
+			return self.replace(domElement, options);
+		};
+		component.update = function(domElement, callback){
+			//xonsole.log('component.update', domElement);
+			var self = this;
+			var found = 0;
+			var founda = [];
+			var localPlaceholders = component.lookup(domElement);
+
+			//xonsole.log(placeholders);
+			for (var componentName in localPlaceholders){
+				(function(componentName, localPlaceholders){
+					var waiting = true;
+					//xonsole.log('DOM is waiting for ', componentName, '...');
+					setTimeout(function(){
+						if (waiting){
+							console.error('DOM was not able to load ' + componentName + ' in 10 seconds');
+						}
+					}, 10000);
+					component.require([componentName], function domLoader(foundComponent){
+						//xonsole.log('DOM loaded ', componentName, '');
+						if (isLoaded(componentName)){
+							waiting = false;
+							//console.info(componentName, 'loaded at component.update');
+							var foundComponent = loadedComponents[componentName];
+							//var el = null;
+							var placeholder;
+							while (placeholder = localPlaceholders[componentName].pop()){
+								var instance = new foundComponent();
+								placeholder.replace(foundComponent, instance, true);
+								//replacePlaceholderInstance(placeholder, instance, true);
+								component.lookup(placeholder.e); // lookup newly rendered placeholders
+								found++;
+								founda.push(componentName);
+							}
+						}
+					});
+				})(componentName, localPlaceholders);
+			}
+			/*if (found){
+				xonsole.log('update found', found, founda);
+				self.update();
+			}*/
+		};
+
+		component.init = function(){
+			var self = this;
+			!self.render || self.render();
+			!self.bindScope || self.bindScope();
+			!self.service || self.service();
+		}
+
+		$(function(){
+			component.update();
+			$(window).on('resize', function(){
+				triggerGlobal('resize');
+				//component.trigger('resize');
+			});
+		});
+
+
+		component.query = function(selector){
+			var $e = $(selector);
+			if ($e.length){
+				var e = $e.get(0);
+				if (e.componentInstance){
+					return e.componentInstance; // direct match
+				}
+			}
+			return null;
+		};
+
+	//});
+
+
+	context[nameInContext] = component;
+	
+	var jqueryComponent = new component('jquery', {
+		'readyMethod': function(){
+			//xonsole.log('jqueryComponent script loaded');
+			return $;
+		}
+	});
+	if (!jqueryComponent.ready){
+		console.log(jqueryComponent.ready);
+		console.log(jqueryComponent);
+		//console.dir(jqueryComponent);
+	}
+	jqueryComponent.ready();
+	
 })(this, 'component', jQuery);
+
+})(window); 
