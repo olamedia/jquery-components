@@ -1,7 +1,16 @@
-;(function(context, nameInContext, $){
-
+;(function( window ){
+;(function(context, nameInContext, jQuery){
+	var $ = jQuery;//.noConflict();
 	// +++++++++++++++++++++++++++++ EVENTS ++++++++++++++++++++++++++++++++++
-
+/*
+	if (!('querySelectorAll' in document)){
+		return;
+	}
+	
+	var query = function(selector){
+		return document.querySelectorAll(selector);
+	}
+*/
 	var eventListeners = {};
 	var componentEvent = function(eventname){
 		var self = this;
@@ -38,6 +47,7 @@
 	var loadedComponents = {}; // key is component name
 	var loadedInstances = {}; // key is uuid
 	var isLoaded = function(id){
+		//xonsole.log('isLoaded', id, 'undefined' !== typeof loadedComponents[id]);
 		return 'undefined' !== typeof loadedComponents[id];
 	}
 	var onLoadListeners = {};
@@ -49,7 +59,7 @@
 		component.loadComponent(componentName);
 	}
 	var onComponentLoad = function(componentName){
-		//console.log('onComponentLoad', componentName);
+		//xonsole.log('onComponentLoad', componentName);
 
 		var foundComponent = loadedComponents[componentName];
 
@@ -82,21 +92,26 @@
 		if (0 === components.length){
 			return callback.apply(this, []);
 		}
-		//console.log('requireAll', components);
+		//xonsole.log('requireAll', components);
 		var onLoadAll = (function(components, callback){
 			var executed = false;
 			return function(){
-				//console.log('onLoad', components, callback);
+				//xonsole.log('onLoad', components, callback);
 				var list = [];
 				var complete = true;
-				for (var k in components){
+				for (var k = 0; k<components.length; k++){
 					var componentName = components[k];
 					if (!isLoaded(componentName)){
-						//console.log(componentName, 'is not loaded yet');
+						//xonsole.log(componentName, 'is not loaded yet');
 						complete = false;
 					}else{
-						//console.log(componentName, 'is loaded');
-						list.push(loadedComponents[componentName]);
+						//xonsole.trace(componentName, 'is loaded');
+						var component = loadedComponents[componentName];
+						if (component.readyMethod){
+							list.push(component.readyMethod());
+						}else{
+							list.push(component);
+						}
 					}
 				}
 				if (!complete){
@@ -109,7 +124,7 @@
 			}
 		})(components, callback);
 
-		for (var k in components){
+		for (var k = 0; k<components.length; k++){
 			var componentName = components[k];
 			//if (!isLoaded(componentName)){
 				if ('undefined' == typeof onLoadListeners[componentName]){
@@ -134,7 +149,7 @@
 				});
 			});
 		}*/
-		for (var k in components){
+		for (var k = 0; k<components.length; k++){
 			var componentName = components[k];
 			requireId(componentName);
 		}
@@ -213,22 +228,30 @@
 			var parent = null;
 			var id = null, guid = uuid.v4s(), depsId = [], deps = [], factory = null, extendWith = [], copyParentProperties = true;
 			// Parse arguments:
-			for (var k in arguments){ // arguments of extend()
+			//xonsole.log('extend pasre args');
+			for (var k = 0; k<arguments.length; k++){ // arguments of extend()
 				var arg = arguments[k];
+				//xonsole.log('extend pasre arg ' + arg);
 				if (0 == k){
 					parent = arg;
+					//xonsole.log('extend pasre arg = parent');
 				}else{
 					if (true === arg || false === arg){
-						//console.log('bool');
+						//xonsole.log('bool');
 						copyParentProperties = arg;
+						//xonsole.log('extend pasre arg = boolean');
 					}else if (typeof '' === typeof arg){
-						if ('' != arg && Object.defineProperty){
+						//xonsole.log('extend parse String ', arg);
+						if ('' != arg){// && Object.defineProperty
 							id = arg;
 						}
 					}else if (typeof function(){} === typeof arg){
+						//xonsole.log('extend pasre arg = Function');
 						factory = arg;//.apply(instance, []); // factory
 					}else if (typeof {} === typeof arg){
+						//xonsole.log('extend pasre arg = Object');
 						if (arg instanceof [].constructor){
+							//xonsole.log('extend pasre arg = Array');
 							depsId = arg;
 						}else{
 							extendWith.push(arg);
@@ -243,36 +266,42 @@
 				extendWith.unshift(parent);
 			}
 			// Create constructor
-			var instance = (function(extend, id, parent, copyParentProperties, extendWith, depsId, factory){
-				//console.info('Creating constructor for', id);
+			var instance = (function(extend, iid, parent, copyParentProperties, extendWith, depsId, factory){
+				//console.info('Creating constructor for', iid);
 				var constructor = function(){
 					var parent = constructor;
 					var self = this;
 					var a = [];
 					a.push(parent); // extend with parent
 					//a.push(constructor); // extend with self
-					for (var k in arguments){ // arguments of new component()
+					for (var k = 0; k<arguments.length; k++){ // arguments of new component()
 						a.push(arguments[k]);
 					}
 					return extend.apply(parent, a);
 				};
 				var recursiveFactory = function(){
 					var instance = this;
-					//console.log('recursiveFactory', factory, extendWith);
+					//xonsole.log('recursiveFactory', factory, extendWith);
 					requireAll(depsId, function(){
+						//for (var i = 0; i<extendWith.length; i++){
 						for (var i in extendWith){
 							var obj = extendWith[i];
+							//for (var j = 0; j<extendWith.length; j++){
 							for (var j in obj){
 								var value = obj[j];
 								if (typeof function(){} === typeof value){
-									instance[j] = obj[j].bind(instance);
+									instance[j] = obj[j];
+									if (instance[j].bind){
+										instance[j].bind(instance);
+									}
 								}else{
+
 									instance[j] = obj[j];
 								}
 							}
 						}
 						if (copyParentProperties && parent && parent.prototype.factory){
-							//console.log('recursiveFactory parent', parent.prototype.factory);
+							//xonsole.log('recursiveFactory parent', parent.prototype.factory);
 							parent.prototype.factory.apply(instance, arguments);
 						}
 						if (null != factory){
@@ -281,7 +310,7 @@
 					});
 				};
 				/*if (null != factory){
-					console.log(id, 'factory()');
+					xonsole.log(id, 'factory()');
 					requireAll(depsId, function(){
 						factory.apply(constructor, arguments);
 					});
@@ -300,8 +329,9 @@
 					instance[j] = obj[j];
 				}
 			}*/
-
+			//xonsole.log('set component name?', id);
 			if (null !== id){
+				//xonsole.log('set component name', id);
 				instance.componentName = id;
 				//loadedComponents[id] = instance;
 				if (Object.defineProperty){
@@ -333,13 +363,14 @@
 				}
 				self.eventListeners[eventname].push(callback);
 			}
-			self.trigger = function(eventname){
+			self.trigger = function(eventname, data){
 				//console.info('Trigger ' + eventname + '');
 				var self = this;
 				for (var k in self.eventListeners[eventname]){
 					var listener = self.eventListeners[eventname][k];
 					var evt = new componentEvent(eventname);
 					evt.target = self;
+					evt.data = data;
 					listener(evt);
 				}
 			};
@@ -348,8 +379,9 @@
 			ready: function(){
 				var self = this;
 				// component is created in configured, call onload callbacks
+				//xonsole.log('unnamed component ', 'READY', this);
 				if ('undefined' != typeof self.componentName){
-					//console.log(self.componentName, 'READY');
+					//xonsole.log(self.componentName, 'READY');
 					loadedComponents[self.componentName] = self;
 					onComponentLoad(self.componentName);
 				}
@@ -385,16 +417,20 @@
 		var link = document.createElement('link');
 		link.rel = 'stylesheet';
 		link.href = src;
+		//xonsole.log('loadCss ' + src);
 		link.onload = function(){
+			//xonsole.log('loadCss ' + src + ' finished');
 			if (callback){
 				callback();
 			}
 		};
-		var head = document.getElementsByTagName('head')[0];
+		var head = document.getElementsByTagName('head')[0];//.getElementsByTagName[0];
 		head.appendChild(link);
 	}
+	var useMinified = false;
 	var loadScript = function(id, callback){
 		// load once, execute all callbacks
+		//xonsole.log('loadScript', id);
 		if ('undefined' === typeof loadCallbacks[id]){
 			loadCallbacks[id] = [];
 		}
@@ -402,25 +438,20 @@
 		if ('undefined' !== typeof loading[id]){
 			return;
 		}
+		//xonsole.log('loadScript - ', id);
 		loading[id] = true;
-		//console.log('loadScript', id);
 		//var src = id + '.js';
 		var path = component.baseUrl + "/" + id;
-		var src = path + '/' + id + '.js'; // npm-like naming
+		var src = path + '/' + id + (useMinified?'.min':'') + '.js'; // npm-like naming
 		var css = path + '/' + id + '.css';
-		if (typeof define === 'function' && define.amd) { // AMD
-			define([id], function(module){
-				//loadedComponents[id] = component;
-				callback();
-			});
-		}else if (typeof module === 'object' && module.exports) { // Node
-			var module = require(src);
-			callback();
-		}else{	// Browser
-			var head = document.getElementsByTagName('head')[0];
-			var script = document.createElement('script');
+		
+		var head = document.getElementsByTagName('head')[0];
+		var script = document.createElement('script');
+		script.onload = function(){
+			//xonsole.log('loadScript - loaded ', id);
+		};
 			/*script.onload = function(){
-				//console.log('loadScript onload', id, callback);
+				//xonsole.log('loadScript onload', id, callback);
 				if (isLoaded(id)){
 					var component = loadedComponents[id];
 					if (true === component.includeCss){
@@ -432,18 +463,49 @@
 					callback();
 				}
 			}*/
-			script.src = src;
-			head.appendChild(script);
-			//console.log('loadScript', id, head);
-		}
+		script.src = src;
+		head.appendChild(script);
+			//xonsole.log('loadScript', id, head);
 	}
-	component.baseUrl = '.';
+	var loadedScripts = {};
+	var loadedScriptsCallbacks = {};
+	var loadingScripts = {};
+	var requireScript = function(path, callback){
+		var src = component.baseUrl + "/" + path;
+		if ('undefined' !== typeof loadedScripts[src] && true === loadedScripts[src]){
+			return;
+		}
+		if ('undefined' === typeof loadedScriptsCallbacks[src]){
+			loadedScriptsCallbacks[src] = [];
+		}
+		loadedScriptsCallbacks[src].push(callback);
+		if ('undefined' !== typeof loadingScripts[src]){
+			return;
+		}
+		loadingScripts[src] = true;
+		//xonsole.log('require script', src);
+		var head = document.getElementsByTagName('head')[0];
+		var script = document.createElement('script');
+		script.onload = function(){
+			loadedScripts[src] = true;
+			for (var k in loadedScriptsCallbacks[src]){
+				var cb = loadedScriptsCallbacks[src][k];
+				cb();
+			}
+		};
+		script.src = src;
+		head.appendChild(script);
+	}
+	component.baseUrl = '/js/jquery-components/components';
 	component.loadComponent = function(componentName){
 		loadScript(componentName, function(){
 			/*onComponentLoad(id);
 			callback();*/
 		});
 	}
+	component.requireScript = function(path, callback){
+		requireScript(path, callback);
+	};
 
 	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ DOM
 
@@ -489,7 +551,7 @@
 
 		component.lookup = function(context){
 			var localPlaceholders = [];
-			//console.log('lookupPlaceholders', context);
+			//xonsole.log('lookupPlaceholders', context);
 			var list = null;
 			var selector = '[component]';
 			if (context){
@@ -502,9 +564,9 @@
 			list.each(function(){
 				var el = this;
 				var placeholder = getPlaceholder(el);
-				//console.log('found', el, placeholder);
+				//xonsole.log('found', el, placeholder);
 				var cid = placeholder.$e.attr('component');
-				console.log('cid', cid);
+				//xonsole.log('cid ' + cid);
 				if (!cid){
 					return;
 				}
@@ -563,24 +625,24 @@
 			return self.replace(domElement, options);
 		};
 		component.update = function(domElement, callback){
-			//console.log('component.update', domElement);
+			//xonsole.log('component.update', domElement);
 			var self = this;
 			var found = 0;
 			var founda = [];
 			var localPlaceholders = component.lookup(domElement);
 
-			//console.log(placeholders);
+			//xonsole.log(placeholders);
 			for (var componentName in localPlaceholders){
 				(function(componentName, localPlaceholders){
 					var waiting = true;
-					//console.log('DOM is waiting for ', componentName, '...');
+					//xonsole.log('DOM is waiting for ', componentName, '...');
 					setTimeout(function(){
 						if (waiting){
-							console.error('DOM was not able to load', componentName,' in 3 seconds');
+							console.error('DOM was not able to load ' + componentName + ' in 10 seconds');
 						}
-					}, 3000);
+					}, 10000);
 					component.require([componentName], function domLoader(foundComponent){
-						//console.log('DOM loaded ', componentName, '');
+						//xonsole.log('DOM loaded ', componentName, '');
 						if (isLoaded(componentName)){
 							waiting = false;
 							//console.info(componentName, 'loaded at component.update');
@@ -600,7 +662,7 @@
 				})(componentName, localPlaceholders);
 			}
 			/*if (found){
-				console.log('update found', found, founda);
+				xonsole.log('update found', found, founda);
 				self.update();
 			}*/
 		};
@@ -636,4 +698,20 @@
 
 
 	context[nameInContext] = component;
+	
+	var jqueryComponent = new component('jquery', {
+		'readyMethod': function(){
+			//xonsole.log('jqueryComponent script loaded');
+			return $;
+		}
+	});
+	if (!jqueryComponent.ready){
+		console.log(jqueryComponent.ready);
+		console.log(jqueryComponent);
+		//console.dir(jqueryComponent);
+	}
+	jqueryComponent.ready();
+	
 })(this, 'component', jQuery);
+
+})(window); 
